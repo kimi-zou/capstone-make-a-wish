@@ -1,39 +1,34 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('Wishes', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      username: {
-        type: Sequelize.STRING(30),
-        allowNull: false,
-        unique: true,
-      },
-      displayName: {
-        type: Sequelize.STRING(50),
-        allowNull: true,
-      },
-      email: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
-      hashedPassword: {
-        type: Sequelize.STRING.BINARY,
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      link: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: 1
+      },
+      status: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
-      avatar: {
-        type: Sequelize.TEXT,
-        allowNull: true,
-      },
-      birthday: {
-        type: Sequelize.DATEONLY,
-        allowNull: true,
-      }, 
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -43,10 +38,10 @@ module.exports = {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.fn('now'),
-      },
+      }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
-  },
+    return queryInterface.dropTable('Wishes');
+  }
 };

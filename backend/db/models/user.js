@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       avatar: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
       },
       birthday: {
@@ -70,6 +70,9 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function (models) {
     User.hasMany(models.Relationship, {
       foreignKey: ["userOneId", "UserTwoId", "actionUserId"]
+    }),
+    User.hasMany(models.Wish, {
+      foreignKey: "userId"
     })
   };
 
