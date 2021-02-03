@@ -1,39 +1,22 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Wishes', {
+    return queryInterface.createTable('WishImages', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      title: {
-        type: Sequelize.STRING,
+      image: {
+        type: Sequelize.TEXT,
         allowNull: false,
       },
-      description: {
-        type: Sequelize.TEXT,
-        allowNull: true,
-      },
-      link: {
-        type: Sequelize.TEXT,
-        allowNull: true,
-      },
-      quantity: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        defaultValue: 1
-      },
-      status: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      userId: {
+      wishId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "Users",
+          model: "Wishes",
         }
       },
       createdAt: {
@@ -49,6 +32,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Wishes');
+    return queryInterface.dropTable('WishImages');
   }
 };
