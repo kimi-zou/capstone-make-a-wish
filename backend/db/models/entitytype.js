@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     } 
   }, {});
   EntityType.associate = function(models) {
-    // associations can be defined here
+    EntityType.hasMany(models.NotificationObject, {
+      foreignKey: "entityTypeId"
+    })
   };
   return EntityType;
 };
