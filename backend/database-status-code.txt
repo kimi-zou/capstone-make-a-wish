@@ -7,3 +7,9 @@ Wishes:
   0 - Private
   1 - Public
   2 - Locked
+
+EntityTypes:
+  1 - Friend, Receive a friend request.
+  2 - Friend, Friend request is accpeted.
+  3 - Birthday, Friend's birthday is coming up.
+  4 - Wish, Wish is locked.
