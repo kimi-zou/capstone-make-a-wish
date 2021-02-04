@@ -8,10 +8,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   NotificationReceiver.associate = function(models) {
     NotificationReceiver.belongsTo(models.NotificationObject, {
-      as: "notificationObjectId",
+      foreignKey: "notificationObjectId",
     }),
     NotificationReceiver.belongsTo(models.User, {
-      as: "receiverId",
+      foreignKey: "receiverId",
     })
   };
   return NotificationReceiver;

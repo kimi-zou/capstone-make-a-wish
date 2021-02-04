@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "wishId" 
     }),
     Wish.belongsTo(models.User, {
-      as: "userId"
+      foreignKey: "userId"
     })
   };
 

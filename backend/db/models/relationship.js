@@ -13,13 +13,13 @@ module.exports = (sequelize, DataTypes) => {
   });
   Relationship.associate = function(models) {
     Relationship.belongsTo(models.User, {
-      as: "actionUserId"
+      foreignKey: "actionUserId"
     }), 
     Relationship.belongsTo(models.User, {
-      as: "userOneId"
+      foreignKey: "userOneId"
     }), 
     Relationship.belongsTo(models.User, {
-      as: "userTwoId"
+      foreignKey: "userTwoId"
     }) 
   };
   return Relationship;
