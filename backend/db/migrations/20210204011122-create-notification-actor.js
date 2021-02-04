@@ -10,15 +10,21 @@ module.exports = {
       },
       actorId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: "Users",
         }
       },
       notificationObjectId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: "NotificationObjects",
         }
+      },
+      status: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,

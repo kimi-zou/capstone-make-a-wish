@@ -4,7 +4,6 @@ module.exports = (sequelize, DataTypes) => {
     status: { 
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
     },
   }, {
     indexes: [{
