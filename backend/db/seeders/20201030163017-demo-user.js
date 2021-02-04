@@ -53,6 +53,10 @@ module.exports = {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete("Users", {
       // username: { [Op.in]: ["demo", "friend1", "friend2"] }
-    }, {});
+    }, {
+      truncate: true,
+      restartIdentity: true,
+      cascade: true
+    });
   }
 };
