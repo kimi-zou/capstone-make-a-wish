@@ -3,3 +3,7 @@ Relationships:
   1 - Accepted
   2 - Declined  
 
+Wishes:
+  0 - Private
+  1 - Public
+  2 - Locked
