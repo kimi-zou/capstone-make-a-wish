@@ -1,16 +1,14 @@
 import React from 'react';
 
-import TopNav from '../../Navigation/TopNav';
-
+import HomeNav from '../../Navigation/HomeNav';
 
 const About = () => {
   return (
     <>
-      <TopNav />
+      <HomeNav />
       <div>Introduction about Make-a-Wish.</div>
     </>
-
-  )
-}
+  );
+};
 
 export default About;

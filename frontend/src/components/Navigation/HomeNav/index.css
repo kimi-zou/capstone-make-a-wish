@@ -1,0 +1,12 @@
+.homenav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.homenav__links {
+  padding-right: 10px;
+}
+
+.profile-dropdown {
+  position: absolute;
+}

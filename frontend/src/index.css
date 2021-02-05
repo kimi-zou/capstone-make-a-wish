@@ -51,3 +51,12 @@ textarea::placeholder {
   color: #ccc;
   font-weight: 300;
 }
+
+/* ---------------------------- */
+.body {
+  display: flex;
+}
+
+.main {
+  width: 80%;
+}

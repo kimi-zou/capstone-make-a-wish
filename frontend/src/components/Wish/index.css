@@ -1,0 +1,7 @@
+.wish {
+  display: flex;
+}
+
+.wish--main {
+  width: 80%;
+}

@@ -1,22 +1,13 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import React from 'react';
 
-import { logout } from "../../store/session";
+import './index.css';
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
-
-  const handleLogout = (e) => {
-    e.preventDefault();
-    dispatch(logout());
-    history.push("/");
-  };
-
   return (
-    <button onClick={handleLogout}>Log Out</button>
-  )
-}
+    <div className='dashboard'>
+      <div>This is dashboard.</div>
+    </div>
+  );
+};
 
 export default Dashboard;
