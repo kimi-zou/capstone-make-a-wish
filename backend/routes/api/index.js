@@ -26,21 +26,16 @@ router.get('/restore-user', restoreUser, (req, res) => {
 });
 
 // // GET /api/require-auth
-// const { requireAuth } = require('../../utils/auth.js');
-// router.get(
-//   '/require-auth',
-//   requireAuth,
-//   (req, res) => {
-//     return res.json(req.user);
-//   }
-// );
-
-router.post('/test', function (req, res) {
-  res.json({ requestBody: req.body });
-});
+const { requireAuth } = require('../../utils/auth.js');
+router.get(
+  '/require-auth',
+  requireAuth,
+  (req, res) => {
+    return res.json(req.user);
+  }
+);
 
 router.use('/session', sessionRouter);
-
 router.use('/users', usersRouter);
 
 module.exports = router;

@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Wish, WishImage } = require('../../db/models');
 
 const router = express.Router();
 
@@ -38,10 +38,14 @@ router.post(
       user = await User.signupNoBirthday({ email, username, password });
     }
     await setTokenCookie(res, user);
-    return res.json({
-      user
-    });
+    return res.json({ user });
   })
 );
+
+// Wishes lookup
+router.get('/:id(\\d+)/wishes', asyncHandler(async (req, res) => {
+  const wishes = await Wish.getWishesByUserId(req.params.id, WishImage);
+  return res.json({ wishes });
+}));
 
 module.exports = router;

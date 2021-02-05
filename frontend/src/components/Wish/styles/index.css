@@ -1,0 +1,12 @@
+.wish {
+  display: flex;
+  flex-direction: column;
+}
+
+.wish__add {
+  width: 50px;
+}
+
+.wish__gifts {
+  display: flex;
+}

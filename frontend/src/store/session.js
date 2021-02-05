@@ -1,10 +1,8 @@
 import { fetch } from './csrf.js';
 
-
 // -------------------- Action Types --------------------
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
-
 
 // -------------------- POJO Actions ---------------------
 const setUser = (user) => ({
@@ -16,7 +14,6 @@ const removeUser = () => ({
   type: REMOVE_USER
 });
 
-
 // -------------------- Thunk Actions --------------------
 export const login = ({ credential, password }) => async (dispatch) => {
   const res = await fetch('/api/session', {
@@ -27,17 +24,15 @@ export const login = ({ credential, password }) => async (dispatch) => {
   return res;
 };
 
-
 export const restoreUser = () => async (dispatch) => {
   const res = await fetch('/api/session');
   dispatch(setUser(res.data.user));
   return res;
 };
 
-
 export const signup = (user) => async (dispatch) => {
   const { username, email, password, birthday } = user;
-  console.log(birthday)
+  console.log(birthday);
   const res = await fetch('/api/users', {
     method: 'POST',
     body: JSON.stringify({
@@ -52,7 +47,6 @@ export const signup = (user) => async (dispatch) => {
   return res;
 };
 
-
 export const logout = () => async (dispatch) => {
   const res = await fetch('/api/session', {
     method: 'DELETE'
@@ -61,13 +55,11 @@ export const logout = () => async (dispatch) => {
   return res;
 };
 
-
 // -------------------- States ----------------------
 const initialState = { user: null };
 
-
 // -------------------- Reducer ----------------------
-function reducer(state = initialState, action) {
+function sessionReducer (state = initialState, action) {
   let newState;
   switch (action.type) {
     case SET_USER:
@@ -81,4 +73,4 @@ function reducer(state = initialState, action) {
   }
 }
 
-export default reducer;
+export default sessionReducer;

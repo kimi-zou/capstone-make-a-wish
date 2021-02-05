@@ -1,15 +1,15 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const WishImage = sequelize.define('WishImage', {
-    image: { 
+    image: {
       type: DataTypes.TEXT,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   }, {});
-  WishImage.associate = function(models) {
-    WishImage.belongsTo(models.WishImage, {
+  WishImage.associate = function (models) {
+    WishImage.belongsTo(models.Wish, {
       foreignKey: 'wishId'
-    })
+    });
   };
   return WishImage;
 };

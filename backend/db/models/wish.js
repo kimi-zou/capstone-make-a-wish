@@ -1,35 +1,48 @@
 'use strict';
+// const WishImage = require('./wishimage');
+
 module.exports = (sequelize, DataTypes) => {
   const Wish = sequelize.define('Wish', {
-    title: { 
+    title: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
-    description: { 
+    description: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: true
     },
-    link: { 
+    link: {
       type: DataTypes.TEXT,
-      allowNull: true,
+      allowNull: true
     },
-    quantity: { 
+    quantity: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
-    status: { 
+    status: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   }, {});
 
-  Wish.associate = function(models) {
+  Wish.associate = function (models) {
     Wish.hasMany(models.WishImage, {
-      foreignKey: 'wishId' 
-    }),
+      foreignKey: 'wishId'
+    });
     Wish.belongsTo(models.User, {
       foreignKey: 'userId'
-    })
+    });
+  };
+
+  // --------------  Static Methods (not work for instances) ---------------
+  // 1. get wishes by user id
+  Wish.getWishesByUserId = async function (userId, WishImage) {
+    return await Wish.findAll({
+      where: {
+        userId: userId
+      },
+      include: WishImage
+    });
   };
 
   return Wish;

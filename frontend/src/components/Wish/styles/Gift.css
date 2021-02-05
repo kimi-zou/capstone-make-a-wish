@@ -1,0 +1,14 @@
+.gift {
+  width: 200px;
+  height: 250px;
+}
+
+.gift__image {
+  height: calc(100% - 30px);
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.gift__title {
+  height: 30px;
+}
