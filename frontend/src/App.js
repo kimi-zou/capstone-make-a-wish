@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 
 import { restoreUser } from "./store/session";
 
-import Home from "./components/Home/Home";
+import Home from "./components/Home/Home/index";
 import About from "./components/Home/About";
 import Dashboard from "./components/Dashboard";
 

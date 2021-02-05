@@ -6,7 +6,7 @@ import TopNav from "../../Navigation/TopNav";
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 
-import "./Home.css";
+import "./styles/index.css";
 
 const Home = () => {
   const [showLogin, setShowLogin] = useState(true);

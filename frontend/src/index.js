@@ -7,7 +7,7 @@ import configureStore from './store';
 import { restoreCSRF, fetch } from './store/csrf';
 import * as sessionActions from './store/session';
 
-import { ModalProvider } from './context/Modal';
+import { ModalProvider } from './services/Modal/Modal';
 import App from './App';
 
 import './index.css';
