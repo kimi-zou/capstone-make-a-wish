@@ -1,1 +1,53 @@
 /* TODO Add site wide styles */
+body {
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* Link  */
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* List  */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Buttons  */
+button {
+  border-style: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+
+/* Form input  */
+input,
+textarea {
+  color: #333;
+}
+
+input:focus,
+textarea:focus {
+  outline-color: rgb(161, 161, 161);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #ccc;
+  font-weight: 300;
+}

@@ -1,0 +1,12 @@
+.topnav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.topnav__links {
+  padding-right: 10px;
+}
+
+.profile-dropdown {
+  position: absolute;
+}

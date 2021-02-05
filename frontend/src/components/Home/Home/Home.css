@@ -1,0 +1,13 @@
+.home {
+  display: flex;
+}
+
+.home--left {
+  width: 65%;
+  background-color: #999;
+  margin-right: 100px;
+}
+
+.home__splash-img {
+  width: 100%;
+}
