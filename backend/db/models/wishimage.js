@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   WishImage.associate = function(models) {
     WishImage.belongsTo(models.WishImage, {
-      foreignKey: "wishId"
+      foreignKey: 'wishId'
     })
   };
   return WishImage;

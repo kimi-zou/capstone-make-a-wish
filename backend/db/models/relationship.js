@@ -8,18 +8,18 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     indexes: [{
       unique: true,
-      fields: ["userOneId", "userTwoId"],
+      fields: ['userOneId', 'userTwoId'],
     }]
   });
   Relationship.associate = function(models) {
     Relationship.belongsTo(models.User, {
-      foreignKey: "actionUserId"
+      foreignKey: 'actionUserId'
     }), 
     Relationship.belongsTo(models.User, {
-      foreignKey: "userOneId"
+      foreignKey: 'userOneId'
     }), 
     Relationship.belongsTo(models.User, {
-      foreignKey: "userTwoId"
+      foreignKey: 'userTwoId'
     }) 
   };
   return Relationship;

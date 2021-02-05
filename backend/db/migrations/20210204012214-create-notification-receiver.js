@@ -12,14 +12,14 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "Users",
+          model: 'Users',
         }
       },
       notificationObjectId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: "NotificationObjects",
+          model: 'NotificationObjects',
         }
       },
       status: {

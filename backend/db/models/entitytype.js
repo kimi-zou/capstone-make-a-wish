@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   EntityType.associate = function(models) {
     EntityType.hasMany(models.NotificationObject, {
-      foreignKey: "entityTypeId"
+      foreignKey: 'entityTypeId'
     })
   };
   return EntityType;

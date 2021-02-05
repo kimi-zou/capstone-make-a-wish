@@ -25,10 +25,10 @@ module.exports = (sequelize, DataTypes) => {
 
   Wish.associate = function(models) {
     Wish.hasMany(models.WishImage, {
-      foreignKey: "wishId" 
+      foreignKey: 'wishId' 
     }),
     Wish.belongsTo(models.User, {
-      foreignKey: "userId"
+      foreignKey: 'userId'
     })
   };
 
