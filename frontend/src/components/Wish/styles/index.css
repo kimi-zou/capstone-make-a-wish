@@ -1,6 +1,11 @@
 .wish {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+.wish__heading {
+  font-size: 48px;
 }
 
 .wish__add {
@@ -9,4 +14,17 @@
 
 .wish__gifts {
   display: flex;
+  width: 100%;
+}
+
+.wish__items {
+  width: 23%;
+}
+
+.create-wish {
+  width: 100%;
+}
+
+.test {
+  width: 100%;
 }

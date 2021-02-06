@@ -10,9 +10,25 @@ const setWishes = (wishes) => ({
 });
 
 // -------------------- Thunk Actions --------------------
+// 1. Get all wishes of a user
 export const getWishes = (id) => async dispatch => {
   const res = await fetch(`/api/users/${id}/wishes`);
   dispatch(setWishes(res.data.wishes));
+  return res;
+};
+
+// 2. Create a wish
+export const createWish = (wish) => async dispatch => {
+  const { title, description, link, quantity } = wish;
+  const res = await fetch('/api/wishes/create', {
+    method: 'POST',
+    body: JSON.stringify({
+      title,
+      description,
+      link,
+      quantity
+    })
+  });
   return res;
 };
 

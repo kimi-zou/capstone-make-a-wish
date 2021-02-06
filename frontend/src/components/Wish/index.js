@@ -1,26 +1,28 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getWishes } from '../../store/wish';
-import Gift from './Gift';
 import CreateWishForm from './CreateWishForm';
 import './styles/index.css';
 
+import Gift from './Gift';
+
 const Wish = () => {
   const dispatch = useDispatch();
-  const createWishRef = useRef();
-  const [loaded, setLoaded] = useState();
-  const [showCreateWishForm, setShowCreateWishForm] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
   const wishes = useSelector(state => state.wish.wishes);
+  const [loaded, setLoaded] = useState();
+  const [showCreateWishForm, setShowCreateWishForm] = useState(false);
 
+  // Get all wishes of session user
   useEffect(() => {
     if (sessionUser) {
       dispatch(getWishes(sessionUser.id))
         .then(() => setLoaded(true));
     }
-  }, [dispatch, sessionUser, showCreateWishForm]);
+  }, [dispatch, sessionUser]);
 
+  // Show create wish form
   const handleClick = () => {
     setShowCreateWishForm(true);
   };
@@ -29,41 +31,27 @@ const Wish = () => {
 
   return (
     <div className='wish'>
-      <div>My Wishes</div>
+      <div className='wish__heading'>My Wishes</div>
+      {
+        showCreateWishForm &&
+          <CreateWishForm
+            className='test'
+            showCreateWishForm={showCreateWishForm}
+            setShowCreateWishForm={setShowCreateWishForm}
+          />
+      }
       <div className='wish__gifts'>
-        <button
-          className='wish__add'
-          onClick={handleClick}
-        >
-          +
-        </button>
-        {wishes.map((wish, index) => {
-          if ((index === 3) || (index === wishes.length - 1)) {
-            return (
-              <div key={`wish-container-${index}`}>
-                <Gift
-                  wish={wish}
-                  key={wish.id}
-                />
-                {showCreateWishForm &&
-                  <CreateWishForm
-                    createWishRef={createWishRef}
-                    showCreateWishForm={showCreateWishForm}
-                    setShowCreateWishForm={setShowCreateWishForm}
-                    key={`wish-form-${index}`}
-                  />}
-              </div>
-            );
-          } else {
-            return (
-              <Gift wish={wish} key={wish.id} />
-            );
-          }
-        })}
+        {
+          !showCreateWishForm &&
+            <button
+              className='wish__add wish__items'
+              onClick={handleClick}
+            > +
+            </button>
+        }
+        {wishes.map((wish) => <Gift wish={wish} key={wish.id} />)}
       </div>
-
     </div>
   );
 };
-
 export default Wish;

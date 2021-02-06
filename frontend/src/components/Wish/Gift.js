@@ -3,7 +3,7 @@ import './styles/Gift.css';
 
 const Gift = ({ wish }) => {
   return (
-    <div className='gift'>
+    <div className='gift wish__items'>
       <img
         src={wish.WishImages[0].image}
         alt='gift'
