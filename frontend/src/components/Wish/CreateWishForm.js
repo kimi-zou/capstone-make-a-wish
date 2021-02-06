@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 
 import { createWish } from '../../store/wish';
 import './styles/CreateWishForm.css';
-
 import CreateWishFormField from './CreateWishFormField';
+import ImageUpload from './ImageUpload';
 
 const CreateWishForm = (props) => {
   const { setShowCreateWishForm } = props;
@@ -13,33 +13,10 @@ const CreateWishForm = (props) => {
   const [description, setDescription] = useState('');
   const [link, setLink] = useState('');
   const [quantity, setQuantity] = useState(1);
-  const [images, setImages] = useState([]);
+  const [files, setFiles] = useState([]);
 
   const handleUploadWishImage = (e) => {
     // setImages(e.target.files);
-  };
-
-  // Preview wish images
-  const readUrl = (e) => {
-    if (e.target.files) {
-      const files = Array.from(e.target.files);
-      Promise.all(files.map(file => {
-        return (new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.addEventListener('load', (event) => {
-            resolve(event.target.result);
-          });
-          reader.addEventListener('error', reject);
-          reader.readAsDataURL(file);
-        }));
-      }))
-        .then(images => {
-        /* Once all promises are resolved, update state with image URI array */
-          setImages(images);
-        }, error => {
-          console.error(error);
-        });
-    }
   };
 
   return (
@@ -73,18 +50,7 @@ const CreateWishForm = (props) => {
         />
       </div>
       <div className='create-wish--right'>
-        <div className='wish-images--display'>
-          {images && images.map((image, idx) => (<img src={image} alt='' key={idx} />))}
-        </div>
-        <div>
-          <label>Upload Image</label>
-          <input
-            type='file'
-            accept='.png,.jpg,.jpeg'
-            multiple
-            onChange={(e) => { handleUploadWishImage(e); readUrl(e); }}
-          />
-        </div>
+        <ImageUpload files={files} setFiles={setFiles} />
         <button type='submit'>Submit</button>
         <button type='button' onClick={() => setShowCreateWishForm(false)}>Cancel</button>
       </div>
