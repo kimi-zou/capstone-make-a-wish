@@ -9,6 +9,7 @@ const { route } = require('./users');
 
 const router = express.Router();
 
+// -------------- Validators ----------------
 const validateLogin = [
   check('credential')
     .exists({ checkFalsy: true })
@@ -20,6 +21,7 @@ const validateLogin = [
   handleValidationErrors
 ];
 
+// -------------- Routes ----------------
 // Log in
 router.post(
   '/',

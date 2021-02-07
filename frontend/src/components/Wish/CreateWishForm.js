@@ -21,7 +21,7 @@ const CreateWishForm = ({ setShowCreateWishForm }) => {
   const [files, setFiles] = useState([]);
 
   // Handle form submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
     const formData = new FormData();
@@ -31,12 +31,15 @@ const CreateWishForm = ({ setShowCreateWishForm }) => {
     formData.append('link', link);
     formData.append('quantity', quantity);
 
-    dispatch(createWish(formData))
-      .then(res => dispatch(getWishes(sessionUser.id)))
-      .then(() => { setShowCreateWishForm(false); })
-      .catch((res) => {
-        if (res.data && res.data.errors) setErrors(res.data.errors);
-      });
+    const res = await dispatch(createWish(formData));
+    if (res.ok) {
+      dispatch(getWishes(sessionUser.id))
+        .then(() => setShowCreateWishForm(false));
+    } else {
+      const err = await res.json();
+      setErrors(err.errors);
+      console.log(err.errors);
+    }
   };
 
   return (
