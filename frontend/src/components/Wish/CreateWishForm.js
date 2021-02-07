@@ -1,26 +1,55 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { createWish } from '../../store/wish';
+import { createWish, getWishes } from '../../store/wish';
 import './styles/CreateWishForm.css';
 import CreateWishFormField from './CreateWishFormField';
 import ImageUpload from './ImageUpload';
 
-const CreateWishForm = (props) => {
-  const { setShowCreateWishForm } = props;
+const CreateWishForm = ({ setShowCreateWishForm }) => {
   const dispatch = useDispatch();
+
+  // Store state
+  const sessionUser = useSelector(state => state.session.user);
+
+  // Local state
+  const [errors, setErrors] = useState([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [link, setLink] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [files, setFiles] = useState([]);
 
-  const handleUploadWishImage = (e) => {
-    // setImages(e.target.files);
+  // Handle form submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    const formData = new FormData();
+    files.forEach(file => formData.append('files', file));
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('link', link);
+    formData.append('quantity', quantity);
+
+    dispatch(createWish(formData))
+      .then(res => dispatch(getWishes(sessionUser.id)))
+      .then(() => { setShowCreateWishForm(false); })
+      .catch((res) => {
+        if (res.data && res.data.errors) setErrors(res.data.errors);
+      });
   };
 
   return (
-    <form className='create-wish'>
+    <form
+      className='create-wish'
+      encType='multipart/form-data'
+      onSubmit={handleSubmit}
+    >
+      <ul>
+        {errors.map((error, idx) => (
+          <li key={idx}>{error}</li>
+        ))}
+      </ul>
       <div className='create-wish--left'>
         <CreateWishFormField
           label='Title'

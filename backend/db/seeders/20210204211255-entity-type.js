@@ -5,21 +5,21 @@ module.exports = {
     return queryInterface.bulkInsert('EntityTypes', [
       {
         entity: 'Friend',
-        description: 'Receive a friend request.',
+        description: 'Receive a friend request.'
       },
       {
         entity: 'Friend',
-        description: 'Friend request is accpeted.',
-      }, 
+        description: 'Friend request is accpeted.'
+      },
       {
         entity: 'Birthday',
-        description: 'Friend's birthday is coming up.',
-      }, 
+        description: 'Friend\'s birthday is coming up.'
+      },
       {
         entity: 'Wish',
-        description: 'Wish is locked.',
-      }, 
-  ], {});
+        description: 'Wish is locked.'
+      }
+    ], {});
   },
 
   down: (queryInterface, Sequelize) => {

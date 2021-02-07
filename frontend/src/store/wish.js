@@ -1,4 +1,5 @@
-import { fetch } from './csrf.js';
+import { csrfFetch } from './csrf.js';
+import Cookies from 'js-cookie';
 
 // -------------------- Action Types --------------------
 const SET_WISHES = 'wish/setWishes';
@@ -12,22 +13,19 @@ const setWishes = (wishes) => ({
 // -------------------- Thunk Actions --------------------
 // 1. Get all wishes of a user
 export const getWishes = (id) => async dispatch => {
-  const res = await fetch(`/api/users/${id}/wishes`);
-  dispatch(setWishes(res.data.wishes));
+  const res = await csrfFetch(`/api/users/${id}/wishes`);
+  await dispatch(setWishes(res.data.wishes));
   return res;
 };
 
 // 2. Create a wish
-export const createWish = (wish) => async dispatch => {
-  const { title, description, link, quantity } = wish;
+export const createWish = (data) => async dispatch => {
   const res = await fetch('/api/wishes/create', {
     method: 'POST',
-    body: JSON.stringify({
-      title,
-      description,
-      link,
-      quantity
-    })
+    headers: {
+      'XSRF-Token': Cookies.get('XSRF-TOKEN')
+    },
+    body: data
   });
   return res;
 };

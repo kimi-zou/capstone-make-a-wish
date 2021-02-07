@@ -2,17 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getWishes } from '../../store/wish';
-import CreateWishForm from './CreateWishForm';
 import './styles/index.css';
 
+import CreateWishForm from './CreateWishForm';
 import Gift from './Gift';
 
 const Wish = () => {
   const dispatch = useDispatch();
+
+  // Store state
   const sessionUser = useSelector(state => state.session.user);
   const wishes = useSelector(state => state.wish.wishes);
+
+  // Local state
   const [loaded, setLoaded] = useState();
   const [showCreateWishForm, setShowCreateWishForm] = useState(false);
+
+  // Show create wish form
+  const handleClick = () => setShowCreateWishForm(true);
 
   // Get all wishes of session user
   useEffect(() => {
@@ -22,11 +29,6 @@ const Wish = () => {
     }
   }, [dispatch, sessionUser]);
 
-  // Show create wish form
-  const handleClick = () => {
-    setShowCreateWishForm(true);
-  };
-
   if (!loaded) return null;
 
   return (
@@ -35,7 +37,6 @@ const Wish = () => {
       {
         showCreateWishForm &&
           <CreateWishForm
-            className='test'
             showCreateWishForm={showCreateWishForm}
             setShowCreateWishForm={setShowCreateWishForm}
           />

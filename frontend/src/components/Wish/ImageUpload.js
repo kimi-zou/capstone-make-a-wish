@@ -1,29 +1,37 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import './styles/ImageUpload.css';
 
 const ImageEdit = (props) => {
   const { files, setFiles } = props;
+  const [preview, setPreview] = useState([]);
 
   // Create drop zone
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: 'image/*',
-    onDrop: useCallback((acceptedFiles) => {
+    onDrop: (dropfiles) => {
+      // limit to 4 images
       const total = 4;
       const acceptFiles = [];
-      acceptedFiles.forEach((file, index) => {
+      dropfiles.forEach((file, index) => {
         if (index < total - files.length) {
           acceptFiles.push(file);
         }
       });
-      setFiles(
-        [...files, ...acceptFiles].map((file, index) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file)
-          })
-        )
-      );
-    }, [files, setFiles])
+      setFiles([...files, ...acceptFiles]);
+
+      // Set preview
+      Promise.all([...files, ...acceptFiles].map(file => {
+        return (new Promise((resolve, reject) => {
+          const fileReader = new FileReader();
+          fileReader.onload = (e) => resolve(e.target.result);
+          fileReader.onerror = reject;
+          fileReader.readAsDataURL(file);
+        }));
+      }))
+        .then(urls => setPreview([...urls]))
+        .catch(err => console.log(err));
+    }
   });
 
   // Remove image
@@ -31,13 +39,16 @@ const ImageEdit = (props) => {
     const updatedFiles = [...files];
     updatedFiles.splice(index, 1);
     setFiles(updatedFiles);
+    const updatedPreview = [...preview];
+    updatedPreview.splice(index, 1);
+    setPreview(updatedPreview);
   };
 
   // Preview uploaded images
   const thumbs = files.map((file, index) =>
     <div className='thumb' key={file.name}>
       <div className='thumb__inner'>
-        <img src={file.preview} className='thumb__img' alt='' />
+        <img src={preview[index]} className='thumb__img' alt='' />
       </div>
       <i
         className='thumb__delete fas fa-minus-circle'
@@ -45,12 +56,6 @@ const ImageEdit = (props) => {
       />
     </div>
   );
-
-  useEffect(
-    () => () => {
-      // Make sure to revoke the data uris to avoid memory leaks
-      files.forEach((file) => URL.revokeObjectURL(file.preview));
-    }, [files]);
 
   return (
     <section className='container'>

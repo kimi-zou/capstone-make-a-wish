@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import configureStore from './store';
-import { restoreCSRF, fetch } from './store/csrf';
+import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
 
 import { ModalProvider } from './services/Modal/Modal';
@@ -12,13 +12,12 @@ import App from './App';
 
 import './index.css';
 
-
 const store = configureStore();
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== 'production') {
   restoreCSRF();
 
-  window.csrfFetch = fetch;
+  window.csrfFetch = csrfFetch;
   window.store = store;
   window.sessionActions = sessionActions;
 }
@@ -33,7 +32,7 @@ const Root = () => {
       </Provider>
     </ModalProvider>
   );
-}
+};
 
 ReactDOM.render(
   <React.StrictMode>

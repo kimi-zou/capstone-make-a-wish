@@ -6,19 +6,19 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
       },
       title: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
       description: {
         type: Sequelize.TEXT,
-        allowNull: true,
+        allowNull: true
       },
       link: {
         type: Sequelize.TEXT,
-        allowNull: true,
+        allowNull: true
       },
       quantity: {
         type: Sequelize.INTEGER,
@@ -28,23 +28,24 @@ module.exports = {
       status: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        defaultValue: 0
       },
       userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Users',
+          model: 'Users'
         }
       },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.fn('now')
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.fn('now')
       }
     });
   },

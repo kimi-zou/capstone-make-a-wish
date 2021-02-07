@@ -1,4 +1,4 @@
-import { fetch } from './csrf.js';
+import { csrfFetch } from './csrf.js';
 
 // -------------------- Action Types --------------------
 const SET_USER = 'session/setUser';
@@ -16,7 +16,7 @@ const removeUser = () => ({
 
 // -------------------- Thunk Actions --------------------
 export const login = ({ credential, password }) => async (dispatch) => {
-  const res = await fetch('/api/session', {
+  const res = await csrfFetch('/api/session', {
     method: 'POST',
     body: JSON.stringify({ credential, password })
   });
@@ -25,14 +25,14 @@ export const login = ({ credential, password }) => async (dispatch) => {
 };
 
 export const restoreUser = () => async (dispatch) => {
-  const res = await fetch('/api/session');
+  const res = await csrfFetch('/api/session');
   dispatch(setUser(res.data.user));
   return res;
 };
 
 export const signup = (user) => async (dispatch) => {
   const { username, email, password, birthday } = user;
-  const res = await fetch('/api/users', {
+  const res = await csrfFetch('/api/users', {
     method: 'POST',
     body: JSON.stringify({
       username,
@@ -47,7 +47,7 @@ export const signup = (user) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-  const res = await fetch('/api/session', {
+  const res = await csrfFetch('/api/session', {
     method: 'DELETE'
   });
   dispatch(removeUser());

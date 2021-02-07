@@ -11,13 +11,13 @@ const storage = multer.memoryStorage();
 const wishImageUpload = multer({
   storage,
   limits: { fileSize: '5mb' }
-}).fields([{ name: 'wishImage', maxCount: 5 }]);
+}).fields([{ name: 'files', maxCount: 4 }]);
 
 const s3Upload = async (wishImageFile, folder) => {
-  const { originalName, buffer } = await wishImageFile;
-  const Key = `${folder}/${uuid()}${path.extname(originalName)}`;
+  const { originalname, buffer } = await wishImageFile;
+  const Key = `${folder}/${uuid()}${path.extname(originalname)}`;
   const uploadParams = {
-    bucket: NAME_OF_BUCKET,
+    Bucket: NAME_OF_BUCKET,
     Key,
     Body: buffer,
     ACL: 'public-read'

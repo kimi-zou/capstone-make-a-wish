@@ -17,11 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 1
     },
     status: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 0
     }
   }, {});
 
@@ -43,6 +45,18 @@ module.exports = (sequelize, DataTypes) => {
       },
       include: WishImage
     });
+  };
+
+  // 2. create new wish
+  Wish.createWish = async function ({ title, description, link, quantity, userId }) {
+    const wish = await Wish.create({
+      title,
+      description,
+      link,
+      quantity,
+      userId
+    });
+    return await Wish.findByPk(wish.id);
   };
 
   return Wish;
