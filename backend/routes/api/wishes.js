@@ -61,4 +61,10 @@ router.post('/create', requireAuth, restoreUser, wishImageUpload, validateWishFo
     }
   }));
 
+// 2. Get a wish by id
+router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+  const wish = await Wish.getWishById(req.params.id, WishImage);
+  return res.json({ wish });
+}));
+
 module.exports = router;

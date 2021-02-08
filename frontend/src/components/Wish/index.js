@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getWishes } from '../../store/wish';
-import './styles/index.css';
+import './index.css';
 
 import CreateWishForm from './CreateWishForm';
 import Gift from './Gift';
+import WishDetail from './WishDetail';
 
 const Wish = () => {
   const dispatch = useDispatch();
@@ -17,9 +18,13 @@ const Wish = () => {
   // Local state
   const [loaded, setLoaded] = useState();
   const [showCreateWishForm, setShowCreateWishForm] = useState(false);
+  const [showWishDetail, setShowWishDetail] = useState(false);
 
   // Show create wish form
-  const handleClick = () => setShowCreateWishForm(true);
+  const openForm = () => {
+    setShowCreateWishForm(true);
+    setShowWishDetail(false);
+  };
 
   // Get all wishes of session user
   useEffect(() => {
@@ -41,16 +46,23 @@ const Wish = () => {
             setShowCreateWishForm={setShowCreateWishForm}
           />
       }
-      <div className='wish__gifts'>
-        {
-          !showCreateWishForm &&
+      <div className='wish__main'>
+        <div className='wish__gifts'>
+          {!showCreateWishForm &&
             <button
               className='wish__add wish__items'
-              onClick={handleClick}
+              onClick={openForm}
             > +
-            </button>
-        }
-        {wishes.map((wish) => <Gift wish={wish} key={wish.id} />)}
+            </button>}
+          {wishes.map((wish) =>
+            <Gift
+              wish={wish}
+              key={wish.id}
+              setShowWishDetail={setShowWishDetail}
+              setShowCreateWishForm={setShowCreateWishForm}
+            />)}
+        </div>
+        {showWishDetail && <WishDetail />}
       </div>
     </div>
   );

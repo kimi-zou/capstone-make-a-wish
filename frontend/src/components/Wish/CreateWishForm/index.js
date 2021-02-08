@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { createWish, getWishes } from '../../store/wish';
-import './styles/CreateWishForm.css';
+import { createWish, getWishes } from '../../../store/wish';
+import './styles/index.css';
 import CreateWishFormField from './CreateWishFormField';
 import ImageUpload from './ImageUpload';
 

@@ -8,15 +8,20 @@
   font-size: 48px;
 }
 
+
+/* --------- Main --------- */
+.wish__main {
+  display: flex;
+}
+
+/* button */
 .wish__add {
-  width: 50px;
+  width: 200px;
+  height: 200px;
 }
 
 .wish__gifts {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
-}
-
-.wish__items {
-  width: 23%;
 }

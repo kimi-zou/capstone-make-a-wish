@@ -59,5 +59,13 @@ module.exports = (sequelize, DataTypes) => {
     return await Wish.findByPk(wish.id);
   };
 
+  // 3. get single wish by id
+  Wish.getWishById = async function (id, WishImage) {
+    return await Wish.findOne({
+      where: { id: id },
+      include: WishImage
+    });
+  };
+
   return Wish;
 };
