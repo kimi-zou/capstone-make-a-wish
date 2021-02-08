@@ -12,3 +12,7 @@
 .gift__title {
   height: 30px;
 }
+
+.gift__status {
+  cursor: pointer;
+}

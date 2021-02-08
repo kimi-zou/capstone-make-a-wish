@@ -46,7 +46,8 @@ module.exports = (sequelize, DataTypes) => {
         userId: userId,
         status: 1
       },
-      include: WishImage
+      include: WishImage,
+      order: [['updatedAt']]
     });
   };
 
@@ -57,7 +58,8 @@ module.exports = (sequelize, DataTypes) => {
         userId: userId,
         status: 0
       },
-      include: WishImage
+      include: WishImage,
+      order: [['updatedAt']]
     });
   };
 
