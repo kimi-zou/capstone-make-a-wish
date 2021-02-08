@@ -39,7 +39,6 @@ const CreateWishForm = ({ setShowCreateWishForm }) => {
     } else {
       const err = await res.json();
       setErrors(err.errors);
-      console.log(err.errors);
     }
   };
 
