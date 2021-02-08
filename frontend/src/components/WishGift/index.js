@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { makeWishPublic, makeWishPrivate } from '../../../services/updateWishStatus';
-import { getWish } from '../../../store/wish';
+import { makeWishPublic, makeWishPrivate } from '../../services/updateWishStatus';
+import { getWish } from '../../store/wish';
 import './index.css';
 
 const Gift = ({ wish, setShowWishDetail, setShowCreateWishForm }) => {
