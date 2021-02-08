@@ -1,12 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getWish,
-  publicWish,
-  privateWish,
-  getPublicWishes,
-  getPrivateWishes
-} from '../../../store/wish';
+import { makeWishPublic, makeWishPrivate } from '../../../services/updateWishStatus';
+import { getWish } from '../../../store/wish';
 import './index.css';
 
 const Gift = ({ wish, setShowWishDetail, setShowCreateWishForm }) => {
@@ -28,20 +23,14 @@ const Gift = ({ wish, setShowWishDetail, setShowCreateWishForm }) => {
     e.dataTransfer.setData('status', wish.status);
   };
 
-  // make wish public
-  const makeWishPublic = async (e) => {
-    e.stopPropagation();
-    await dispatch(publicWish(wish.id));
-    await dispatch(getPublicWishes(sessionUser.id));
-    await dispatch(getPrivateWishes(sessionUser.id));
-  };
-
-  // make wish private
-  const makeWishPrivate = async (e) => {
-    e.stopPropagation();
-    await dispatch(privateWish(wish.id));
-    await dispatch(getPublicWishes(sessionUser.id));
-    await dispatch(getPrivateWishes(sessionUser.id));
+  // Handle status update
+  const updateStatus = async (e) => {
+    if (parseInt(wish.status) === 0) {
+      await makeWishPublic(e, dispatch, wish, sessionUser);
+    } else {
+      await makeWishPrivate(e, dispatch, wish, sessionUser);
+    }
+    await dispatch(getWish(wish.id));
   };
 
   // Render
@@ -56,11 +45,11 @@ const Gift = ({ wish, setShowWishDetail, setShowCreateWishForm }) => {
         wish.status === 1
           ? <i
               className='gift__status fas fa-arrow-alt-circle-down'
-              onClick={makeWishPrivate}
+              onClick={updateStatus}
             />
           : <i
               className='gift__status fas fa-arrow-alt-circle-up'
-              onClick={makeWishPublic}
+              onClick={updateStatus}
             />
       }
       <img

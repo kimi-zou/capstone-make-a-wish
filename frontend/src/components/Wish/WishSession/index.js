@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPublicWishes, getPrivateWishes, publicWish, privateWish } from '../../../store/wish';
+import { getPublicWishes, getPrivateWishes, publicWish, privateWish, getWish } from '../../../store/wish';
 import Gift from '../Gift';
 import './index.css';
 
@@ -23,6 +23,7 @@ const WishSession = (props) => {
 
     await dispatch(getPublicWishes(sessionUser.id));
     await dispatch(getPrivateWishes(sessionUser.id));
+    await dispatch(getWish(wishId));
   };
 
   // Handle drag over
