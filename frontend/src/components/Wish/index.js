@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPublicWishes, getPrivateWishes } from '../../store/wish';
-import CreateWishForm from './CreateWishForm';
-import WishDetail from './WishDetail';
-import AddWishButton from './AddWishButton';
-import WishSession from './WishSession';
+import CreateWishForm from '../WishCreateForm';
+import WishDetail from '../WishDetail';
+import AddWishButton from '../WishAddButton';
+import WishSession from '../WishSession';
 import './index.css';
 
 const Wish = () => {

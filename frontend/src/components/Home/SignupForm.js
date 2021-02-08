@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import AuthField from './AuthField';
 import BirthdayForm from './BirthdayForm';
 
-import { signup } from '../../../store/session';
+import { signup } from '../../store/session';
 import './styles/auth.css';
 
 const SignupForm = () => {

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import AuthField from './AuthField';
 
-import { login } from '../../../store/session';
+import { login } from '../../store/session';
 import './styles/auth.css';
 
 const LoginForm = () => {

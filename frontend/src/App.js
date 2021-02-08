@@ -4,14 +4,14 @@ import { Route, Switch } from 'react-router-dom';
 
 import { restoreUser } from './store/session';
 
-import About from './components/Home/About';
+import About from './components/HomeAbout';
 import Dashboard from './components/Dashboard';
-import Home from './components/Home/Home/index';
+import Home from './components/Home';
 import Notification from './components/Notification';
 import Settings from './components/Settings';
 import Wish from './components/Wish';
-import SideNav from './components/Navigation/SideNav';
-import TopNav from './components/Navigation/TopNav';
+import SideNav from './components/NavSide';
+import TopNav from './components/NavTop';
 
 const App = () => {
   const dispatch = useDispatch();

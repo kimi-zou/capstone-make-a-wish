@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeWishPublic, makeWishPrivate } from '../../services/updateWishStatus';
 import { getWish } from '../../store/wish';
-import DeleteConfirmation from './DeleteConfirmation';
+import DeleteConfirmation from '../WishDeleteConfirmation';
 import './index.css';
 
 const WishDetail = ({ setShowWishDetail }) => {

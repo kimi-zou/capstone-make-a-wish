@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HomeNav from '../../Navigation/HomeNav';
+import HomeNav from '../NavHome';
 
 const About = () => {
   return (

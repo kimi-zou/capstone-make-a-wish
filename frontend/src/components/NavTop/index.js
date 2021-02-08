@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { logout } from '../../../store/session';
+import { logout } from '../../store/session';
 import './index.css';
 
 import Search from './Search';

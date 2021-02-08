@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteWish, getPublicWishes, getPrivateWishes } from '../../../store/wish';
+import { deleteWish, getPublicWishes, getPrivateWishes } from '../../store/wish';
 
 const DeleteConfirmation = ({
   id,

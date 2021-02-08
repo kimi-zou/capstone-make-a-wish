@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import HomeNav from '../../Navigation/HomeNav';
+import HomeNav from '../NavHome';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 

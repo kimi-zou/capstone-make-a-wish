@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import './styles/ImageUpload.css';
+import './ImageUpload.css';
 
 const ImageEdit = (props) => {
   const { files, setFiles } = props;
