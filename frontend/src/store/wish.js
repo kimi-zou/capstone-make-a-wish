@@ -43,6 +43,14 @@ export const getWish = (id) => async dispatch => {
   return res;
 };
 
+// 4. Delete a wish
+export const deleteWish = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/wishes/${id}`, {
+    method: 'DELETE'
+  });
+  return res;
+};
+
 // -------------------- States ----------------------
 const initialState = {
   wishes: null,

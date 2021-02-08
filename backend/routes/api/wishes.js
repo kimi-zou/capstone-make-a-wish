@@ -21,9 +21,9 @@ const validateWishForm = [
   check('files')
     .custom((value, { req }) => {
       const { files } = req.files;
-      if (files) return files.length > 0 && files.length < 4;
+      if (files) return files.length > 0 && files.length < 5;
     })
-    .withMessage('Please provide at least one wish image.'),
+    .withMessage('Please provide 1-4 wish image.'),
   handleValidationErrors
 ];
 
@@ -65,6 +65,12 @@ router.post('/create', requireAuth, restoreUser, wishImageUpload, validateWishFo
 router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   const wish = await Wish.getWishById(req.params.id, WishImage);
   return res.json({ wish });
+}));
+
+// 3. Delete a wish
+router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+  await Wish.deleteWish(req.params.id);
+  return res.json({ message: 'The wish was deleted.' });
 }));
 
 module.exports = router;

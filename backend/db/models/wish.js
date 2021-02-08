@@ -29,7 +29,9 @@ module.exports = (sequelize, DataTypes) => {
 
   Wish.associate = function (models) {
     Wish.hasMany(models.WishImage, {
-      foreignKey: 'wishId'
+      foreignKey: 'wishId',
+      onDelete: 'cascade',
+      hooks: true
     });
     Wish.belongsTo(models.User, {
       foreignKey: 'userId'
@@ -65,6 +67,12 @@ module.exports = (sequelize, DataTypes) => {
       where: { id: id },
       include: WishImage
     });
+  };
+
+  // 4. delete a wish
+  Wish.deleteWish = async function (id) {
+    const wish = await Wish.findByPk(id);
+    return await wish.destroy();
   };
 
   return Wish;

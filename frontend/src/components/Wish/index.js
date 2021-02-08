@@ -62,7 +62,8 @@ const Wish = () => {
               setShowCreateWishForm={setShowCreateWishForm}
             />)}
         </div>
-        {showWishDetail && <WishDetail />}
+        {showWishDetail &&
+          <WishDetail setShowWishDetail={setShowWishDetail} />}
       </div>
     </div>
   );

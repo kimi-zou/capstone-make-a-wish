@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+
+import DeleteConfirmation from './DeleteConfirmation';
 import './index.css';
 
-const WishDetail = () => {
+const WishDetail = ({ setShowWishDetail }) => {
   const wish = useSelector(state => state.wish.wish);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
-  const deleteWish = () => {
-
-  };
+  const openDelteConfirmation = () => setShowConfirmation(true);
 
   return (
     <div className='wish__detail'>
+      {showConfirmation &&
+        <DeleteConfirmation
+          id={wish.id}
+          title={wish.title}
+          setShowConfirmation={setShowConfirmation}
+          setShowWishDetail={setShowWishDetail}
+        />}
       <div>
         <img
           className='detail__image'
@@ -25,7 +33,7 @@ const WishDetail = () => {
       </div>
       <div>{wish.quantity}</div>
       <button>edit</button>
-      <button onClick={deleteWish}>delete</button>
+      <button onClick={openDelteConfirmation}>delete</button>
     </div>
   );
 };
