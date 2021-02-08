@@ -6,7 +6,7 @@ Relationships:
 Wishes:
   0 - Private
   1 - Public
-  2 - Locked
+  2 - Locked 
 
 EntityTypes:
   1 - Friend, Receive a friend request.

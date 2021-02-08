@@ -12,6 +12,18 @@
 /* --------- Main --------- */
 .wish__main {
   display: flex;
+  width: 100%;
+}
+
+/* --------- Main left --------- */
+.wish__main--left {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.wish__main-heading {
+  font-size: 28px;
 }
 
 /* button */
@@ -24,4 +36,9 @@
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+}
+
+/* --------- Main right --------- */
+.wish__main--right {
+  width: 30%;
 }

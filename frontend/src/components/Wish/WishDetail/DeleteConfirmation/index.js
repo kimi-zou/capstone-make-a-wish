@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteWish, getWishes } from '../../../../store/wish';
+import { deleteWish, getPublicWishes, getPrivateWishes } from '../../../../store/wish';
 
 const DeleteConfirmation = ({
   id,
@@ -12,12 +12,11 @@ const DeleteConfirmation = ({
   const sessionUser = useSelector(state => state.session.user);
 
   const cancelDelete = () => setShowConfirmation(false);
-  const confirmDelete = () => {
-    dispatch(deleteWish(id))
-      .then(() => {
-        dispatch(getWishes(sessionUser.id))
-          .then(() => setShowWishDetail(false));
-      });
+  const confirmDelete = async () => {
+    await dispatch(deleteWish(id));
+    await dispatch(getPublicWishes(sessionUser.id));
+    await dispatch(getPrivateWishes(sessionUser.id));
+    setShowWishDetail(false);
   };
 
   return (

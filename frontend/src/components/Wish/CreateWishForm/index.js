@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { createWish, getWishes } from '../../../store/wish';
+import { createWish, getPublicWishes, getPrivateWishes } from '../../../store/wish';
 import './styles/index.css';
 import CreateWishFormField from './CreateWishFormField';
 import ImageUpload from './ImageUpload';
@@ -33,7 +33,8 @@ const CreateWishForm = ({ setShowCreateWishForm }) => {
 
     const res = await dispatch(createWish(formData));
     if (res.ok) {
-      dispatch(getWishes(sessionUser.id))
+      dispatch(getPublicWishes(sessionUser.id))
+        .then(() => dispatch(getPrivateWishes(sessionUser.id)))
         .then(() => setShowCreateWishForm(false));
     } else {
       const err = await res.json();

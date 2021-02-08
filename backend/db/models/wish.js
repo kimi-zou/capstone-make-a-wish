@@ -39,17 +39,37 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   // --------------  Static Methods (not work for instances) ---------------
-  // 1. get wishes by user id
-  Wish.getWishesByUserId = async function (userId, WishImage) {
+  // 1. get public wishes by user id
+  Wish.getPublicWishesByUserId = async function (userId, WishImage) {
     return await Wish.findAll({
       where: {
-        userId: userId
+        userId: userId,
+        status: 1
       },
       include: WishImage
     });
   };
 
-  // 2. create new wish
+  // 2. get private wishes by user id
+  Wish.getPrivateWishesByUserId = async function (userId, WishImage) {
+    return await Wish.findAll({
+      where: {
+        userId: userId,
+        status: 0
+      },
+      include: WishImage
+    });
+  };
+
+  // 3. get single wish by wish id
+  Wish.getWishById = async function (id, WishImage) {
+    return await Wish.findOne({
+      where: { id: id },
+      include: WishImage
+    });
+  };
+
+  // 4. create new wish
   Wish.createWish = async function ({ title, description, link, quantity, userId }) {
     const wish = await Wish.create({
       title,
@@ -61,18 +81,24 @@ module.exports = (sequelize, DataTypes) => {
     return await Wish.findByPk(wish.id);
   };
 
-  // 3. get single wish by id
-  Wish.getWishById = async function (id, WishImage) {
-    return await Wish.findOne({
-      where: { id: id },
-      include: WishImage
-    });
-  };
-
-  // 4. delete a wish
+  // 5. delete a wish
   Wish.deleteWish = async function (id) {
     const wish = await Wish.findByPk(id);
     return await wish.destroy();
+  };
+
+  // 6. make a wish public
+  Wish.makePublic = async function (id) {
+    const wish = await Wish.findByPk(id);
+    wish.status = 1;
+    return await wish.save();
+  };
+
+  // 7. make a wish private
+  Wish.makePrivate = async function (id) {
+    const wish = await Wish.findByPk(id);
+    wish.status = 0;
+    return await wish.save();
   };
 
   return Wish;

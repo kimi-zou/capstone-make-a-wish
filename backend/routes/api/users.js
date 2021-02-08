@@ -43,8 +43,13 @@ router.post(
 );
 
 // Wishes lookup
-router.get('/:id(\\d+)/wishes', asyncHandler(async (req, res) => {
-  const wishes = await Wish.getWishesByUserId(req.params.id, WishImage);
+router.get('/:id(\\d+)/wishes/public', asyncHandler(async (req, res) => {
+  const wishes = await Wish.getPublicWishesByUserId(req.params.id, WishImage);
+  return res.json({ wishes });
+}));
+
+router.get('/:id(\\d+)/wishes/private', asyncHandler(async (req, res) => {
+  const wishes = await Wish.getPrivateWishesByUserId(req.params.id, WishImage);
   return res.json({ wishes });
 }));
 

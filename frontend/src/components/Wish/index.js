@@ -1,35 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { getWishes } from '../../store/wish';
-import './index.css';
-
+import { getPublicWishes, getPrivateWishes } from '../../store/wish';
 import CreateWishForm from './CreateWishForm';
-import Gift from './Gift';
 import WishDetail from './WishDetail';
+import AddWishButton from './AddWishButton';
+import WishSession from './WishSession';
+import './index.css';
 
 const Wish = () => {
   const dispatch = useDispatch();
 
   // Store state
   const sessionUser = useSelector(state => state.session.user);
-  const wishes = useSelector(state => state.wish.wishes);
+  const publicWishes = useSelector(state => state.wish.publicWishes);
+  const privateWishes = useSelector(state => state.wish.privateWishes);
 
   // Local state
   const [loaded, setLoaded] = useState();
   const [showCreateWishForm, setShowCreateWishForm] = useState(false);
   const [showWishDetail, setShowWishDetail] = useState(false);
 
-  // Show create wish form
-  const openForm = () => {
-    setShowCreateWishForm(true);
-    setShowWishDetail(false);
-  };
-
   // Get all wishes of session user
   useEffect(() => {
     if (sessionUser) {
-      dispatch(getWishes(sessionUser.id))
+      dispatch(getPublicWishes(sessionUser.id))
+        .then(() => dispatch(getPrivateWishes(sessionUser.id)))
         .then(() => setLoaded(true));
     }
   }, [dispatch, sessionUser]);
@@ -47,23 +42,33 @@ const Wish = () => {
           />
       }
       <div className='wish__main'>
-        <div className='wish__gifts'>
-          {!showCreateWishForm &&
-            <button
-              className='wish__add wish__items'
-              onClick={openForm}
-            > +
-            </button>}
-          {wishes.map((wish) =>
-            <Gift
-              wish={wish}
-              key={wish.id}
-              setShowWishDetail={setShowWishDetail}
-              setShowCreateWishForm={setShowCreateWishForm}
-            />)}
+        <div className='wish__main--left'>
+          <WishSession
+            button={
+              <AddWishButton
+                showCreateWishForm={showCreateWishForm}
+                setShowCreateWishForm={setShowCreateWishForm}
+                setShowWishDetail={setShowWishDetail}
+              />
+            }
+            heading='Public wishes'
+            wishes={publicWishes}
+            setShowWishDetail={setShowWishDetail}
+            setShowCreateWishForm={setShowCreateWishForm}
+          />
+          <WishSession
+            heading='Private wishes'
+            wishes={privateWishes}
+            setShowWishDetail={setShowWishDetail}
+            setShowCreateWishForm={setShowCreateWishForm}
+          />
         </div>
-        {showWishDetail &&
-          <WishDetail setShowWishDetail={setShowWishDetail} />}
+        <div className='wish__main--right'>
+          {
+            showWishDetail &&
+              <WishDetail setShowWishDetail={setShowWishDetail} />
+          }
+        </div>
       </div>
     </div>
   );
