@@ -1,0 +1,7 @@
+.user-search-result {
+  display: flex;
+}
+
+.user-search-result__avatar {
+  width: 50px;
+}

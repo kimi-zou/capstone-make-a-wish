@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { searchUsers } from '../../store/search';
 import SearchResult from '../SearchResult';
 
 const Search = () => {
@@ -23,6 +24,11 @@ const Search = () => {
     document.addEventListener('click', closeMenu);
     return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
+
+  // Handle search
+  useEffect(() => {
+    if (searchKeyword) dispatch(searchUsers(searchKeyword));
+  }, [dispatch, searchKeyword]);
 
   // Render
   return (
