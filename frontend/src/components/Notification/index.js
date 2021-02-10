@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { subscribeToTimer } from '../../services/socket';
 
 const Notification = () => {
+  const [time, setTime] = useState('no time yet');
+
+  // subscribeToTimer((err, timestamp) => {
+  //   if (err) console.log(err);
+  //   setTime(timestamp);
+  // });
+
   return (
-    <div />
+    <div className='test'>
+      <p className='test-intro'>
+        This is the timer value: {time}
+      </p>
+    </div>
   );
 };
 
