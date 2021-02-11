@@ -1,0 +1,56 @@
+.home__wrapper {
+  background-color: #FCE5DD;
+  min-height: 100vh;
+  font-family:'Righteous', Courier, monospace;
+}
+
+.home {
+  display: flex;
+}
+
+/*---- left ----*/
+.home__splash-img {
+  height: 85vh;
+  min-height: 500px;
+  padding-top: 20px;
+  padding-left: 150px;
+  margin-right: 50px;
+}
+
+/*---- right ----*/
+.home--right {
+  margin-top: 50px;
+}
+
+.home__welcome-message {
+  font-size: 32px;
+  padding-bottom: 20px;
+}
+
+.home__welcome-message-logo{
+  font-family: 'Pacifico';
+  font-size: 50px;
+}
+
+.auth__form-wrapper {
+  background-color: white;
+  padding: 30px 20px 10px 20px;
+  border: 1px solid white;
+  border-radius: 5%;
+}
+
+/* buttons */
+.auth__buttons {
+  background: none;
+  font-size: 16px;
+  margin-right: 6px;
+}
+
+.auth__buttons--active {
+  color: rgba(254, 198, 197, 1);
+  /* color: #fe993d; */
+}
+
+.auth__buttons:hover {
+  color: #222
+}

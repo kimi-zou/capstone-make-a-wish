@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import AuthField from './AuthField';
-
 import { login } from '../../store/session';
-import './styles/auth.css';
+import AuthField from '../HomeAuth';
+import '../HomeAuth/index.css';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -40,7 +39,7 @@ const LoginForm = () => {
         </ul>
         <AuthField
           icon={<i className='field__icon fa-lg fas fa-user' />}
-          label='EMAIL/USERNAME'
+          label='EMAIL / USERNAME'
           type='text'
           value={credential}
           setValue={setCredential}
@@ -52,9 +51,17 @@ const LoginForm = () => {
           value={password}
           setValue={setPassword}
         />
-        <button className='field__buttons' type='submit'>Log In</button>
+        <div className='field__buttons-wrapper'>
+          <button className='field__buttons field__login-button' type='submit'>Log In</button>
+          <button
+            className='field__demo-login'
+            type='button'
+            onClick={demoLogin}
+          >
+            Demo Login
+          </button>
+        </div>
       </form>
-      <button type='button' onClick={demoLogin}>Demo</button>
     </>
   );
 };
