@@ -6,7 +6,11 @@ import './index.css';
 const SideNav = () => {
   return (
     <div className='sidenav'>
-      <NavLink exact to='/'>Logo</NavLink>
+      <NavLink
+        className='sidenav__logo'
+        exact to='/'
+      >MakeAwish
+      </NavLink>
       <NavLink exact to='/dashboard'>Dashboard</NavLink>
       <NavLink exact to='/my-wishes'>My Wishes</NavLink>
       <NavLink exact to='/notifications'>Notifications</NavLink>
