@@ -12,29 +12,29 @@ const { environment } = require('./config');
 const isProduction = environment === 'production';
 
 const app = express();
-const socketApp = express();
-const http = require('http').Server(socketApp);
-const io = require('socket.io')(http, {
-  cors: {
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST']
-    // allowedHeaders: ['Access-Control-Allow-Origin']
-  }
-});
-// const ioServer = io.listen(5001);
-http.listen(5001);
+// const socketApp = express();
+// const http = require('http').Server(socketApp);
+// const io = require('socket.io')(http, {
+//   cors: {
+//     origin: 'http://localhost:3000',
+//     methods: ['GET', 'POST']
+//     // allowedHeaders: ['Access-Control-Allow-Origin']
+//   }
+// });
+// // const ioServer = io.listen(5001);
+// http.listen(5001);
 
-// Testing socket
-io.on('connection', (client) => {
-  console.log('connected');
-  setInterval(() => { client.emit('test', 'text'); }, 2000);
-  // client.on('subscribeToTimer', (interval) => {
-  //   console.log('client is subscribing to timer with interval ', interval);
-  //   setInterval(() => {
-  //     client.emit('timer', new Date());
-  //   }, interval);
-  // });
-});
+// // Testing socket
+// io.on('connection', (client) => {
+//   console.log('connected');
+//   setInterval(() => { client.emit('test', 'text'); }, 2000);
+//   // client.on('subscribeToTimer', (interval) => {
+//   //   console.log('client is subscribing to timer with interval ', interval);
+//   //   setInterval(() => {
+//   //     client.emit('timer', new Date());
+//   //   }, interval);
+//   // });
+// });
 
 app.use(morgan('dev'));
 

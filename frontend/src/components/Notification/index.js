@@ -5,10 +5,9 @@ const Notification = () => {
   const [time, setTime] = useState('no time yet');
 
   useEffect(() => {
-    subscribeToTimer((err, timestamp) => {
-      if (err) console.log(err);
-      setTime(timestamp);
-    });
+    const result = subscribeToTimer();
+    console.log(result);
+    setTime(result);
   }, []);
 
   return (

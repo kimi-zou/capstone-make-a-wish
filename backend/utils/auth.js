@@ -49,6 +49,28 @@ const restoreUser = (req, res, next) => {
   });
 };
 
+// Socket require auth
+const socketRequireAuth = (socket, next) => {
+  socket.handshake.headers &&
+  socket.handshake.headers.cookie &&
+  jwt.verify(socket.handshake.headers.cookie.match(/(?<=; token=)(.*)(?=;)/)[0], secret, null, async (err, payload) => {
+    if (err) {
+      return socket.disconnect();
+    }
+
+    try {
+      const { id } = payload.data;
+      socket.user = await User.scope('currentUser').findByPk(id);
+    } catch (payloadErr) {
+      return socket.disconnect();
+    }
+
+    if (!socket.user) return socket.disconnect();
+
+    return next();
+  });
+};
+
 // If there is no current user, return an error
 const requireAuth = [
   restoreUser,
@@ -63,4 +85,4 @@ const requireAuth = [
   }
 ];
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+module.exports = { setTokenCookie, restoreUser, requireAuth, socketRequireAuth };
