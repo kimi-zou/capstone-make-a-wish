@@ -1,0 +1,34 @@
+.about__wrapper {
+  background-color: #F3E8E2;
+  min-height: 100vh;
+}
+
+.about__main {
+  display: flex;
+  position: relative;
+  padding: 0 100px;
+}
+
+/* ---- intro ---- */
+.about__logo {
+  font-family: 'Pacifico', Courier, monospace;
+  color: #ff6658;
+}
+
+.about__intro {
+  font-family:'Righteous', Courier, monospace;
+  width: 450px;
+  margin-top: 60px;
+  margin-left: 80px;
+  font-size: 34px;
+  z-index: 1;
+}
+
+/* ---- background ---- */
+.about__background-image {
+  position: absolute;
+  top: 60px;
+  right: 150px;
+  height: 80vh;
+  min-height: 500px;
+}

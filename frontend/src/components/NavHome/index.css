@@ -1,12 +1,25 @@
 .homenav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  background-color: rgba(254, 198, 197, 0.3);
+  padding: 20px 100px;
+  font-family:'Righteous', Courier, monospace;
 }
 
 .homenav__links {
-  padding-right: 10px;
+  margin-right: 20px;
+  font-size: 18px;
+  padding-bottom: 5px;
+  color: #4a43e1;
 }
 
-.profile-dropdown {
-  position: absolute;
+.homenav__links--active {
+  border-bottom: 3px solid #222;
+  opacity: 1;
+}
+
+.homenav__logo {
+  font-family: 'Pacifico';
+  font-size: 22px;
 }

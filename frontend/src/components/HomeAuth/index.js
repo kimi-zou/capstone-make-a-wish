@@ -5,7 +5,10 @@ const AuthField = (props) => {
   const [focus, setFocus] = useState(false);
 
   return (
-    <div className='auth__field'>
+    <div className={focus
+      ? 'auth__field auth__field--focus'
+      : 'auth__field'}
+    >
       <div className='field--left'>
         {icon}
       </div>
@@ -18,7 +21,7 @@ const AuthField = (props) => {
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
           onChange={(e) => setValue(e.target.value)}
-          placeholder={label}
+          placeholder={focus ? '' : label}
           required
         />
       </div>

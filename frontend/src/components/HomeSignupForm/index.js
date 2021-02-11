@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import AuthField from './AuthField';
+import AuthField from '../HomeAuth';
 import BirthdayForm from './BirthdayForm';
 
 import { signup } from '../../store/session';
-import './styles/auth.css';
+import '../HomeAuth/index.css';
 
 const SignupForm = () => {
   const dispatch = useDispatch();
