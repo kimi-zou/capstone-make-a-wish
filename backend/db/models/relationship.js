@@ -1,26 +1,26 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Relationship = sequelize.define('Relationship', {
-    status: { 
+    status: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   }, {
     indexes: [{
       unique: true,
-      fields: ['userOneId', 'userTwoId'],
+      fields: ['userOneId', 'userTwoId']
     }]
   });
-  Relationship.associate = function(models) {
+  Relationship.associate = function (models) {
     Relationship.belongsTo(models.User, {
       foreignKey: 'actionUserId'
-    }), 
+    });
     Relationship.belongsTo(models.User, {
       foreignKey: 'userOneId'
-    }), 
+    });
     Relationship.belongsTo(models.User, {
       foreignKey: 'userTwoId'
-    }) 
+    });
   };
   return Relationship;
 };

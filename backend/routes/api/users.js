@@ -1,10 +1,11 @@
 const express = require('express');
 const { check } = require('express-validator');
 const asyncHandler = require('express-async-handler');
+const { Op } = require('sequelize');
 
 const { handleValidationErrors } = require('../../utils/validation');
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Wish, WishImage } = require('../../db/models');
+const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
+const { User, Wish, WishImage, Relationship, sequelize } = require('../../db/models');
 
 const router = express.Router();
 
@@ -52,5 +53,26 @@ router.get('/:id(\\d+)/wishes/private', asyncHandler(async (req, res) => {
   const wishes = await Wish.getPrivateWishesByUserId(req.params.id, WishImage);
   return res.json({ wishes });
 }));
+
+// Friends lookup
+router.get(
+  '/:id(\\d+)/friends',
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    // console.log(req.user);
+    const userId = req.params.id;
+    const friends = await User.findAll({
+      include: {
+        model: Relationship,
+        where: {
+          [Op.or]: [
+            { [Op.and]: [{ userOneId: userId }, { status: 1 }] },
+            { [Op.and]: [{ userTwoId: userId }, { status: 1 }] }
+          ]
+        }
+      }
+    });
+    return res.json({ friends });
+  }));
 
 module.exports = router;
