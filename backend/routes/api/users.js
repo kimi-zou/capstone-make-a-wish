@@ -61,18 +61,35 @@ router.get(
   asyncHandler(async (req, res) => {
     // console.log(req.user);
     const userId = req.params.id;
-    const friends = await User.findAll({
-      include: {
-        model: Relationship,
-        where: {
-          [Op.or]: [
-            { [Op.and]: [{ userOneId: userId }, { status: 1 }] },
-            { [Op.and]: [{ userTwoId: userId }, { status: 1 }] }
-          ]
+    const friends = await Relationship.findAll({
+      // include: {
+      //   model: Relationship,
+      where: {
+        status: 1,
+        [Op.or]: [
+          { userOneId: userId },
+          { userTwoId: userId }
+        ]
+      }
+      // }
+    });
+
+    const users = friends.map(friend => {
+      if (friend.userOneId === userId) {
+        return friend.userOneId;
+      }
+      return friend.userTwoId;
+    });
+
+    const result = await User.findAll({
+      where: {
+        id: {
+          [Op.in]: users
         }
       }
     });
-    return res.json({ friends });
+
+    return res.json({ result });
   }));
 
 module.exports = router;
