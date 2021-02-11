@@ -12,17 +12,28 @@ const { environment } = require('./config');
 const isProduction = environment === 'production';
 
 const app = express();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const socketApp = express();
+const http = require('http').Server(socketApp);
+const io = require('socket.io')(http, {
+  cors: {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST']
+    // allowedHeaders: ['Access-Control-Allow-Origin']
+  }
+});
+// const ioServer = io.listen(5001);
+http.listen(5001);
 
 // Testing socket
 io.on('connection', (client) => {
-  client.on('subscribeToTimer', (interval) => {
-    console.log('client is subscribing to timer with interval ', interval);
-    setInterval(() => {
-      client.emit('timer', new Date());
-    }, interval);
-  });
+  console.log('connected');
+  setInterval(() => { client.emit('test', 'text'); }, 2000);
+  // client.on('subscribeToTimer', (interval) => {
+  //   console.log('client is subscribing to timer with interval ', interval);
+  //   setInterval(() => {
+  //     client.emit('timer', new Date());
+  //   }, interval);
+  // });
 });
 
 app.use(morgan('dev'));
@@ -35,6 +46,7 @@ app.use(bodyParser.json());
 if (!isProduction) {
   // enable cors only in development
   app.use(cors());
+  // http.use(cors());
 }
 // helmet helps set a variety of headers to better secure your app
 app.use(

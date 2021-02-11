@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { subscribeToTimer } from '../../services/socket';
 
 const Notification = () => {
   const [time, setTime] = useState('no time yet');
 
-  // subscribeToTimer((err, timestamp) => {
-  //   if (err) console.log(err);
-  //   setTime(timestamp);
-  // });
+  useEffect(() => {
+    subscribeToTimer((err, timestamp) => {
+      if (err) console.log(err);
+      setTime(timestamp);
+    });
+  }, []);
 
   return (
     <div className='test'>
