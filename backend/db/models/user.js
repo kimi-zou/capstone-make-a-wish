@@ -118,24 +118,26 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   // 3. signup - with birthday
-  User.signup = async function ({ username, email, password, birthday }) {
+  User.signup = async function ({ username, email, password, birthday, avatar }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
       email,
       hashedPassword,
-      birthday
+      birthday,
+      avatar
     });
     return await User.scope('currentUser').findByPk(user.id);
   };
 
   // 4. signup - without birthday
-  User.signupNoBirthday = async function ({ username, email, password }) {
+  User.signupNoBirthday = async function ({ username, email, password, avatar }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
       email,
-      hashedPassword
+      hashedPassword,
+      avatar
     });
     return await User.scope('currentUser').findByPk(user.id);
   };

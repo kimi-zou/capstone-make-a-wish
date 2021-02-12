@@ -5,6 +5,7 @@ const { Op } = require('sequelize');
 
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
+const { getRandomAvatar } = require('../../utils/avatar');
 const { User, Wish, WishImage, Relationship, sequelize } = require('../../db/models');
 
 const router = express.Router();
@@ -32,11 +33,13 @@ router.post(
   validateSignup,
   asyncHandler(async (req, res) => {
     const { email, password, username, birthday } = req.body;
+    const avatar = getRandomAvatar();
+    console.log(avatar);
     let user;
     if (birthday) {
-      user = await User.signup({ email, username, password, birthday });
+      user = await User.signup({ email, username, password, birthday, avatar });
     } else {
-      user = await User.signupNoBirthday({ email, username, password });
+      user = await User.signupNoBirthday({ email, username, password, avatar });
     }
     await setTokenCookie(res, user);
     return res.json({ user });

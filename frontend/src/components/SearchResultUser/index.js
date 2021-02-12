@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { sendFriendRequest } from '../../store/friendship';
+import { sendFriendRequest, getPendingFriends } from '../../store/friendship';
 import './index.css';
 
 const SearchResultUser = ({ user }) => {
@@ -11,9 +11,12 @@ const SearchResultUser = ({ user }) => {
   const friends = useSelector(state => state.friendship.friends);
   const pendingFriends = useSelector(state => state.friendship.pendingFriends);
 
-  const createFriendRequest = () => {
-    dispatch(sendFriendRequest(sessionUser.id, user.id))
-      .then(res => console.log(res));
+  const hasFriends = friends.some(friend => friend.id === user.id);
+  const hasPendingFriends = pendingFriends.some(friend => friend.id === user.id);
+
+  const createFriendRequest = async () => {
+    await dispatch(sendFriendRequest(sessionUser.id, user.id));
+    await dispatch(getPendingFriends(sessionUser.id));
   };
 
   if (sessionUser.id === user.id) return null;
@@ -43,12 +46,11 @@ const SearchResultUser = ({ user }) => {
         className='user-search-result__add-button'
         onClick={createFriendRequest}
       >
-        {friends.some(friend => friend.id === user.id)
-          ? <i className='fas fa-user-friends' />
-          : (pendingFriends.some(friend => friend.id === user.id)
-              ? <div>Pending</div>
-              : <i className='user-search-result__add-icon fas fa-plus-circle' />
-            )}
+        {hasFriends &&
+          <i className='fas fa-user-friends' />}
+        {hasPendingFriends &&
+          <div>Pending</div>}
+        <i className='user-search-result__add-icon fas fa-plus-circle' />
       </div>
 
     </div>
