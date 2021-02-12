@@ -22,7 +22,8 @@
 
 .sidenav__links {
   font-family:'Righteous', Courier, monospace;
-  color: white;
+  color: #ff6759;
+  color: #222;
   padding-left: 2px;
   margin-bottom: 15px;
 }

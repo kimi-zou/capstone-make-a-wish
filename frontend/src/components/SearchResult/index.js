@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import SearchResultUser from '../SearchResultUser';
+import './index.css';
 
 const SearchResult = () => {
   const users = useSelector(state => state.search.users);

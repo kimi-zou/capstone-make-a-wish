@@ -6,7 +6,7 @@
 
 .home {
   display: flex;
-}
+} 
 
 /*---- left ----*/
 .home__splash-img {
@@ -23,7 +23,7 @@
 }
 
 .home__welcome-message {
-  font-size: 32px;
+  font-size: 26px;
   padding-bottom: 20px;
 }
 
@@ -48,7 +48,6 @@
 
 .auth__buttons--active {
   color: rgba(254, 198, 197, 1);
-  /* color: #fe993d; */
 }
 
 .auth__buttons:hover {

@@ -74,7 +74,7 @@ textarea::placeholder {
   display: flex;
   height: calc(100vh - 40px);
   padding: 20px 20px 20px 35px;
-  background-color: #fec6c5;
+  background-color: #FCE5DD;;
   color: #222;
   overflow: hidden;
   overflow-x: hidden;

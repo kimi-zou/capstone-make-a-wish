@@ -1,0 +1,19 @@
+.search {
+  position: relative;
+}
+
+.search__submit {
+  background-color: transparent;
+  border: 1px solid #222;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.search__input {
+  border: none;
+  width: 180px;
+}
+
+.search__input:focus {
+  outline: none;
+}

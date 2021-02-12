@@ -11,6 +11,12 @@
   background: linear-gradient(to bottom,#fff 90%,rgba(255,255,255,0));
 }
 
+/* ------ left ------ */
+.topnav--left {
+  display: flex;
+  align-items: center;
+}
+
 /* ------ right ------ */
 .topnav--right {
   display: flex;

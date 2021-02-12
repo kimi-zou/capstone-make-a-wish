@@ -1,0 +1,9 @@
+.search-result {
+  position: absolute;
+  top: 24px;
+  background-color: white;
+  border: 1px solid #ebeef0;
+  box-shadow: -1px -1px 10px 1px #e1e1e1;
+  border-radius: 5px;
+  width: 300px;
+}

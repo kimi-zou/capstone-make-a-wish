@@ -1,7 +1,55 @@
 .user-search-result {
+  position: relative;
   display: flex;
+  align-items: center;
+  padding: 6px;
 }
 
-.user-search-result__avatar {
-  width: 50px;
+.user-search-result:hover {
+  background-color: #fce5dd5f;;
 }
+
+/* link */
+.user-search-result__user-link {
+  display: flex;
+  align-items: center;
+}
+
+/* avatar */
+.user-search-result__avatar {
+  width: 60px;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+
+/* text */
+.user-search-result__text {
+  color: #222;
+}
+
+.user-search-result__display-name {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.user-search-result__username {
+  font-size: 13px;
+  color: #444;
+}
+
+/* button */
+.user-search-result__add-button {
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+}
+
+.user-search-result__add-icon {
+  color: #222;
+}
+
+.user-search-result__add-icon:hover {
+  color: #ff6759;
+}
+
