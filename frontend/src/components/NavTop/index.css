@@ -1,8 +1,47 @@
 .topnav {
+  position: fixed;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  height: 30px;
+  padding-left: 30px;
+  padding-bottom: 20px;
+  background-color: white;
+  background: linear-gradient(to bottom,#fff 90%,rgba(255,255,255,0));
 }
 
+/* ------ right ------ */
 .topnav--right {
   display: flex;
+  align-items: center;
+}
+
+/* notification */
+.topnav__notification {
+  color: #222;
+}
+
+.topnav__notification:hover {
+  cursor: pointer;
+  color: #ff6759;
+}
+
+/* user */
+.topnav__username {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  color: #222;
+  font-weight: 600;
+}
+
+.topnav__username:hover {
+  color: #ff6759;
+}
+
+.topnav__user-avatar {
+  width: 35px;
+  border-radius: 50%;
+  margin-left: 5px;
 }

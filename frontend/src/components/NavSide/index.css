@@ -1,11 +1,53 @@
 .sidenav {
+  position: relative;
   display: flex;
   flex-direction: column;
+  width: 160px;
   margin-top: 20px;
-  margin-left: 100px;
 }
 
 /* logo */
 .sidenav__logo {
   font-family: 'Pacifico', 'Raleway', 'Courier New', Courier, monospace;
+  font-size: 22px;
+  margin-bottom: 50px;
+  color: #222;
+}
+
+/* links */
+.sidenav__icons {
+  width: 20px;
+  margin-right: 5px;
+}
+
+.sidenav__links {
+  font-family:'Righteous', Courier, monospace;
+  color: white;
+  padding-left: 2px;
+  margin-bottom: 15px;
+}
+
+.sidenav__links:hover {
+  color: #222;
+  color: #ff6759;
+}
+
+.sidenav__links--active {
+  color: #222;
+  color: #ff6759;
+}
+
+
+/* logout */
+.sidenav__logout-icon {
+  margin-right: 5px;
+}
+
+.sidenav__logout {
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+  width: 100px;
+  background-color: transparent;
+  text-align: left;
 }

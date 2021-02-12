@@ -1,21 +1,12 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
-import { logout } from '../../store/session';
 import Search from '../Search';
 import './index.css';
 
 const TopNav = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
   const user = useSelector(state => state.session.user);
-
-  const handleLogout = async (e) => {
-    e.preventDefault();
-    await dispatch(logout());
-    history.push('/');
-  };
 
   return (
     <div className='topnav'>
@@ -23,9 +14,21 @@ const TopNav = () => {
         <Search />
       </div>
       <div className='topnav--right'>
-        <i className='far fa-bell' />
-        {user && <div>{user.displayName}</div>}
-        <button onClick={handleLogout}>Log Out</button>
+        <NavLink to='/notifications'>
+          <i className='topnav__notification far fa-bell' />
+        </NavLink>
+        {user &&
+          <NavLink
+            to='/settings'
+            className='topnav__username'
+          >
+            {user.displayName}
+            <img
+              className='topnav__user-avatar'
+              src={user.avatar}
+              alt='user avatar'
+            />
+          </NavLink>}
       </div>
     </div>
   );
