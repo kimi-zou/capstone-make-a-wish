@@ -12,20 +12,8 @@ const { environment } = require('./config');
 const isProduction = environment === 'production';
 
 const app = express();
-// const socketApp = express();
-// const http = require('http').Server(socketApp);
-// const io = require('socket.io')(http, {
-//   cors: {
-//     origin: 'http://localhost:3000',
-//     methods: ['GET', 'POST']
-//     // allowedHeaders: ['Access-Control-Allow-Origin']
-//   }
-// });
-// // const ioServer = io.listen(5001);
-// http.listen(5001);
 
 app.use(morgan('dev'));
-
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

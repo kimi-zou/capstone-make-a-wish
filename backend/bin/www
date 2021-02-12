@@ -19,6 +19,9 @@ db.sequelize
       .on('connection', (socket) => {
         console.log('connected');
         setInterval(() => { socket.emit('test', 'text'); }, 2000);
+        // socket.on('message', () => {
+        //   console.log('receive a message');
+        // });
       });
   })
   .catch((err) => {
