@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { searchUsers } from '../../store/search';
+import useOutsideClick from '../../services/useOutsideClick';
 import SearchResult from '../SearchResult';
+import './index.css';
 
 const Search = () => {
+  const ref = useRef();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -18,12 +22,10 @@ const Search = () => {
   }, [searchKeyword, showMenu]);
 
   // Handle close menu
-  useEffect(() => {
-    if (!showMenu) return;
-    const closeMenu = () => setShowMenu(false);
-    document.addEventListener('click', closeMenu);
-    return () => document.removeEventListener('click', closeMenu);
-  }, [showMenu]);
+  useOutsideClick(ref, () => {
+    setSearchKeyword('');
+    setShowMenu(false);
+  });
 
   // Handle search
   useEffect(() => {
@@ -32,7 +34,7 @@ const Search = () => {
 
   // Render
   return (
-    <div className='search'>
+    <div className='search' ref={ref}>
       <button className='search__submit'>
         <input
           className='search__input'

@@ -4,11 +4,11 @@ import './index.css';
 
 const SearchResultUser = ({ user }) => {
   return (
-    <Link
-      to={`/${user.username}`}
-    >
-      <li key={user.id} className='user-search-result'>
-
+    <div key={user.id} className='user-search-result'>
+      <Link
+        className='user-search-result__user-link'
+        to={`/${user.username}`}
+      >
         <img
           className='user-search-result__avatar'
           src={user.avatar}
@@ -16,18 +16,20 @@ const SearchResultUser = ({ user }) => {
         />
 
         <div className='user-search-result__text'>
-
           <div className='user-search-result__display-name'>
             {user.displayName}
           </div>
-
           <div className='user-search-result__username'>
             @{user.username}
           </div>
-
         </div>
-      </li>
-    </Link>
+      </Link>
+      <div className='user-search-result__add-button'>
+        <i className='user-search-result__add-icon fas fa-plus-circle' />
+      </div>
+
+    </div>
+
   );
 };
 

@@ -35,26 +35,28 @@ const App = () => {
               <About />
             </Route>
           </Switch>
-          <div className='body'>
-            {user && <SideNav />}
-            <div className='main'>
-              {user && <TopNav />}
-              <Switch>
-                <Route exact path='/dashboard'>
-                  <Dashboard />
-                </Route>
-                <Route exact path='/my-wishes'>
-                  <Wish />
-                </Route>
-                <Route exact path='/notifications'>
-                  <Notification />
-                </Route>
-                <Route exact path='/settings'>
-                  <Settings />
-                </Route>
-              </Switch>
-            </div>
-          </div>
+          {user &&
+            <div className='body'>
+              <SideNav />
+              <div className='main'>
+                <TopNav />
+                <div className='main__main' />
+                <Switch>
+                  <Route exact path='/dashboard'>
+                    <Dashboard />
+                  </Route>
+                  <Route exact path='/my-wishes'>
+                    <Wish />
+                  </Route>
+                  <Route exact path='/notifications'>
+                    <Notification />
+                  </Route>
+                  <Route exact path='/settings'>
+                    <Settings />
+                  </Route>
+                </Switch>
+              </div>
+            </div>}
         </>
       )}
     </>

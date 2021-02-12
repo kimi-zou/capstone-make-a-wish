@@ -63,11 +63,34 @@ textarea::placeholder {
   font-weight: 300;
 }
 
+/* scroll bar */
+::-webkit-scrollbar {
+    width: 0;  
+    background: transparent;  
+}
+
 /* ---------------------------- */
 .body {
   display: flex;
+  height: calc(100vh - 40px);
+  padding: 20px 20px 20px 35px;
+  background-color: #FCE5DD;;
+  color: #222;
+  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .main {
-  width: 80%;
+  position: relative;
+  width: 90%;
+  height: calc(100vh - 60px);
+  padding-top: 20px;
+  background-color: white;
+  border-radius: 10px;
+  color: #222;
+  overflow-y: scroll;
+}
+
+.main__main {
+  height: 50px;
 }
