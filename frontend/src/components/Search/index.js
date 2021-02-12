@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { searchUsers } from '../../store/search';
+import { searchUsers, loadUserResults } from '../../store/search';
 import useOutsideClick from '../../services/useOutsideClick';
 import SearchResult from '../SearchResult';
 import './index.css';
@@ -29,10 +29,12 @@ const Search = () => {
 
   // Handle search
   useEffect(() => {
-    if (searchKeyword) dispatch(searchUsers(searchKeyword));
+    const emptyKeyword = searchKeyword.match(/^\s*$/);
+    if (!emptyKeyword) {
+      dispatch(searchUsers(searchKeyword));
+    } else { dispatch(loadUserResults([])); }
   }, [dispatch, searchKeyword]);
 
-  // Render
   return (
     <div className='search' ref={ref}>
       <button className='search__submit'>

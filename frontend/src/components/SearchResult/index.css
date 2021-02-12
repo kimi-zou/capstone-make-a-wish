@@ -5,5 +5,31 @@
   border: 1px solid #ebeef0;
   box-shadow: -1px -1px 10px 1px #e1e1e1;
   border-radius: 5px;
-  width: 300px;
+  width: 360px;
+}
+
+/* group */
+.search-result__group-wrapper {
+  width: 100%;
+}
+
+.search-result__pending-group,
+.search-result__regular-group,
+.search-result__friend-group 
+{
+  width: 100%;
+  border-top: 1.5px solid rgb(242, 242, 242);
+  max-height: 145px;
+  overflow-y: scroll;
+}
+
+.search-result__pending-group {
+  max-height: 168px;
+  border: none;
+}
+
+.search-result__pending-group-heading {
+  padding: 2px 10px;
+  background-color: rgb(242, 242, 242);
+  font-size: 13px;
 }

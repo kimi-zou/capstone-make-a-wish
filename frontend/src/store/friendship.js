@@ -41,6 +41,12 @@ export const sendFriendRequest = (actionUserId, receiverId) => async dispatch =>
   return res;
 };
 
+// 3. Get single friendship
+export const getSingleFriendship = (userOneId, userTwoId) => async dispatch => {
+  const res = await csrfFetch(`/api/friendships/lookup/${userOneId}/${userTwoId}`);
+  return res;
+};
+
 // -------------------- States ----------------------
 const initialState = {
   friends: [],

@@ -4,7 +4,7 @@ import { csrfFetch } from './csrf.js';
 const SEARCH_USERS = 'search/searchUsers';
 
 // -------------------- POJO Actions ---------------------
-const loadUserResults = (users) => ({
+export const loadUserResults = (users) => ({
   type: SEARCH_USERS,
   payload: users
 });

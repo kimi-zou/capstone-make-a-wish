@@ -8,7 +8,6 @@ const router = express.Router();
 // -------------- Routes ----------------
 router.get('/', asyncHandler(async (req, res, next) => {
   const query = req.query.user;
-  console.log(query);
   const users = await User.findAll({
     where: {
       [Op.or]: [
