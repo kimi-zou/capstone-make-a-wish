@@ -17,13 +17,17 @@ const setFriends = (friends) => ({
 
 // -------------------- Thunk Actions --------------------
 // 1. Get friends
-export const getFriends = () => async dispatch => {
-
+export const getFriends = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/users/${id}/friends`);
+  await dispatch(setFriends(res.data.users));
+  return res;
 };
 
 // 2. Get pending friends
-export const getPendingFriends = () => async dispatch => {
-
+export const getPendingFriends = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/users/${id}/pending-friends`);
+  await dispatch(setPendingFriends(res.data.users));
+  return res;
 };
 
 export const sendFriendRequest = (actionUserId, receiverId) => async dispatch => {
@@ -36,3 +40,29 @@ export const sendFriendRequest = (actionUserId, receiverId) => async dispatch =>
   });
   return res;
 };
+
+// -------------------- States ----------------------
+const initialState = {
+  friends: [],
+  pendingFriends: []
+};
+
+// -------------------- Reducer ----------------------
+function friendshipReducer (state = initialState, action) {
+  switch (action.type) {
+    case SET_FRIENDS:
+      return {
+        ...state,
+        friends: action.payload
+      };
+    case SET_PENDING_FRIENDS:
+      return {
+        ...state,
+        pendingFriends: action.payload
+      };
+    default:
+      return state;
+  }
+}
+
+export default friendshipReducer;

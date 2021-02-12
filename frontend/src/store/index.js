@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import wishReducer from './wish';
 import searchReducer from './search';
+import friendshipReducer from './friendship';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   wish: wishReducer,
-  search: searchReducer
+  search: searchReducer,
+  friendship: friendshipReducer
 });
 
 let enhancer;

@@ -59,11 +59,8 @@ router.get(
   '/:id(\\d+)/friends',
   restoreUser,
   asyncHandler(async (req, res) => {
-    // console.log(req.user);
     const userId = req.params.id;
     const friends = await Relationship.findAll({
-      // include: {
-      //   model: Relationship,
       where: {
         status: 1,
         [Op.or]: [
@@ -71,25 +68,38 @@ router.get(
           { userTwoId: userId }
         ]
       }
-      // }
     });
-
-    const users = friends.map(friend => {
-      if (friend.userOneId === userId) {
-        return friend.userOneId;
+    const users = await Promise.all(friends.map(async friend => {
+      if (friend.userOneId === parseInt(userId)) {
+        return await User.findByPk(friend.userTwoId);
       }
-      return friend.userTwoId;
-    });
+      return await User.findByPk(friend.userOneId);
+    }));
+    return res.json({ users });
+  }));
 
-    const result = await User.findAll({
+// Pending Friends lookup
+router.get(
+  '/:id(\\d+)/pending-friends',
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const userId = req.params.id;
+    const friends = await Relationship.findAll({
       where: {
-        id: {
-          [Op.in]: users
-        }
+        status: 0,
+        [Op.or]: [
+          { userOneId: userId },
+          { userTwoId: userId }
+        ]
       }
     });
-
-    return res.json({ result });
+    const users = await Promise.all(friends.map(async friend => {
+      if (friend.userOneId === parseInt(userId)) {
+        return await User.findByPk(friend.userTwoId);
+      }
+      return await User.findByPk(friend.userOneId);
+    }));
+    return res.json({ users });
   }));
 
 module.exports = router;

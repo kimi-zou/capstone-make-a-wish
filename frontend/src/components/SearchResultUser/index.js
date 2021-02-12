@@ -8,11 +8,15 @@ import './index.css';
 const SearchResultUser = ({ user }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
+  const friends = useSelector(state => state.friendship.friends);
+  const pendingFriends = useSelector(state => state.friendship.pendingFriends);
 
   const createFriendRequest = () => {
     dispatch(sendFriendRequest(sessionUser.id, user.id))
       .then(res => console.log(res));
   };
+
+  if (sessionUser.id === user.id) return null;
 
   return (
     <div key={user.id} className='user-search-result'>
@@ -39,7 +43,12 @@ const SearchResultUser = ({ user }) => {
         className='user-search-result__add-button'
         onClick={createFriendRequest}
       >
-        <i className='user-search-result__add-icon fas fa-plus-circle' />
+        {friends.some(friend => friend.id === user.id)
+          ? <i className='fas fa-user-friends' />
+          : (pendingFriends.some(friend => friend.id === user.id)
+              ? <div>Pending</div>
+              : <i className='user-search-result__add-icon fas fa-plus-circle' />
+            )}
       </div>
 
     </div>
