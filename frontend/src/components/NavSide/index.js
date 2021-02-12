@@ -28,7 +28,7 @@ const SideNav = () => {
         className='sidenav__links'
         exact to='/dashboard'
       >
-        <i class='sidenav__icons fas fa-home' />
+        <i className='sidenav__icons fas fa-home' />
         Dashboard
       </NavLink>
 

@@ -24,18 +24,6 @@ const app = express();
 // // const ioServer = io.listen(5001);
 // http.listen(5001);
 
-// // Testing socket
-// io.on('connection', (client) => {
-//   console.log('connected');
-//   setInterval(() => { client.emit('test', 'text'); }, 2000);
-//   // client.on('subscribeToTimer', (interval) => {
-//   //   console.log('client is subscribing to timer with interval ', interval);
-//   //   setInterval(() => {
-//   //     client.emit('timer', new Date());
-//   //   }, interval);
-//   // });
-// });
-
 app.use(morgan('dev'));
 
 app.use(cookieParser());
@@ -44,10 +32,9 @@ app.use(bodyParser.json());
 
 // Security Middleware
 if (!isProduction) {
-  // enable cors only in development
   app.use(cors());
-  // http.use(cors());
 }
+
 // helmet helps set a variety of headers to better secure your app
 app.use(
   helmet({
