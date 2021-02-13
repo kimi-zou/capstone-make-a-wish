@@ -7,24 +7,14 @@ const router = express.Router();
 // Create friend request
 router.post('/create', asyncHandler(async (req, res, next) => {
   const { actionUserId, receiverId } = req.body;
-
-  let userOneId;
-  let userTwoId;
-  if (actionUserId < receiverId) {
-    userOneId = actionUserId;
-    userTwoId = receiverId;
-  } else {
-    userOneId = receiverId;
-    userTwoId = actionUserId;
-  }
-
+  const userOneId = actionUserId < receiverId ? actionUserId : receiverId;
+  const userTwoId = actionUserId > receiverId ? actionUserId : receiverId;
   const relationship = await Relationship.create({
     userOneId,
     userTwoId,
     actionUserId,
     status: 0
   });
-
   return res.json({ relationship });
 }));
 

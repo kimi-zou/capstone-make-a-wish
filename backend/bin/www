@@ -4,7 +4,7 @@ const { port } = require('../config');
 
 const app = require('../app');
 const db = require('../db/models');
-const { socketRequireAuth } = require('../utils/auth');
+// const { socketRequireAuth } = require('../utils/auth');
 
 // Check the database connection before starting the app
 db.sequelize
@@ -13,16 +13,13 @@ db.sequelize
     console.log('Database connection success! Sequelize is ready to use...');
 
     // Start listening for connections
-    const http = app.listen(port, () => console.log(`Listening on port ${port}...`));
-    const io = require('socket.io')(http);
-    io.use(socketRequireAuth)
-      .on('connection', (socket) => {
-        console.log('connected');
-        setInterval(() => { socket.emit('test', 'text'); }, 2000);
-        // socket.on('message', () => {
-        //   console.log('receive a message');
-        // });
-      });
+    const server = require('http').createServer(app);
+    const io = require('socket.io')(server);
+    io.of('/notifications').on('connection', (socket) => {
+      console.log('connected');
+      setInterval(() => { socket.emit('test', 'text'); }, 2000);
+    });
+    server.listen(port, () => console.log(`Listening on port ${port}...`));
   })
   .catch((err) => {
     console.log('Database connection failure.');
