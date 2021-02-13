@@ -40,13 +40,13 @@
 }
 
 /* ------ button ------ */
-/* add */
-.user-search-result__add-button {
+.user-search-result__button-wrapper {
   position: absolute;
   right: 15px;
   cursor: pointer;
 }
 
+/* add */
 .user-search-result__add-icon {
   color: #222;
 }

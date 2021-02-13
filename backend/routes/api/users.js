@@ -34,7 +34,6 @@ router.post(
   asyncHandler(async (req, res) => {
     const { email, password, username, birthday } = req.body;
     const avatar = getRandomAvatar();
-    console.log(avatar);
     let user;
     if (birthday) {
       user = await User.signup({ email, username, password, birthday, avatar });
@@ -99,8 +98,9 @@ router.get(
     const users = await Promise.all(friends.map(async friend => {
       if (friend.userOneId === parseInt(userId)) {
         return await User.findByPk(friend.userTwoId);
+      } else {
+        return await User.findByPk(friend.userOneId);
       }
-      return await User.findByPk(friend.userOneId);
     }));
     return res.json({ users });
   }));

@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 
 import {
   sendFriendRequest,
-  getPendingFriends,
-  getSingleFriendship
+  getFriends,
+  getSentPendingFriends,
+  getReceivedPendingFriends,
+  // getPendingFriends,
+  getSingleFriendship,
+  acceptFriendship
 } from '../../store/friendship';
 import './index.css';
 
@@ -26,7 +30,15 @@ const SearchResultUser = ({ user, group }) => {
   // Send friend request
   const createFriendRequest = async () => {
     await dispatch(sendFriendRequest(sessionUser.id, user.id));
-    await dispatch(getPendingFriends(sessionUser.id));
+    await dispatch(getSentPendingFriends(sessionUser.id));
+    await dispatch(getReceivedPendingFriends(sessionUser.id));
+  };
+
+  // Accept friend request
+  const acceptFriendRequest = async () => {
+    await dispatch(acceptFriendship(friendship.id, sessionUser.id, 1));
+    await dispatch(getSentPendingFriends(sessionUser.id));
+    await dispatch(getFriends(sessionUser.id));
   };
 
   if (sessionUser.id === user.id) return null;
@@ -52,21 +64,29 @@ const SearchResultUser = ({ user, group }) => {
           </div>
         </div>
       </Link>
-      <div
-        className='user-search-result__add-button'
-        onClick={createFriendRequest}
-      >
+      <div className='user-search-result__button-wrapper'>
         {group === 'pending' &&
           <div className='user-search-result__pending'>
             {(friendship && friendship.actionUserId === sessionUser.id)
               ? <button className='user-search-result__pending-buttons'>Cancel</button>
               : (
                 <>
-                  <button className='user-search-result__pending-buttons'>Accept</button>
-                  <button className='user-search-result__pending-buttons'>Ignore</button>
+                  <button
+                    className='user-search-result__pending-buttons'
+                    onClick={acceptFriendRequest}
+                  >Accept
+                  </button>
+                  <button
+                    className='user-search-result__pending-buttons'
+                  >Ignore
+                  </button>
                 </>)}
           </div>}
-        {group === 'regular' && <i className='user-search-result__add-icon fas fa-user-plus' />}
+        {group === 'regular' &&
+          <i
+            className='user-search-result__add-icon fas fa-user-plus'
+            onClick={createFriendRequest}
+          />}
         {group === 'friend' && <i className='fas fa-user-friends' />}
       </div>
     </div>

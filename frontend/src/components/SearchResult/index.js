@@ -8,7 +8,8 @@ const SearchResult = () => {
   const sessionUser = useSelector(state => state.session.user);
   const users = useSelector(state => state.search.users);
   const friends = useSelector(state => state.friendship.friends);
-  const pendingFriends = useSelector(state => state.friendship.pendingFriends);
+  const sentPendingFriends = useSelector(state => state.friendship.sentPendingFriends);
+  const receivedPendingFriends = useSelector(state => state.friendship.receivedPendingFriends);
   const [loaded, setLoaded] = useState(false);
   const [pendingUsers, setPendingUsers] = useState([]);
   const [regularUsers, setRegularUsers] = useState([]);
@@ -18,23 +19,27 @@ const SearchResult = () => {
   useEffect(() => {
     if (!users) return;
     setLoaded(true);
-    setPendingUsers(pendingFriends.filter((user) => {
+    const combinedPendingUsers = [...receivedPendingFriends, ...sentPendingFriends];
+    setPendingUsers(combinedPendingUsers.filter((user) => {
       return users.some(friend => friend.id === user.id);
     }));
     setFriendUsers(friends.filter((user) => {
       return users.some(friend => friend.id === user.id);
     }));
     setRegularUsers(users.filter((user) => {
-      return (!friends.some(friend => friend.id === user.id) &&
-    !pendingFriends.some(friend => friend.id === user.id) &&
-    user.id !== sessionUser.id);
+      return (
+        !friends.some(friend => friend.id === user.id) &&
+        !sentPendingFriends.some(friend => friend.id === user.id) &&
+        !receivedPendingFriends.some(friend => friend.id === user.id) &&
+        user.id !== sessionUser.id
+      );
     }));
     return () => {
       setPendingUsers([]);
       setRegularUsers([]);
       setFriendUsers([]);
     };
-  }, [users, friends, pendingFriends, sessionUser]);
+  }, [users, friends, sessionUser, sentPendingFriends, receivedPendingFriends]);
 
   if (!loaded) return null;
 

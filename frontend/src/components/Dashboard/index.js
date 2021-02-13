@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getFriends, getPendingFriends } from '../../store/friendship';
+import { getFriends } from '../../store/friendship';
 import './index.css';
 
 const Dashboard = () => {
@@ -13,8 +13,8 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getFriends(sessionUser.id))
       .then(res => setFriends(res.data.users));
-    dispatch(getPendingFriends(sessionUser.id))
-      .then(res => setPendingFriends(res.data.users));
+    // dispatch(getPendingFriends(sessionUser.id))
+    //   .then(res => setPendingFriends(res.data.users));
   }, [dispatch, sessionUser]);
 
   return (

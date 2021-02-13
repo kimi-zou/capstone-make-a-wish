@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { searchUsers, loadUserResults } from '../../store/search';
+import { getFriends, getSentPendingFriends, getReceivedPendingFriends } from '../../store/friendship';
 import useOutsideClick from '../../services/useOutsideClick';
 import SearchResult from '../SearchResult';
 import './index.css';
@@ -9,6 +10,7 @@ import './index.css';
 const Search = () => {
   const ref = useRef();
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
   const [searchKeyword, setSearchKeyword] = useState('');
 
@@ -34,6 +36,13 @@ const Search = () => {
       dispatch(searchUsers(searchKeyword));
     } else { dispatch(loadUserResults([])); }
   }, [dispatch, searchKeyword]);
+
+  // Get friends and pending requests
+  useEffect(() => {
+    dispatch(getFriends(sessionUser.id));
+    dispatch(getSentPendingFriends(sessionUser.id));
+    dispatch(getReceivedPendingFriends(sessionUser.id));
+  }, [dispatch, sessionUser]);
 
   return (
     <div className='search' ref={ref}>
