@@ -88,7 +88,7 @@ router.get(
     const userId = req.params.id;
     const friends = await Relationship.findAll({
       where: {
-        status: 0,
+        status: { [Op.or]: [0, 2] },
         [Op.or]: [
           { userOneId: userId },
           { userTwoId: userId }

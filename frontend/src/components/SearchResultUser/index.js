@@ -1,50 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import {
-  sendFriendRequest,
-  getFriends,
-  getSentPendingFriends,
-  getReceivedPendingFriends,
-  // getPendingFriends,
-  getSingleFriendship,
-  acceptFriendship
+  sendFriendRequest, getPendingFriends, getFriendship
 } from '../../store/friendship';
+import FriendshipAcceptButton from '../FriendshipAcceptButton';
+import FriendshipIgnoreButton from '../FriendshipIgnoreButton';
+import FriendshipCancelButton from '../FriendshipCancelButton';
 import './index.css';
 
 const SearchResultUser = ({ user, group }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const [friendship, setFriendship] = useState('');
 
   // Lookup friendship
-  useEffect(() => {
-    const userOneId = (sessionUser.id < user.id) ? sessionUser.id : user.id;
-    const userTwoId = (sessionUser.id > user.id) ? sessionUser.id : user.id;
-    dispatch(getSingleFriendship(userOneId, userTwoId))
-      .then(res => setFriendship(res.data.relationship));
-    return () => setFriendship('');
-  }, [dispatch, sessionUser, user]);
+  const friendshipLookup = async () => {
+    const res = await dispatch(getFriendship(sessionUser.id, user.id));
+    return res.data.relationship;
+  };
 
   // Send friend request
   const createFriendRequest = async () => {
     await dispatch(sendFriendRequest(sessionUser.id, user.id));
-    await dispatch(getSentPendingFriends(sessionUser.id));
-    await dispatch(getReceivedPendingFriends(sessionUser.id));
-  };
-
-  // Accept friend request
-  const acceptFriendRequest = async () => {
-    await dispatch(acceptFriendship(friendship.id, sessionUser.id, 1));
-    await dispatch(getSentPendingFriends(sessionUser.id));
-    await dispatch(getFriends(sessionUser.id));
+    await dispatch(getPendingFriends(sessionUser.id));
   };
 
   if (sessionUser.id === user.id) return null;
 
   return (
-    <div key={user.id} className='user-search-result'>
+    <div className='user-search-result'>
       <Link
         className='user-search-result__user-link'
         to={`/${user.username}`}
@@ -54,40 +39,36 @@ const SearchResultUser = ({ user, group }) => {
           src={user.avatar}
           alt='search-pic'
         />
-
         <div className='user-search-result__text'>
-          <div className='user-search-result__display-name'>
-            {user.displayName}
-          </div>
-          <div className='user-search-result__username'>
-            @{user.username}
-          </div>
+          <div className='user-search-result__display-name'>{user.displayName}</div>
+          <div className='user-search-result__username'>@{user.username}</div>
         </div>
       </Link>
       <div className='user-search-result__button-wrapper'>
-        {group === 'pending' &&
-          <div className='user-search-result__pending'>
-            {(friendship && friendship.actionUserId === sessionUser.id)
-              ? <button className='user-search-result__pending-buttons'>Cancel</button>
-              : (
-                <>
-                  <button
-                    className='user-search-result__pending-buttons'
-                    onClick={acceptFriendRequest}
-                  >Accept
-                  </button>
-                  <button
-                    className='user-search-result__pending-buttons'
-                  >Ignore
-                  </button>
-                </>)}
-          </div>}
-        {group === 'regular' &&
-          <i
-            className='user-search-result__add-icon fas fa-user-plus'
-            onClick={createFriendRequest}
-          />}
-        {group === 'friend' && <i className='fas fa-user-friends' />}
+        {
+          group === 'pending-received' &&
+            <div className='user-search-result__pending-received'>
+              <FriendshipAcceptButton friendshipLookup={friendshipLookup} />
+              <FriendshipIgnoreButton friendshipLookup={friendshipLookup} />
+            </div>
+        }
+        {
+          group === 'pending-sent' &&
+            <div className='user-search-result__pending-sent'>
+              <FriendshipCancelButton friendshipLookup={friendshipLookup} />
+            </div>
+        }
+        {
+          group === 'regular' &&
+            <i
+              className='user-search-result__add-icon fas fa-user-plus'
+              onClick={createFriendRequest}
+            />
+        }
+        {
+          group === 'friend' &&
+            <i className='fas fa-user-friends' />
+        }
       </div>
     </div>
   );

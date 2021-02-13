@@ -8,13 +8,10 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const [friends, setFriends] = useState([]);
-  const [pendingFriends, setPendingFriends] = useState([]);
 
   useEffect(() => {
     dispatch(getFriends(sessionUser.id))
       .then(res => setFriends(res.data.users));
-    // dispatch(getPendingFriends(sessionUser.id))
-    //   .then(res => setPendingFriends(res.data.users));
   }, [dispatch, sessionUser]);
 
   return (

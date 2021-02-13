@@ -30,61 +30,64 @@ export const getFriends = (id) => async dispatch => {
 };
 
 // 2. Get pending friends
-//    Remove null
-const removeNull = (users) => {
-  return users.filter(user => user);
-};
-
-//    Session user as actor
-export const getSentPendingFriends = (id) => async dispatch => {
+export const getPendingFriends = (id) => async dispatch => {
   const res = await csrfFetch(`/api/users/${id}/pending-friends`);
   const users = res.data.users;
+  console.log(users);
+
+  // ---Remove null
+  const removeNull = (users) => {
+    return users.filter(user => user);
+  };
+
+  // ---Session user as actor
   const sessionUserAsActor = await Promise.all(users.map(async user => {
-    const res = await dispatch(getSingleFriendship(id, user.id));
-    const filtered = (res.data.relationship.actionUserId !== id)
-      ? null
-      : user;
+    const res = await dispatch(getFriendship(id, user.id));
+    const { actionUserId, status } = res.data.relationship;
+    const filtered = (
+      (actionUserId === id && status !== 2) ||
+      (actionUserId !== id && status === 2)
+    )
+      ? user
+      : null;
     return filtered;
   }));
   await dispatch(setSentPendingFriends(removeNull(sessionUserAsActor)));
-  return res;
-};
 
-//    Session user as receiver
-export const getReceivedPendingFriends = (id) => async dispatch => {
-  const res = await csrfFetch(`/api/users/${id}/pending-friends`);
-  const users = res.data.users;
+  // ---Session user as receiver
   const sessionUserAsReceiver = await Promise.all(users.map(async user => {
-    const res = await dispatch(getSingleFriendship(id, user.id));
-    const filtered = (res.data.relationship.actionUserId === id)
-      ? null
-      : user;
-    return filtered;
+    const res = await dispatch(getFriendship(id, user.id));
+    if (res.data.relationship) {
+      const { actionUserId, status } = res.data.relationship;
+      const filtered = (actionUserId !== id && status !== 2)
+        ? user
+        : null;
+      return filtered;
+    }
   }));
   await dispatch(setReceivedPendingFriends(removeNull(sessionUserAsReceiver)));
-  return res;
 };
 
-// 3. Send friend request
+// 3. Create friendship
 export const sendFriendRequest = (actionUserId, receiverId) => async dispatch => {
-  const res = await csrfFetch('/api/friendships/create', {
-    method: 'POST',
-    body: JSON.stringify({
-      actionUserId,
-      receiverId
-    })
-  });
-  return res;
+  const res = await dispatch(getFriendship(actionUserId, receiverId));
+  const friendship = res.data.relationship;
+  if (!friendship) {
+    const res = await csrfFetch('/api/friendships/create', {
+      method: 'POST',
+      body: JSON.stringify({
+        actionUserId,
+        receiverId
+      })
+    });
+    return res;
+  } else {
+    await dispatch(updateFriendship(friendship.id, actionUserId, 0));
+  }
 };
 
-// 4. Get one friendship
-export const getSingleFriendship = (userOneId, userTwoId) => async dispatch => {
-  const res = await csrfFetch(`/api/friendships/lookup/${userOneId}/${userTwoId}`);
-  return res;
-};
-
-// 5. Update one friendship
-export const acceptFriendship = (relationshipId, actionUserId, status) => async dispatch => {
+// 4. Update friendship
+export const updateFriendship = (relationshipId, actionUserId, status) => async dispatch => {
   const res = await csrfFetch(`/api/friendships/${relationshipId}/update`, {
     method: 'PATCH',
     body: JSON.stringify({
@@ -92,6 +95,23 @@ export const acceptFriendship = (relationshipId, actionUserId, status) => async 
       status
     })
   });
+  return res;
+};
+
+// 5. Delete friendship
+export const deleteFriendship = (relationshipId) => async dispatch => {
+  const res = await csrfFetch(`/api/friendships/${relationshipId}/delete`, {
+    method: 'DELETE'
+  });
+  console.log(res.data);
+  return res;
+};
+
+// 6. Get one friendship
+export const getFriendship = (oneId, twoId) => async dispatch => {
+  const userOneId = (oneId < twoId) ? oneId : twoId;
+  const userTwoId = (oneId > twoId) ? oneId : twoId;
+  const res = await csrfFetch(`/api/friendships/lookup/${userOneId}/${userTwoId}`);
   return res;
 };
 

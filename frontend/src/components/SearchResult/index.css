@@ -6,6 +6,13 @@
   box-shadow: -1px -1px 10px 1px #e1e1e1;
   border-radius: 5px;
   width: 360px;
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
+/* not found */
+.search-result__not-found {
+  padding: 10px;
 }
 
 /* group */
@@ -19,12 +26,12 @@
 {
   width: 100%;
   border-top: 1.5px solid rgb(242, 242, 242);
-  max-height: 145px;
+  max-height: 32vh;
   overflow-y: scroll;
 }
 
 .search-result__pending-group {
-  max-height: 168px;
+  max-height: 36vh;
   border: none;
 }
 

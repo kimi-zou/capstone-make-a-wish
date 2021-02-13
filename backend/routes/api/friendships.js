@@ -40,6 +40,15 @@ router.patch('/:id(\\d+)/update', asyncHandler(async (req, res, next) => {
   return res.json({ relationship });
 }));
 
+// Delete friend request
+router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res, next) => {
+  const relationship = await Relationship.findOne({
+    where: { id: req.params.id }
+  });
+  await relationship.destroy();
+  return res.json({ message: 'Successfully cancel friend request' });
+}));
+
 // Get single friend relationship data
 router.get('/lookup/:userOneId(\\d+)/:userTwoId(\\d+)', asyncHandler(async (req, res, next) => {
   const { userOneId, userTwoId } = req.params;
