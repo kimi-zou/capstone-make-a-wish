@@ -6,7 +6,14 @@ const { Op } = require('sequelize');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { getRandomAvatar } = require('../../utils/avatar');
-const { User, Wish, WishImage, Relationship, sequelize } = require('../../db/models');
+const {
+  User,
+  Wish,
+  WishImage,
+  Relationship,
+  NotificationReceiver,
+  NotificationObject
+} = require('../../db/models');
 
 const router = express.Router();
 
@@ -104,5 +111,25 @@ router.get(
     }));
     return res.json({ users });
   }));
+
+// Notifications lookup
+router.get(
+  '/:id(\\d+)/notifications',
+  asyncHandler(async (req, res, next) => {
+    const notifications = await NotificationReceiver.findAll({
+      where: {
+        receiverId: req.params.id
+      },
+      include: [
+        { model: NotificationObject },
+        {
+          model: User
+          // where: { id: req.params.id }
+        }
+      ]
+    });
+    return res.json({ notifications });
+  })
+);
 
 module.exports = router;

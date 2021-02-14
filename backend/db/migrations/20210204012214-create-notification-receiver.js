@@ -15,6 +15,13 @@ module.exports = {
           model: 'Users'
         }
       },
+      actorId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Users'
+        }
+      },
       notificationObjectId: {
         type: Sequelize.INTEGER,
         allowNull: false,

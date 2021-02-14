@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
     NotificationReceiver.belongsTo(models.User, {
       foreignKey: 'receiverId'
     });
+    NotificationReceiver.belongsTo(models.User, {
+      foreignKey: 'actorId'
+    });
   };
   return NotificationReceiver;
 };

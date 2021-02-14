@@ -1,11 +1,11 @@
 import { csrfFetch } from './csrf.js';
 
-// -------------------- Action Types --------------------
+// Action Types
 const SET_SENT_PENDING_FRIENDS = 'friendship/setSentPendingFriends';
 const SET_RECEIVED_PENDING_FRIENDS = 'friendship/setReceivedPendingFriends';
 const SET_FRIENDS = 'friendship/setFriends';
 
-// -------------------- POJO Actions ---------------------
+// POJO Actions
 const setSentPendingFriends = (friends) => ({
   type: SET_SENT_PENDING_FRIENDS,
   payload: friends

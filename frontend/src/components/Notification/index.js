@@ -1,20 +1,33 @@
 import React, { useEffect, useState } from 'react';
-// import { receiveFriendRequest } from '../../services/socket';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getAllNotifications } from '../../store/notification';
+import NotificationFriendRequest from '../NotificationFriendRequest';
 
 const Notification = () => {
-  const [notification, setNotification] = useState('no notification yet');
+  const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
 
-  // useEffect(() => {
-  //   const res = receiveFriendRequest();
-  //   console.log(res);
-  //   setNotification(res);
-  // }, []);
+  const [notifications, setNotifications] = useState([]);
+
+  useEffect(() => {
+    if (!sessionUser) return;
+    dispatch(getAllNotifications(sessionUser.id))
+      .then(res => setNotifications(res.data.notifications));
+  }, [dispatch, sessionUser]);
 
   return (
     <div className='test'>
-      <p className='test-intro'>
-        This is the notification value: {notification}
-      </p>
+      {notifications.length > 0 && notifications.map((notification) => {
+        if (notification.NotificationObject.entityTypeId === 1) {
+          return (
+            <NotificationFriendRequest
+              key={notification.id}
+              notification={notification}
+            />
+          );
+        }
+      })}
     </div>
   );
 };

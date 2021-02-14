@@ -15,7 +15,7 @@ const router = express.Router();
 // Create friend request
 router.post('/create', asyncHandler(async (req, res, next) => {
   try {
-    const result = await sequelize.transaction(async (t) => {
+    await sequelize.transaction(async (t) => {
       // ---create new friend relationship
       const { actionUserId, receiverId } = req.body;
       const userOneId = actionUserId < receiverId ? actionUserId : receiverId;
@@ -41,6 +41,7 @@ router.post('/create', asyncHandler(async (req, res, next) => {
       const notificationReceiver = await NotificationReceiver.create({
         notificationObjectId: notification.id,
         receiverId: receiverId,
+        actorId: actionUserId,
         status: 0
       });
       // ---broadcast friend request notification

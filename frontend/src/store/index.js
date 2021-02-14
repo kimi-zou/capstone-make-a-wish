@@ -4,12 +4,14 @@ import sessionReducer from './session';
 import wishReducer from './wish';
 import searchReducer from './search';
 import friendshipReducer from './friendship';
+import notificationReducer from './notification';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   wish: wishReducer,
   search: searchReducer,
-  friendship: friendshipReducer
+  friendship: friendshipReducer,
+  notification: notificationReducer
 });
 
 let enhancer;

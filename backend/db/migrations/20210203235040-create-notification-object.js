@@ -6,28 +6,28 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
       },
       entityId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       entityTypeId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'EntityTypes',
+          model: 'EntityTypes'
         }
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.fn('now')
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.fn('now')
       }
     });
   },
