@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 
 import { restoreUser } from './store/session';
-
+import { socketContext } from './context/socket';
 import About from './components/HomeAbout';
 import Dashboard from './components/Dashboard';
 import Home from './components/Home';
@@ -15,8 +15,18 @@ import TopNav from './components/NavTop';
 
 const App = () => {
   const dispatch = useDispatch();
+  const socket = useContext(socketContext);
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(state => state.session.user);
+
+  useEffect(() => {
+    socket.on('receive friend request', (notification) => {
+      console.log(notification);
+    });
+    return () => {
+      socket.off('receive friend request');
+    };
+  }, [socket]);
 
   useEffect(() => {
     dispatch(restoreUser())

@@ -6,10 +6,9 @@ import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
-
+import { socketContext, socket } from './context/socket';
 import { ModalProvider } from './services/Modal/Modal';
 import App from './App';
-
 import './index.css';
 
 const store = configureStore();
@@ -27,7 +26,9 @@ const Root = () => {
     <ModalProvider>
       <Provider store={store}>
         <BrowserRouter>
-          <App />
+          <socketContext.Provider value={socket}>
+            <App />
+          </socketContext.Provider>
         </BrowserRouter>
       </Provider>
     </ModalProvider>

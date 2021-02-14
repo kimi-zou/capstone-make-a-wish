@@ -1,21 +1,21 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const NotificationObject = sequelize.define('NotificationObject', {
-    entityId: { 
+    entityId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     }
   }, {});
-  NotificationObject.associate = function(models) {
+  NotificationObject.associate = function (models) {
     NotificationObject.belongsTo(models.EntityType, {
       foreignKey: 'entityTypeId'
-    }),
+    });
     NotificationObject.hasOne(models.NotificationActor, {
       foreignKey: 'notificationObjectId'
-    }),
+    });
     NotificationObject.hasMany(models.NotificationReceiver, {
       foreignKey: 'notificationObjectId'
-    })
+    });
   };
   return NotificationObject;
 };

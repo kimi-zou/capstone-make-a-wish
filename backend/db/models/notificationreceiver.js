@@ -3,16 +3,16 @@ module.exports = (sequelize, DataTypes) => {
   const NotificationReceiver = sequelize.define('NotificationReceiver', {
     status: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     }
   }, {});
-  NotificationReceiver.associate = function(models) {
+  NotificationReceiver.associate = function (models) {
     NotificationReceiver.belongsTo(models.NotificationObject, {
-      foreignKey: 'notificationObjectId',
-    }),
+      foreignKey: 'notificationObjectId'
+    });
     NotificationReceiver.belongsTo(models.User, {
-      foreignKey: 'receiverId',
-    })
+      foreignKey: 'receiverId'
+    });
   };
   return NotificationReceiver;
 };

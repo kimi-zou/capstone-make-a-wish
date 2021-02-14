@@ -1,11 +1,13 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Relationship } = require('../../db/models');
+const { Relationship, NotificationObject, NotificationActor, NotificationReceiver } = require('../../db/models');
+const socketapi = require('../../socketapi');
 
 const router = express.Router();
 
 // Create friend request
 router.post('/create', asyncHandler(async (req, res, next) => {
+  // ---create new friend relationship
   const { actionUserId, receiverId } = req.body;
   const userOneId = actionUserId < receiverId ? actionUserId : receiverId;
   const userTwoId = actionUserId > receiverId ? actionUserId : receiverId;
@@ -15,6 +17,23 @@ router.post('/create', asyncHandler(async (req, res, next) => {
     actionUserId,
     status: 0
   });
+  // ---create friend request notification
+  const notification = await NotificationObject.create({
+    entityTypeId: 1,
+    entityId: relationship.id
+  });
+  await NotificationActor.create({
+    notificationObjectId: notification.id,
+    actorId: actionUserId,
+    status: 0
+  });
+  const notificationReceiver = await NotificationReceiver.create({
+    notificationObjectId: notification.id,
+    receiverId: receiverId,
+    status: 0
+  });
+  // ---broadcast friend request notification
+  socketapi.io.emit('receive friend request', notificationReceiver);
   return res.json({ relationship });
 }));
 

@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { subscribeToTimer } from '../../services/socket';
+// import { receiveFriendRequest } from '../../services/socket';
 
 const Notification = () => {
-  const [time, setTime] = useState('no time yet');
+  const [notification, setNotification] = useState('no notification yet');
 
-  useEffect(() => {
-    const result = subscribeToTimer();
-    // console.log(result);
-    setTime(result);
-  }, []);
+  // useEffect(() => {
+  //   const res = receiveFriendRequest();
+  //   console.log(res);
+  //   setNotification(res);
+  // }, []);
 
   return (
     <div className='test'>
       <p className='test-intro'>
-        This is the timer value: {time}
+        This is the notification value: {notification}
       </p>
     </div>
   );

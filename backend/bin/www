@@ -4,7 +4,7 @@ const { port } = require('../config');
 
 const app = require('../app');
 const db = require('../db/models');
-// const { socketRequireAuth } = require('../utils/auth');
+const socketapi = require('../socketapi');
 
 // Check the database connection before starting the app
 db.sequelize
@@ -14,11 +14,7 @@ db.sequelize
 
     // Start listening for connections
     const server = require('http').createServer(app);
-    const io = require('socket.io')(server);
-    io.of('/notifications').on('connection', (socket) => {
-      console.log('connected');
-      setInterval(() => { socket.emit('test', 'text'); }, 2000);
-    });
+    socketapi.io.attach(server);
     server.listen(port, () => console.log(`Listening on port ${port}...`));
   })
   .catch((err) => {

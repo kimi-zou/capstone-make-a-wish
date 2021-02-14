@@ -33,7 +33,6 @@ export const getFriends = (id) => async dispatch => {
 export const getPendingFriends = (id) => async dispatch => {
   const res = await csrfFetch(`/api/users/${id}/pending-friends`);
   const users = res.data.users;
-  console.log(users);
 
   // ---Remove null
   const removeNull = (users) => {

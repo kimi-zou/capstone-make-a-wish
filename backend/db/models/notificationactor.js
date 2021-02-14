@@ -3,16 +3,16 @@ module.exports = (sequelize, DataTypes) => {
   const NotificationActor = sequelize.define('NotificationActor', {
     status: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     }
   }, {});
-  NotificationActor.associate = function(models) {
+  NotificationActor.associate = function (models) {
     NotificationActor.belongsTo(models.NotificationObject, {
-      foreignKey: 'notificationObjectId',
-    }),
+      foreignKey: 'notificationObjectId'
+    });
     NotificationActor.belongsTo(models.User, {
-      foreignKey: 'actorId',
-    })
-  }; 
+      foreignKey: 'actorId'
+    });
+  };
   return NotificationActor;
 };
