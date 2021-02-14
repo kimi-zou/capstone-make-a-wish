@@ -12,7 +12,7 @@ module.exports = {
         displayName: 'Demo',
         hashedPassword: bcrypt.hashSync('password'),
         birthday: new Date('1992-9-24'),
-        avatar: getRandomAvatar(),
+        avatar: getRandomAvatar()
       },
       {
         email: 'friend1@user.io',
@@ -20,7 +20,7 @@ module.exports = {
         displayName: 'Demo Friend 1',
         hashedPassword: bcrypt.hashSync('password'),
         birthday: faker.date.between('1950-01-01', '2020-12-31'),
-        avatar: getRandomAvatar(),
+        avatar: getRandomAvatar()
       },
       {
         email: faker.internet.email(),
@@ -28,7 +28,7 @@ module.exports = {
         displayName: 'Demo Friend 2',
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
         birthday: faker.date.between('1950-01-01', '2020-12-31'),
-        avatar: getRandomAvatar(),
+        avatar: getRandomAvatar()
       },
       {
         email: faker.internet.email(),
@@ -36,7 +36,7 @@ module.exports = {
         displayName: 'Demo Friend 3',
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
         birthday: faker.date.between('1950-01-01', '2020-12-31'),
-        avatar: getRandomAvatar(),
+        avatar: getRandomAvatar()
       },
       {
         email: faker.internet.email(),
@@ -44,8 +44,248 @@ module.exports = {
         displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
         birthday: faker.date.between('1950-01-01', '2020-12-31'),
-        avatar: getRandomAvatar(),
+        avatar: getRandomAvatar()
       },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      },
+      {
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        displayName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+        hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        avatar: getRandomAvatar()
+      }
     ], {});
   },
 

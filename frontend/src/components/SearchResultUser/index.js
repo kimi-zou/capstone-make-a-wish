@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import {
   sendFriendRequest, getPendingFriends, getFriendship
 } from '../../store/friendship';
-// import { emitFriendRequest } from '../../services/socket';
 import FriendshipAcceptButton from '../FriendshipAcceptButton';
 import FriendshipIgnoreButton from '../FriendshipIgnoreButton';
 import FriendshipCancelButton from '../FriendshipCancelButton';
@@ -25,7 +24,6 @@ const SearchResultUser = ({ user, group }) => {
   const createFriendRequest = async () => {
     await dispatch(sendFriendRequest(sessionUser.id, user.id));
     await dispatch(getPendingFriends(sessionUser.id));
-    // emitFriendRequest(sessionUser.id);
   };
 
   if (sessionUser.id === user.id) return null;

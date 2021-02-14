@@ -8,7 +8,7 @@ module.exports = {
         userTwoId: 2,
         status: 1,
         actionUserId: 1
-      }, 
+      },
       {
         userOneId: 1,
         userTwoId: 3,
@@ -26,7 +26,7 @@ module.exports = {
         userTwoId: 5,
         status: 0,
         actionUserId: 5
-      }  
+      }
     ], {});
   },
 

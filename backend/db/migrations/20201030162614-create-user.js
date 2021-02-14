@@ -6,47 +6,47 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
       },
       username: {
         type: Sequelize.STRING(30),
         allowNull: false,
-        unique: true,
+        unique: true
       },
       displayName: {
         type: Sequelize.STRING(50),
-        allowNull: true,
+        allowNull: true
       },
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
+        unique: true
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
-        allowNull: false,
+        allowNull: false
       },
       avatar: {
         type: Sequelize.TEXT,
-        allowNull: true,
+        allowNull: true
       },
       birthday: {
         type: Sequelize.DATEONLY,
-        allowNull: true,
-      }, 
+        allowNull: true
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.fn('now')
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.fn('now'),
-      },
+        defaultValue: Sequelize.fn('now')
+      }
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Users');
-  },
+  }
 };

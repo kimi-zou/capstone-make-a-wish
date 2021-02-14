@@ -6,28 +6,28 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
+        primaryKey: true
       },
       image: {
         type: Sequelize.TEXT,
-        allowNull: false,
+        allowNull: false
       },
       wishId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Wishes',
+          model: 'Wishes'
         }
       },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.fn('now')
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.fn('now')
       }
     });
   },

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { restoreUser } from './store/session';
-import { socketContext } from './context/socket';
+import { socketContext, onFriendRequest } from './context/socket';
+
 import About from './components/HomeAbout';
 import Dashboard from './components/Dashboard';
 import Home from './components/Home';
@@ -12,21 +14,21 @@ import Settings from './components/Settings';
 import Wish from './components/Wish';
 import SideNav from './components/NavSide';
 import TopNav from './components/NavTop';
+import NotificationToast from './components/NotificationToast';
 
 const App = () => {
   const dispatch = useDispatch();
   const socket = useContext(socketContext);
   const [isLoaded, setIsLoaded] = useState(false);
-  const user = useSelector(state => state.session.user);
+  const sessionUser = useSelector(state => state.session.user);
 
   useEffect(() => {
-    socket.on('receive friend request', (notification) => {
-      console.log(notification);
-    });
+    if (!sessionUser) return;
+    onFriendRequest();
     return () => {
       socket.off('receive friend request');
     };
-  }, [socket]);
+  }, [sessionUser, socket]);
 
   useEffect(() => {
     dispatch(restoreUser())
@@ -37,6 +39,7 @@ const App = () => {
     <>
       {isLoaded && (
         <>
+          <NotificationToast />
           <Switch>
             <Route exact path='/'>
               <Home />
@@ -45,7 +48,7 @@ const App = () => {
               <About />
             </Route>
           </Switch>
-          {user &&
+          {sessionUser &&
             <div className='body'>
               <SideNav />
               <div className='main'>

@@ -5,42 +5,42 @@ module.exports = {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: true
       },
       status: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
       actionUserId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'Users',
+          model: 'Users'
         }
       },
       userOneId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users',
+          model: 'Users'
         },
-        primaryKey: true,
+        primaryKey: true
       },
       userTwoId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users',
+          model: 'Users'
         },
-        primaryKey: true,
+        primaryKey: true
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.fn('now')
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
+        defaultValue: Sequelize.fn('now')
       }
     });
   },

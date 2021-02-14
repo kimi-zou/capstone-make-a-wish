@@ -13,3 +13,7 @@ EntityTypes:
   2 - Friend, Friend request is accpeted.
   3 - Birthday, Friend's birthday is coming up.
   4 - Wish, Wish is locked.
+
+Notifications:
+  0 - unread
+  1 - read
