@@ -1,10 +1,11 @@
 .notification-friend__wrapper {
   display: flex;
+  align-items: center;
   width: 55%;
   background-color: #fce5dd56;
   margin-left: 30px;
   margin-bottom: 10px;
-  padding: 5px 10px;
+  padding: 8px 10px;
   border-radius: 10px;
 }
 
@@ -15,13 +16,42 @@
   margin-left: 32px;
 }
 
+/* datetime */
+.notification-friend__date {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+/* indicator*/
+.notification-friend__indicator {
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notification__unread,
+.notification__read {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff5647;
+}
+
+.notification__read {
+  background-color: rgb(215, 215, 215);
+}
+
+
 /* avatar */
 .notification-friend__avatar-wrapper {
+  display: flex;
+  align-items: center;
   width: 12%;
 }
 
 .notification-friend__avatar {
-  width: 80px;
+  width: 90px;
   border-radius: 50%;
 }
 
@@ -73,4 +103,12 @@
 .notification-friends__ignore {
   background-color: #4a43e1;
   color: white;
+}
+
+/* message */
+.notification-friend__accepted,
+.notification-friend__ignored {
+  margin-right: 40px;
+  font-family:'Righteous', Courier, monospace;
+  font-size: 14px;
 }

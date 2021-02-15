@@ -7,13 +7,11 @@ import NotificationFriendRequest from '../NotificationFriendRequest';
 const Notification = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-
-  const [notifications, setNotifications] = useState([]);
+  const notifications = useSelector(state => state.notification.notifications);
 
   useEffect(() => {
     if (!sessionUser) return;
-    dispatch(getAllNotifications(sessionUser.id))
-      .then(res => setNotifications(res.data.notifications));
+    dispatch(getAllNotifications(sessionUser.id));
   }, [dispatch, sessionUser]);
 
   return (

@@ -106,11 +106,17 @@ export const deleteFriendship = (relationshipId) => async dispatch => {
   return res;
 };
 
-// 6. Get one friendship
+// 6. Get one friendship by user id
 export const getFriendship = (oneId, twoId) => async dispatch => {
   const userOneId = (oneId < twoId) ? oneId : twoId;
   const userTwoId = (oneId > twoId) ? oneId : twoId;
   const res = await csrfFetch(`/api/friendships/lookup/${userOneId}/${userTwoId}`);
+  return res;
+};
+
+// 7. Get one friendship by id
+export const getFriendshipById = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/friendships/${id}`);
   return res;
 };
 

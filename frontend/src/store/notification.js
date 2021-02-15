@@ -14,7 +14,14 @@ const setAllNotifications = (notifications) => ({
 export const getAllNotifications = (id) => async dispatch => {
   const res = await csrfFetch(`/api/users/${id}/notifications`);
   await dispatch(setAllNotifications(res.data.notifications));
-  console.log(res.data.notifications);
+  return res;
+};
+
+// 2. Update notification state
+export const updateNotification = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/notifications/${id}/update`, {
+    method: 'PATCH'
+  });
   return res;
 };
 

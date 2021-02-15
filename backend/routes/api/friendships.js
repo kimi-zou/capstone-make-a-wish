@@ -90,4 +90,12 @@ router.get('/lookup/:userOneId(\\d+)/:userTwoId(\\d+)', asyncHandler(async (req,
   return res.json({ relationship });
 }));
 
+// Get single friend relationship by id
+router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
+  const relationship = await Relationship.findOne({
+    where: { id: req.params.id }
+  });
+  return res.json({ relationship });
+}));
+
 module.exports = router;

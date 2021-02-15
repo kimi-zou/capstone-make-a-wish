@@ -126,6 +126,10 @@ router.get(
           model: User
           // where: { id: req.params.id }
         }
+      ],
+      order: [
+        ['status', 'ASC'],
+        ['createdAt', 'DESC']
       ]
     });
     return res.json({ notifications });
