@@ -12,7 +12,7 @@ const socketapi = require('../../socketapi');
 
 const router = express.Router();
 
-// Create friend request
+// 1. Create friend request
 router.post('/create', asyncHandler(async (req, res, next) => {
   try {
     await sequelize.transaction(async (t) => {
@@ -26,24 +26,27 @@ router.post('/create', asyncHandler(async (req, res, next) => {
         actionUserId,
         status: 0
       });
+
       // ---get action user information
       const actionUser = await User.findByPk(actionUserId);
+
       // ---create friend request notification
-      const notification = await NotificationObject.create({
-        entityTypeId: 1,
-        entityId: relationship.id
-      });
-      await NotificationActor.create({
-        notificationObjectId: notification.id,
-        actorId: actionUserId,
-        status: 0
-      });
-      const notificationReceiver = await NotificationReceiver.create({
-        notificationObjectId: notification.id,
-        receiverId: receiverId,
-        actorId: actionUserId,
-        status: 0
-      });
+      const notification = await NotificationObject.createNewNotification(
+        1,
+        relationship.id
+      );
+      await NotificationActor.createNew(
+        notification.id,
+        actionUserId,
+        0
+      );
+      const notificationReceiver = NotificationReceiver.createNew(
+        notification.id,
+        receiverId,
+        actionUserId,
+        0
+      );
+
       // ---broadcast friend request notification
       socketapi.io.emit('receive friend request', {
         notificationReceiver,
@@ -57,8 +60,9 @@ router.post('/create', asyncHandler(async (req, res, next) => {
   }
 }));
 
-// Update friend request
+// 2. Update friend request
 router.patch('/:id(\\d+)/update', asyncHandler(async (req, res, next) => {
+  // ---update friend relationship
   const { actionUserId, status } = req.body;
   const relationship = await Relationship.findOne({
     where: { id: req.params.id }
@@ -66,10 +70,44 @@ router.patch('/:id(\\d+)/update', asyncHandler(async (req, res, next) => {
   relationship.actionUserId = actionUserId;
   relationship.status = status;
   await relationship.save();
+
+  // ---get action user information
+  const actionUser = await User.findByPk(actionUserId);
+
+  // ---create friend accept notification
+  const notification = await NotificationObject.createNewNotification(
+    2,
+    relationship.id
+  );
+  await NotificationActor.createNew(
+    notification.id,
+    actionUserId,
+    0
+  );
+  const userSentRequestId = (
+    relationship.userOneId === actionUserId
+      ? relationship.userTwoId
+      : relationship.userOneId
+  );
+  const notificationReceiver = NotificationReceiver.createNew(
+    notification.id,
+    userSentRequestId,
+    actionUserId,
+    0
+  );
+
+  // ---broadcast friend accept notification
+  if (relationship.status === 1) {
+    socketapi.io.emit('accept friend request', {
+      notificationReceiver,
+      actionUser,
+      relationship
+    });
+  }
   return res.json({ relationship });
 }));
 
-// Delete friend request
+// 3. Delete friend request
 router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res, next) => {
   const relationship = await Relationship.findOne({
     where: { id: req.params.id }
@@ -78,7 +116,7 @@ router.delete('/:id(\\d+)/delete', asyncHandler(async (req, res, next) => {
   return res.json({ message: 'Successfully cancel friend request' });
 }));
 
-// Get single friend relationship data
+// 4. Get single friend relationship data
 router.get('/lookup/:userOneId(\\d+)/:userTwoId(\\d+)', asyncHandler(async (req, res, next) => {
   const { userOneId, userTwoId } = req.params;
   const relationship = await Relationship.findOne({
@@ -90,7 +128,7 @@ router.get('/lookup/:userOneId(\\d+)/:userTwoId(\\d+)', asyncHandler(async (req,
   return res.json({ relationship });
 }));
 
-// Get single friend relationship by id
+// 5. Get single friend relationship by id
 router.get('/:id(\\d+)', asyncHandler(async (req, res, next) => {
   const relationship = await Relationship.findOne({
     where: { id: req.params.id }

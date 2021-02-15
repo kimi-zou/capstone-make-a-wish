@@ -17,5 +17,15 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'notificationObjectId'
     });
   };
+
+  // --------------  Static Methods (not work for instances) ---------------
+  // 1. Create new notification
+  NotificationObject.createNewNotification = async function (type, entity) {
+    return await NotificationObject.create({
+      entityTypeId: type,
+      entityId: entity
+    });
+  };
+
   return NotificationObject;
 };

@@ -10,9 +10,17 @@ export const emitFriendRequest = (actionUserId) => {
 };
 
 // Receive friend request
-export const onFriendRequest = () => {
+export const onFriendRequest = (sessionUser) => {
   socket.on('receive friend request', (notification) => {
     // if (notification.receiverId !== sessionUser.id) return;
     toast.error(`Received a friend request from ${notification.actionUser.displayName}!`);
+  });
+};
+
+// Receive friend accept
+export const onFriendAccept = (sessionUser) => {
+  socket.on('accept friend request', (notification) => {
+    // if (notification.receiverId !== sessionUser.id) return;
+    toast.error(`${notification.actionUser.displayName} has accepted your friend request!`);
   });
 };

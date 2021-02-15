@@ -124,7 +124,6 @@ router.get(
         { model: NotificationObject },
         {
           model: User
-          // where: { id: req.params.id }
         }
       ],
       order: [

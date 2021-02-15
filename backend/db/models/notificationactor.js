@@ -14,5 +14,18 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'actorId'
     });
   };
+  // --------------  Static Methods (not work for instances) ---------------
+  // 1. Create new entry
+  NotificationActor.createNew = async function (
+    notificationObjectId,
+    actorId,
+    status
+  ) {
+    return await NotificationActor.create({
+      notificationObjectId,
+      actorId,
+      status
+    });
+  };
   return NotificationActor;
 };

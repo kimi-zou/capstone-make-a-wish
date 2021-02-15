@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { restoreUser } from './store/session';
-import { socketContext, onFriendRequest } from './context/socket';
+import { socketContext, onFriendRequest, onFriendAccept } from './context/socket';
 
 import About from './components/HomeAbout';
 import Dashboard from './components/Dashboard';
@@ -24,9 +24,11 @@ const App = () => {
 
   useEffect(() => {
     if (!sessionUser) return;
-    onFriendRequest();
+    onFriendRequest(sessionUser);
+    onFriendAccept(sessionUser);
     return () => {
       socket.off('receive friend request');
+      socket.off('accept friend request');
     };
   }, [sessionUser, socket]);
 
