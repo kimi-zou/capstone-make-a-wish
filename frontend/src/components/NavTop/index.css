@@ -5,8 +5,7 @@
   align-items: center;
   width: 80%;
   height: 30px;
-  padding-left: 30px;
-  padding-bottom: 20px;
+  padding: 20px 0 20px 30px;
   background-color: white;
   background: linear-gradient(to bottom,#fff 90%,rgba(255,255,255,0));
 }
@@ -15,22 +14,45 @@
 .topnav--left {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 /* ------ right ------ */
 .topnav--right {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 /* notification */
-.topnav__notification {
+.topnav__notification-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 22px;
+}
+
+.topnav__notification-icon {
   color: #222;
 }
 
-.topnav__notification:hover {
+.topnav__notification-icon:hover {
   cursor: pointer;
   color: #ff6759;
+}
+
+.topnav__notification-indicator-wrapper {
+  position: absolute;
+  top: 7px;
+  right: 3px;
+}
+
+.topnav__notification-indicator {
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: #ff6759;
 }
 
 /* user */

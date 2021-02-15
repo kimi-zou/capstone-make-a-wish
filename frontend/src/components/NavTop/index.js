@@ -7,6 +7,7 @@ import './index.css';
 
 const TopNav = () => {
   const user = useSelector(state => state.session.user);
+  const notifications = useSelector(state => state.notification.notifications);
 
   return (
     <div className='topnav'>
@@ -14,8 +15,15 @@ const TopNav = () => {
         <Search />
       </div>
       <div className='topnav--right'>
-        <NavLink to='/notifications'>
-          <i className='topnav__notification far fa-bell' />
+        <NavLink className='topnav__notification-wrapper' to='/notifications'>
+          <i className='topnav__notification-icon fa-lg far fa-bell' />
+          {
+            notifications.length > 0 &&
+            notifications.some(notification => notification.status === 0) &&
+              <div className='topnav__notification-indicator-wrapper'>
+                <div className='topnav__notification-indicator' />
+              </div>
+          }
         </NavLink>
         {user &&
           <NavLink

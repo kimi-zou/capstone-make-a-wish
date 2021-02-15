@@ -84,7 +84,6 @@ textarea::placeholder {
   position: relative;
   width: 90%;
   height: calc(100vh - 60px);
-  padding-top: 20px;
   background-color: white;
   border-radius: 10px;
   color: #222;
