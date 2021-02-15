@@ -19,7 +19,7 @@ module.exports = {
         username: 'friend1',
         displayName: 'Demo Friend 1',
         hashedPassword: bcrypt.hashSync('password'),
-        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        birthday: new Date('1990-2-20'),
         avatar: getRandomAvatar()
       },
       {
@@ -27,7 +27,7 @@ module.exports = {
         username: 'friend2',
         displayName: 'Demo Friend 2',
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
-        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        birthday: new Date('1990-2-23'),
         avatar: getRandomAvatar()
       },
       {
@@ -35,7 +35,7 @@ module.exports = {
         username: 'friend3',
         displayName: 'Demo Friend 3',
         hashedPassword: bcrypt.hashSync(faker.internet.password()),
-        birthday: faker.date.between('1950-01-01', '2020-12-31'),
+        birthday: new Date('1990-2-18'),
         avatar: getRandomAvatar()
       },
       {

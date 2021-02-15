@@ -1,25 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getFriends } from '../../store/friendship';
+import { DashboardContext } from '../../context/dashboard';
+import DashboardRecentBirthdays from '../DashboardRecentBirthdays';
+import DashboardViewMonths from '../DashboardViewMonths';
+import DashboardViewList from '../DashboardViewList';
+import DashboardPendingFriends from '../DashboardPendingFriends';
 import './index.css';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const [friends, setFriends] = useState([]);
+  const { showMonths, setShowMonths, setFriends } = useContext(DashboardContext);
 
   useEffect(() => {
     dispatch(getFriends(sessionUser.id))
       .then(res => setFriends(res.data.users));
-  }, [dispatch, sessionUser]);
+  }, [dispatch, sessionUser, setFriends]);
 
   return (
-    <div className='dashboard'>
-      <div>This is dashboard.</div>
-      {friends.length > 0 && friends.map(friend => {
-        return (<div key={friend.id}>{friend.displayName}</div>);
-      })}
+    <div className='dashboard__wrapper'>
+      <div className='dashboard__left-wrapper'>
+        <div className='dashboard__recent-birthday-wrapper'>
+          <DashboardRecentBirthdays />
+        </div>
+        <div className='dashboard__friends-wrapper'>
+          <div className='dashboard__friends-view-switch'>
+            <button onClick={() => setShowMonths(true)}>View by Months</button>
+            <button onClick={() => setShowMonths(false)}>View All</button>
+          </div>
+          {
+            showMonths
+              ? <DashboardViewMonths />
+              : <DashboardViewList />
+          }
+        </div>
+      </div>
+      <div className='dashboard__right-wrapper'>
+        <DashboardPendingFriends />
+      </div>
     </div>
   );
 };

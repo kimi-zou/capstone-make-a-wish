@@ -1,7 +1,19 @@
-.dashboard {
+.dashboard__wrapper {
   display: flex;
+  padding-top: 30px;
+  padding-left: 30px;
+  width: 90%;
 }
 
-.dashboard--main {
-  width: 80%;
+.dashboard__left-wrapper {
+  width: 65%;
+}
+
+.dashboard__right-wrapper {
+  width: 35%;
+}
+
+.dashboard__recent-birthday-wrapper {
+  min-height: 100px;
+  margin-bottom: 30px;
 }

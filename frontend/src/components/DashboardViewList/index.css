@@ -1,0 +1,8 @@
+.view-list__user-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.view-list__user-avatar {
+  width: 30px;
+}

@@ -1,0 +1,23 @@
+.dashboard-recent-birthdays__main {
+  display: flex;
+}
+
+.dashboard-recent-birthdays__title {
+  font-weight: 600;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.this-week__list{
+  display: flex;
+  margin-right: 50px;
+}
+
+.this-week__friend-wrapper {
+  margin-right: 15px;
+}
+
+.this-week__friend-avatar{
+  width: 100px;
+  border-radius: 50%;
+}
