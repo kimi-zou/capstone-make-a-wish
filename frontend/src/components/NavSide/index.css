@@ -22,19 +22,16 @@
 
 .sidenav__links {
   font-family:'Righteous', Courier, monospace;
-  color: #ff6759;
   color: #222;
   padding-left: 2px;
   margin-bottom: 15px;
 }
 
 .sidenav__links:hover {
-  color: #222;
   color: #ff6759;
 }
 
 .sidenav__links--active {
-  color: #222;
   color: #ff6759;
 }
 
@@ -49,10 +46,16 @@
   bottom: 10px;
   left: 5px;
   width: 100px;
-  background-color: transparent;
+  background-color: #FCE5DD;
   text-align: left;
+  cursor: pointer;
 } 
 
 .sidenav__logout:hover {
-   color: #4a43e1;
+  color: #4a43e1;
+  cursor: pointer;
 }
+/* 
+.sidenav__logout-text {
+  cursor: pointer;
+} */

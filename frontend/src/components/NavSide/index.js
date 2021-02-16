@@ -64,7 +64,7 @@ const SideNav = () => {
         onClick={handleLogout}
       >
         <i className='sidenav__logout-icon fas fa-sign-out-alt fa-lg' />
-        Log Out
+        <span className='sidenav__logout-text'>Log Out</span>
       </button>
     </div>
   );
