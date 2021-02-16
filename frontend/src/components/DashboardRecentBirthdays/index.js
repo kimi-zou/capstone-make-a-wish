@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { DashboardContext } from '../../context/dashboard';
 import moment from 'moment';
+import DashboardRecentBirthdaysList from '../DashboardRecentBirthdaysList';
 import './index.css';
 
 const DashboardRecentBirthdays = () => {
@@ -8,6 +9,7 @@ const DashboardRecentBirthdays = () => {
   const [thisWeek, setThisWeek] = useState([]);
   const [nextWeek, setNextWeek] = useState([]);
 
+  // Calculate days from birthday
   useEffect(() => {
     if (friends.length === 0) return;
     function daysUntil (date) {
@@ -30,34 +32,8 @@ const DashboardRecentBirthdays = () => {
     <div className='dashboard-recent-birthdays__wrapper'>
       <div className='dashboard-recent-birthdays__title'>Uncoming Birthdays</div>
       <div className='dashboard-recent-birthdays__main'>
-        <div className='dashboard-recent-birthdays__this-week'>
-          <div className='this-week__heading'>This week</div>
-          {thisWeek.length > 0 &&
-            <div className='this-week__list'>
-              {thisWeek.map(friend => {
-                return (
-                  <div className='this-week__friend-wrapper' key={friend.id}>
-                    <img className='this-week__friend-avatar' src={friend.avatar} alt='user avatar' key={friend.id} />
-                    <div className='this-week__friend-name'>{friend.displayName}</div>
-                  </div>
-                );
-              })}
-            </div>}
-        </div>
-        <div className='dashboard-recent-birthdays__next-week'>
-          <div className='this-week__heading'>Next week</div>
-          {nextWeek.length > 0 &&
-            <div className='this-week__list'>
-              {nextWeek.map(friend => {
-                return (
-                  <div className='this-week__friend-wrapper' key={friend.id}>
-                    <img className='this-week__friend-avatar' src={friend.avatar} alt='user avatar' key={friend.id} />
-                    <div className='this-week__friend-name'>{friend.displayName}</div>
-                  </div>
-                );
-              })}
-            </div>}
-        </div>
+        <DashboardRecentBirthdaysList week={thisWeek} heading='This Week' />
+        <DashboardRecentBirthdaysList week={nextWeek} heading='Next Week' />
       </div>
     </div>
   );

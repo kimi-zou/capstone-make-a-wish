@@ -52,7 +52,6 @@ const App = () => {
               <SideNav />
               <div className='main'>
                 <TopNav />
-                <div className='main__main' />
                 <Switch>
                   <Route exact path='/dashboard'>
                     <DashboardContextProvider>

@@ -1,12 +1,13 @@
 .dashboard__wrapper {
   display: flex;
   padding-top: 30px;
-  padding-left: 30px;
+  padding-left: 42px;
   width: 90%;
 }
 
 .dashboard__left-wrapper {
-  width: 65%;
+  width: 58%;
+  margin-right: 7%;
 }
 
 .dashboard__right-wrapper {
