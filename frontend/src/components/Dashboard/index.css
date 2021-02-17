@@ -1,20 +1,22 @@
 .dashboard__wrapper {
+  z-index: 1;
   display: flex;
+  justify-content: space-between;
   padding-top: 30px;
   padding-left: 42px;
-  width: 90%;
+  width: calc(100% - 84px);
 }
 
 .dashboard__left-wrapper {
-  width: 58%;
-  margin-right: 7%;
+  width: 56%;
 }
 
 .dashboard__right-wrapper {
-  width: 35%;
+  width: 28vw;
+  margin-top: 50px;
 }
 
-.dashboard__recent-birthday-wrapper {
-  min-height: 100px;
-  margin-bottom: 30px;
+.dashboard__pending-notifications {
+  display: flex;
+  justify-content: space-between;
 }

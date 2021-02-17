@@ -51,7 +51,7 @@
 /* individual */
 .week__friend {
   min-width: 50%;
-  margin-right: -70px;
+  margin-right: -60px;
 }
 
 .week__friend-onhover {
@@ -73,10 +73,10 @@
   border-radius: 20px;
   background-color: #fe993d;
   color:white;
-  font-size: 20px;
+  font-size: 16px;
   padding: 12px;
-  top: -60px;
-  right: -55px;
+  top: -85px;
+  right: -105px;
 }
 
 .week__friend-details:before,

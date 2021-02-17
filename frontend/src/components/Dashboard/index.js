@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { getAllNotifications } from '../../store/notification';
 import { getFriends } from '../../store/friendship';
 import { DashboardContext } from '../../context/dashboard';
 import DashboardRecentBirthdays from '../DashboardRecentBirthdays';
 import DashboardViewMonths from '../DashboardViewMonths';
 import DashboardViewList from '../DashboardViewList';
-import DashboardPendingFriends from '../DashboardPendingFriends';
+import DashboardPendingNotifications from '../DashboardPendingNotifications';
 import DashboardSessionUser from '../DashboardSessionUser';
 import './index.css';
 
@@ -18,6 +19,7 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getFriends(sessionUser.id))
       .then(res => setFriends(res.data.users));
+    dispatch(getAllNotifications(sessionUser.id));
   }, [dispatch, sessionUser, setFriends]);
 
   return (
@@ -38,7 +40,10 @@ const Dashboard = () => {
         </div>
       </div>
       <div className='dashboard__right-wrapper'>
-        <DashboardPendingFriends />
+        <div className='dashboard__pending-notifications'>
+          <DashboardPendingNotifications type='outgoing' />
+          <DashboardPendingNotifications type='pending' />
+        </div>
       </div>
     </div>
   );

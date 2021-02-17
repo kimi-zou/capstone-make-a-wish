@@ -44,6 +44,7 @@ const SearchResult = () => {
     }));
     return () => {
       setSentPendingUsers([]);
+      setReceivedPendingUsers([]);
       setRegularUsers([]);
       setFriendUsers([]);
     };
