@@ -6,6 +6,7 @@ import './index.css';
 const DashboardViewMonths = () => {
   const { getFriendsByMonth, month } = useContext(DashboardContext);
   const [months, setMonths] = useState([]);
+  const [showImage, setShowImage] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(-1);
 
   console.log(month);
@@ -28,6 +29,7 @@ const DashboardViewMonths = () => {
         return (
           <div
             key={number}
+            id={`dashboard-months__month-${index}`}
             className={
               index === currentMonth
                 ? 'dashboard-months__month dashboard-months__current-month'
@@ -36,8 +38,14 @@ const DashboardViewMonths = () => {
                   : 'dashboard-months__month'
             }
             onClick={() => getFriendsByMonth(index)}
+            onMouseEnter={() => setShowImage(number)}
+            onMouseLeave={() => setShowImage(false)}
           >
-            {number}
+            {
+              showImage && showImage === number
+                ? ''
+                : number
+              }
           </div>
         );
       })}

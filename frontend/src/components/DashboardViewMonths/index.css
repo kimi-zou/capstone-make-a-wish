@@ -29,3 +29,62 @@
 .dashboard-months__current-active {
   border: 3px solid #fea0a0;
 }
+
+#dashboard-months__month-0:hover {
+  background-image: url('https://makeawish.s3.amazonaws.com/seed-data/month-2.png');
+  background-size: cover;
+}
+
+#dashboard-months__month-1:hover {
+  background-image: url('https://makeawish.s3.amazonaws.com/seed-data/month-9.png');
+  background-size: cover;
+}
+
+#dashboard-months__month-2:hover {
+  background-image: url('https://makeawish.s3.amazonaws.com/seed-data/month-1.png');
+  background-size: cover;
+}
+
+#dashboard-months__month-3:hover {
+  background-image: url('https://makeawish.s3.amazonaws.com/seed-data/month-4.png');
+  background-size: cover;
+}
+
+#dashboard-months__month-4:hover {
+  background-image: url('https://makeawish.s3.amazonaws.com/seed-data/month-5.png');
+  background-size: cover;
+}
+
+#dashboard-months__month-5:hover {
+  background-image: url('https://makeawish.s3.amazonaws.com/seed-data/month-10.png');
+  background-size: cover;
+}
+#dashboard-months__month-6:hover {
+  background-image: url('https://makeawish.s3.amazonaws.com/seed-data/month-8.png');
+  background-size: cover;
+}
+
+#dashboard-months__month-7:hover {
+  background-image: url('https://makeawish.s3.amazonaws.com/seed-data/month-3.png');
+  background-size: cover;
+}
+
+#dashboard-months__month-8:hover {
+  background-image: url('https://makeawish.s3.amazonaws.com/seed-data/month-6.png');
+  background-size: cover;
+}
+
+#dashboard-months__month-9:hover {
+  background-image: url('https://makeawish.s3.amazonaws.com/seed-data/month-7.png');
+  background-size: cover;
+}
+
+#dashboard-months__month-10:hover {
+  background-image: url('https://makeawish.s3.amazonaws.com/seed-data/month-12.png');
+  background-size: cover;
+}
+
+#dashboard-months__month-11:hover {
+  background-image: url('https://makeawish.s3.amazonaws.com/seed-data/month-11.png');
+  background-size: cover;
+}
