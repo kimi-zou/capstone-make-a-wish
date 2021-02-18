@@ -5,16 +5,15 @@ import { getAllNotifications } from '../../store/notification';
 import { getFriends } from '../../store/friendship';
 import { DashboardContext } from '../../context/dashboard';
 import DashboardRecentBirthdays from '../DashboardRecentBirthdays';
-import DashboardViewMonths from '../DashboardViewMonths';
-import DashboardViewList from '../DashboardViewList';
 import DashboardPendingNotifications from '../DashboardPendingNotifications';
 import DashboardSessionUser from '../DashboardSessionUser';
+import DashboardFriends from '../DashboardFriends';
 import './index.css';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const { showMonths, setShowMonths, setFriends } = useContext(DashboardContext);
+  const { setFriends } = useContext(DashboardContext);
 
   useEffect(() => {
     dispatch(getFriends(sessionUser.id))
@@ -27,17 +26,7 @@ const Dashboard = () => {
       <div className='dashboard__left-wrapper'>
         <DashboardSessionUser />
         <DashboardRecentBirthdays />
-        <div className='dashboard__friends-wrapper'>
-          <div className='dashboard__friends-view-switch'>
-            <button onClick={() => setShowMonths(true)}>View by Months</button>
-            <button onClick={() => setShowMonths(false)}>View All</button>
-          </div>
-          {
-            showMonths
-              ? <DashboardViewMonths />
-              : <DashboardViewList />
-          }
-        </div>
+        <DashboardFriends />
       </div>
       <div className='dashboard__right-wrapper'>
         <div className='dashboard__pending-notifications'>

@@ -69,23 +69,22 @@ router.get(
   restoreUser,
   asyncHandler(async (req, res) => {
     const userId = req.params.id;
-    const friends = await Relationship.findAll({
-      where: {
-        status: 1,
-        [Op.or]: [
-          { userOneId: userId },
-          { userTwoId: userId }
-        ]
-      }
-    });
-    const users = await Promise.all(friends.map(async friend => {
-      if (friend.userOneId === parseInt(userId)) {
-        return await User.findByPk(friend.userTwoId);
-      }
-      return await User.findByPk(friend.userOneId);
-    }));
+    const friends = await Relationship.friendshipLookup(userId);
+    const users = await User.friendsLookup(friends, userId);
     return res.json({ users });
   }));
+
+// Friends lookup by group
+router.get(
+  '/:id(\\d+)/friends/group',
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const userId = req.params.id;
+    const friends = await Relationship.friendshipLookup(userId);
+    const users = await User.friendsLookupGroup(friends, userId);
+    return res.json({ users });
+  })
+);
 
 // Pending Friends lookup
 router.get(

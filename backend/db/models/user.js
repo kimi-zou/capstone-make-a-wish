@@ -1,6 +1,7 @@
 'use strict';
 const { Validator } = require('sequelize');
 const bcrypt = require('bcryptjs');
+const { Op } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
@@ -144,5 +145,40 @@ module.exports = (sequelize, DataTypes) => {
     return await User.scope('currentUser').findByPk(user.id);
   };
 
+  // 5. Friends lookup
+  User.friendsLookup = async function (friends, userId) {
+    const users = await Promise.all(friends.map(async friend => {
+      if (friend.userOneId === parseInt(userId)) {
+        return await User.findByPk(friend.userTwoId);
+      }
+      return await User.findByPk(friend.userOneId);
+    }));
+    return users;
+  };
+
+  // 6. Friends lookup - group by display name
+  User.friendsLookupGroup = async function (friends, userId) {
+    const users = await Promise.all(friends.map(async friend => {
+      if (friend.userOneId === parseInt(userId)) {
+        return await User.findOne({
+          where: { id: friend.userTwoId }
+        });
+      }
+      return await User.findOne({
+        where: { id: friend.userTwoId }
+      });
+    }));
+    // ---sort name from a to z
+    users.sort((a, b) => a.displayName[0].toLowerCase() > b.displayName[0].toLowerCase() ? 1 : -1);
+    // ---group name by display name
+    const groupBy = function (users, key) {
+      return users.reduce((returnValue, user) => {
+        (returnValue[user[key][0].toUpperCase()] = returnValue[user[key][0].toUpperCase()] || []).push(user);
+        return returnValue;
+      }, {});
+    };
+    const grouped = groupBy(users, 'displayName');
+    return grouped;
+  };
   return User;
 };

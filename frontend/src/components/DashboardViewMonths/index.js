@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './index.css';
 
 const DashboardViewMonths = () => {
   const [months, setMonths] = useState([]);

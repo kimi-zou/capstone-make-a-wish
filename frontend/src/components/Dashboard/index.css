@@ -7,16 +7,24 @@
   width: calc(100% - 84px);
 }
 
+/* ---- left ---- */
 .dashboard__left-wrapper {
   width: 56%;
 }
 
+
+/* ---- right ---- */
 .dashboard__right-wrapper {
+  position: fixed;
+  right: 0px;
   width: 28vw;
-  margin-top: 50px;
+  margin-top: 68px;
+  margin-right: 105px;
 }
 
+/* notification */
 .dashboard__pending-notifications {
   display: flex;
   justify-content: space-between;
 }
+
