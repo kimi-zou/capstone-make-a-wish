@@ -4,9 +4,11 @@ import { DashboardContext } from '../../context/dashboard';
 import './index.css';
 
 const DashboardViewMonths = () => {
-  const { getFriendsByMonth } = useContext(DashboardContext);
+  const { getFriendsByMonth, month } = useContext(DashboardContext);
   const [months, setMonths] = useState([]);
   const [currentMonth, setCurrentMonth] = useState(-1);
+
+  console.log(month);
 
   useEffect(() => {
     const months = [];
@@ -22,18 +24,20 @@ const DashboardViewMonths = () => {
 
   return (
     <div className='dashboard-months__wrapper'>
-      {months.map((month, index) => {
+      {months.map((number, index) => {
         return (
           <div
-            key={month}
+            key={number}
             className={
               index === currentMonth
                 ? 'dashboard-months__month dashboard-months__current-month'
-                : 'dashboard-months__month'
+                : index === month
+                  ? 'dashboard-months__month dashboard-months__current-active'
+                  : 'dashboard-months__month'
             }
             onClick={() => getFriendsByMonth(index)}
           >
-            {month}
+            {number}
           </div>
         );
       })}

@@ -18,9 +18,14 @@
   background-color: #fce7e7;
   border-radius: 5px;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .dashboard-months__current-month {
   background-color: #fea0a0;
   color: white;
+}
+
+.dashboard-months__current-active {
+  border: 3px solid #fea0a0;
 }

@@ -14,6 +14,7 @@ const DashboardContextProvider = ({ children }) => {
 
   // Get friends by month
   const getFriendsByMonth = (month, allFriends) => {
+    setMonth(month);
     const f = allFriends || friends;
     const monthFriends = f.filter(friend => {
       return moment(friend.birthday).month() === month;
