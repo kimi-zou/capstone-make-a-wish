@@ -27,13 +27,25 @@
 /* ---- user ---- */
 .view-list__user-wrapper {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin-top: 5px;
-  padding-left: 20px;
+  padding: 0px 20px;
+}
+
+.view-list__user-left {
+  display: flex;
+  align-items: center;
 }
 
 /* avatar */
 .view-list__user-avatar {
   width: 30px;
-  margin-right: 5px;
+  margin-right: 10px;
+}
+
+/* birthday */
+.view-list__user-birthday {
+  font-size: 14px;
+  font-weight: 600;
 }

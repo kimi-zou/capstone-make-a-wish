@@ -39,7 +39,7 @@ const Search = () => {
 
   // Get friends and pending friends
   useEffect(() => {
-    dispatch(getFriends(sessionUser.id));
+    // dispatch(getFriends(sessionUser.id));
     dispatch(getPendingFriends(sessionUser.id));
   }, [dispatch, sessionUser]);
 

@@ -1,6 +1,6 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { DashboardContext } from '../../context/dashboard';
+import moment from 'moment';
 import { getGroupedFriends } from '../../store/friendship';
 import './index.css';
 
@@ -8,8 +8,8 @@ const DashboardViewList = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const groupedFriends = useSelector(state => state.friendship.groupedFriends);
-  // const { friends } = useContext(DashboardContext);
 
+  // Get grouped friends
   useEffect(() => {
     dispatch(getGroupedFriends(sessionUser.id));
   }, [dispatch, sessionUser]);
@@ -31,10 +31,11 @@ const DashboardViewList = () => {
               Object.values(group)[0].map(user => {
                 return (
                   <div className='view-list__user-wrapper' key={user.id}>
-                    <div className='view-list__user-avatar-wrapper'>
+                    <div className='view-list__user-left'>
                       <img className='view-list__user-avatar' src={user.avatar} alt='user avatar' />
+                      <div key={user.id}>{user.displayName}</div>
                     </div>
-                    <div key={user.id}>{user.displayName}</div>
+                    <div className='view-list__user-birthday'>{user.birthday && moment(user.birthday).format('MM-DD')}</div>
                   </div>
                 );
               })

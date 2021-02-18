@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import moment from 'moment';
+import { DashboardContext } from '../../context/dashboard';
 import './index.css';
 
 const DashboardViewMonths = () => {
+  const { getFriendsByMonth } = useContext(DashboardContext);
   const [months, setMonths] = useState([]);
+  const [currentMonth, setCurrentMonth] = useState(-1);
 
   useEffect(() => {
     const months = [];
@@ -12,9 +16,27 @@ const DashboardViewMonths = () => {
     setMonths(months);
   }, []);
 
+  useEffect(() => {
+    setCurrentMonth(moment(new Date()).month());
+  }, []);
+
   return (
     <div className='dashboard-months__wrapper'>
-      {months.map(month => <div key={month}>{month}</div>)}
+      {months.map((month, index) => {
+        return (
+          <div
+            key={month}
+            className={
+              index === currentMonth
+                ? 'dashboard-months__month dashboard-months__current-month'
+                : 'dashboard-months__month'
+            }
+            onClick={() => getFriendsByMonth(index)}
+          >
+            {month}
+          </div>
+        );
+      })}
     </div>
   );
 };

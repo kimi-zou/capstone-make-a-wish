@@ -26,6 +26,7 @@
 }
 
 .dashboard-pending-notifications__sent-result {
+  z-index: 10;
   background-color: white;
   border: 1px solid #ebeef0;
   box-shadow: -1px -1px 10px 1px #e1e1e1;

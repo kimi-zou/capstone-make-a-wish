@@ -1,3 +1,26 @@
 .dashboard-months__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: space-around;
   height: 85vh;
+  width: 100%;
+}
+
+.dashboard-months__month {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24%;
+  height: 140px;
+  font-size: 100px;
+  background-color: #fce7e7;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.dashboard-months__current-month {
+  background-color: #fea0a0;
+  color: white;
 }
