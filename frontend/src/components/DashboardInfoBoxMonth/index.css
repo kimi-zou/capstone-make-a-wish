@@ -9,6 +9,12 @@
   margin-bottom: 6px;
 }
 
+.view-month__user-wrapper--hover {
+  cursor: pointer;
+  background-color: #fea0a0;
+  color: white;
+}
+
 .view-month__user-left {
   display: flex;
   align-items: center;

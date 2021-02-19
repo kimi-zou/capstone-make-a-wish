@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import moment from 'moment';
+import { DashboardContext } from '../../context/dashboard';
 
 const DashboardRecentBirthdaysList = ({ week, heading }) => {
+  const { setShowFriend } = useContext(DashboardContext);
   const [showDetails, setShowDetails] = useState();
 
   return (
@@ -25,6 +27,7 @@ const DashboardRecentBirthdaysList = ({ week, heading }) => {
                   alt='user avatar'
                   onMouseEnter={() => setShowDetails(index + 1)}
                   onMouseLeave={() => setShowDetails(false)}
+                  onClick={() => setShowFriend(true)}
                 />
                 {
                   showDetails &&

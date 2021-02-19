@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 
 import { DashboardContext } from '../../context/dashboard';
-import DashboardViewMonths from '../DashboardViewMonths';
-import DashboardViewList from '../DashboardViewList';
+import DashboardFriendsViewMonths from '../DashboardFriendsViewMonths';
+import DashboardFriendsViewList from '../DashboardFriendsViewList';
 import './index.css';
 
 const DashboardFriends = () => {
@@ -35,8 +35,8 @@ const DashboardFriends = () => {
       </div>
       {
         showMonths
-          ? <DashboardViewMonths />
-          : <DashboardViewList />
+          ? <DashboardFriendsViewMonths />
+          : <DashboardFriendsViewList />
       }
     </div>
   );

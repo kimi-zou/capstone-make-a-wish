@@ -10,13 +10,15 @@ import DashboardPendingNotifications from '../DashboardPendingNotifications';
 import DashboardSessionUser from '../DashboardSessionUser';
 import DashboardFriends from '../DashboardFriends';
 import DashboardInfoBox from '../DashboardInfoBox';
+import DashboardFriend from '../DashboardFriend';
 import './index.css';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const { setFriends, getFriendsByMonth } = useContext(DashboardContext);
+  const { setFriends, getFriendsByMonth, showFriend } = useContext(DashboardContext);
 
+  // Get friends, notifications
   useEffect(() => {
     dispatch(getFriends(sessionUser.id))
       .then(res => {
@@ -29,9 +31,15 @@ const Dashboard = () => {
   return (
     <div className='dashboard__wrapper'>
       <div className='dashboard__left-wrapper'>
-        <DashboardSessionUser />
-        <DashboardRecentBirthdays />
-        <DashboardFriends />
+        {
+          showFriend
+            ? <DashboardFriend />
+            : <>
+              <DashboardSessionUser />
+              <DashboardRecentBirthdays />
+              <DashboardFriends />
+              </>
+        }
       </div>
       <div className='dashboard__right-wrapper'>
         <img

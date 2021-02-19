@@ -3,7 +3,7 @@ import moment from 'moment';
 import { DashboardContext } from '../../context/dashboard';
 import './index.css';
 
-const DashboardViewMonths = () => {
+const DashboardFriendsViewMonths = () => {
   const { getFriendsByMonth, month } = useContext(DashboardContext);
   const [months, setMonths] = useState([]);
   const [showImage, setShowImage] = useState(false);
@@ -53,4 +53,4 @@ const DashboardViewMonths = () => {
   );
 };
 
-export default DashboardViewMonths;
+export default DashboardFriendsViewMonths;
