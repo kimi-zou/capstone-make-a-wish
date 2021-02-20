@@ -5,7 +5,7 @@ const { Op } = require('sequelize');
 
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
-const { getRandomAvatar } = require('../../utils/avatar');
+const { getRandomImages, avatars } = require('../../utils/random-seed-image');
 const {
   User,
   Wish,
@@ -40,7 +40,7 @@ router.post(
   validateSignup,
   asyncHandler(async (req, res) => {
     const { email, password, username, birthday } = req.body;
-    const avatar = getRandomAvatar();
+    const avatar = getRandomImages(avatars);
     let user;
     if (birthday) {
       user = await User.signup({ email, username, password, birthday, avatar });

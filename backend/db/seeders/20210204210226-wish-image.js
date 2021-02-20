@@ -1,5 +1,6 @@
 'use strict';
 const faker = require('faker');
+const { gifts, getRandomImages } = require('../../utils/random-seed-image');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -22,23 +23,115 @@ module.exports = {
       },
       {
         wishId: 3,
-        image: faker.image.imageUrl()
+        image: getRandomImages(gifts)
       },
       {
         wishId: 3,
-        image: faker.image.imageUrl()
+        image: getRandomImages(gifts)
       },
       {
         wishId: 3,
-        image: faker.image.imageUrl()
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 3,
+        image: getRandomImages(gifts)
       },
       {
         wishId: 4,
-        image: faker.image.imageUrl()
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 4,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 4,
+        image: getRandomImages(gifts)
       },
       {
         wishId: 5,
-        image: faker.image.imageUrl()
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 5,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 5,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 5,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 6,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 6,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 6,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 7,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 7,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 8,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 9,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 10,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 10,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 10,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 11,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 12,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 12,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 13,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 13,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 13,
+        image: getRandomImages(gifts)
+      },
+      {
+        wishId: 13,
+        image: getRandomImages(gifts)
       }
     ], {});
   },
