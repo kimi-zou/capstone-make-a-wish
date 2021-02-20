@@ -30,6 +30,11 @@ export const getPublicWishes = (id) => async dispatch => {
   return res;
 };
 
+export const getFriendPublicWishes = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/users/${id}/wishes/public`);
+  return res;
+};
+
 // 2. Get all private wishes of a user
 export const getPrivateWishes = (id) => async dispatch => {
   const res = await csrfFetch(`/api/users/${id}/wishes/private`);

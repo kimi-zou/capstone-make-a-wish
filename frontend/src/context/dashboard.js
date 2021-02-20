@@ -8,6 +8,7 @@ const DashboardContextProvider = ({ children }) => {
   const [showFriend, setShowFriend] = useState(false);
   const [showMonths, setShowMonths] = useState(true);
   const [month, setMonth] = useState(-1);
+  const [friend, setFriend] = useState();
   const [friends, setFriends] = useState([]);
   const [friendsByMonth, setFriendsByMonth] = useState([]);
 
@@ -24,20 +25,35 @@ const DashboardContextProvider = ({ children }) => {
     setShow('month');
   };
 
+  // Link to dashboard friend page
+  const linkToFriend = (friend, id) => {
+    setShowFriend(true);
+    setFriend(friend);
+  };
+
+  // Link back to dashboard main page
+  const backToDashboard = () => {
+    setShowFriend(false);
+    setFriend();
+  };
+
   return (
     <DashboardContext.Provider value={{
-      show,
-      setShow,
-      showFriend,
-      setShowFriend,
-      showMonths,
-      setShowMonths,
-      friends,
-      setFriends,
-      friendsByMonth,
-      setFriendsByMonth,
       getFriendsByMonth,
+      linkToFriend,
+      backToDashboard,
+      show,
+      showFriend,
+      showMonths,
+      friend,
+      friends,
+      friendsByMonth,
       month,
+      setShow,
+      setShowMonths,
+      setShowFriend,
+      setFriends,
+      setFriendsByMonth,
       setMonth
     }}
     >

@@ -4,7 +4,7 @@ import { DashboardContext } from '../../context/dashboard';
 import './index.css';
 
 const DashboardInfoBoxMonth = () => {
-  const { friendsByMonth, setShowFriend } = useContext(DashboardContext);
+  const { friendsByMonth, linkToFriend } = useContext(DashboardContext);
   const [hover, setHover] = useState(-1);
 
   return (
@@ -21,7 +21,7 @@ const DashboardInfoBoxMonth = () => {
               }
               onMouseEnter={() => setHover(index)}
               onMouseLeave={() => setHover(-1)}
-              onClick={() => setShowFriend(true)}
+              onClick={() => linkToFriend(user)}
             >
               <div className='view-month__user-left'>
                 <img className='view-month__user-avatar' src={user.avatar} alt='user avatar' />

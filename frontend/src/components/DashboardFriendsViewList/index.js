@@ -9,7 +9,7 @@ const DashboardFriendsViewList = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const groupedFriends = useSelector(state => state.friendship.groupedFriends);
-  const { setShowFriend } = useContext(DashboardContext);
+  const { linkToFriend } = useContext(DashboardContext);
   const [hover, setHover] = useState('');
 
   // Get grouped friends
@@ -42,7 +42,7 @@ const DashboardFriendsViewList = () => {
                     }
                     onMouseEnter={() => setHover(`${index}:${idx}`)}
                     onMouseLeave={() => setHover('')}
-                    onClick={() => setShowFriend(true)}
+                    onClick={() => linkToFriend(user)}
                   >
                     <div className='view-list__user-left'>
                       <img className='view-list__user-avatar' src={user.avatar} alt='user avatar' />
