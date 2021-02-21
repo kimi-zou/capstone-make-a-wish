@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 0
     }
   }, {});
+
   TodoWish.associate = function (models) {
     TodoWish.belongsTo(models.User, {
       foreignKey: 'claimedUserId'
@@ -15,5 +16,14 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'wishId'
     });
   };
+
+  TodoWish.createNew = async function (wishId, claimedUserId) {
+    const todo = await TodoWish.create({
+      wishId,
+      claimedUserId
+    });
+    return await TodoWish.findByPk(todo.id);
+  };
+
   return TodoWish;
 };

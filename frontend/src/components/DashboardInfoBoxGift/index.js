@@ -1,10 +1,12 @@
 import { useContext, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { DashboardContext } from '../../context/dashboard';
 import wishReducer from '../../store/wish';
 import './index.css';
 
 const DashboardInfoBoxGift = () => {
   const { gift, imgIndex, setImgIndex, friend, lockGift, showConfirm, setShowConfirm } = useContext(DashboardContext);
+  const sessionUser = useSelector(state => state.session.user);
 
   // Set img index
   const setIndex = (up) => {
@@ -22,9 +24,6 @@ const DashboardInfoBoxGift = () => {
       }
     }
   };
-
-  console.log(gift);
-  console.log(gift.WishImages);
 
   return (
     <div className='dibg__wrapper'>
@@ -114,7 +113,7 @@ const DashboardInfoBoxGift = () => {
               <div className='dashboard-info-box-gift__confirm-button-wrapper'>
                 <button
                   className='dashboard-info-box-gift__confirm-buttons dibg__confirm-yes'
-                  onClick={() => lockGift(gift.id)}
+                  onClick={() => lockGift(gift.id, sessionUser.id)}
                 >
                   Yes
                 </button>

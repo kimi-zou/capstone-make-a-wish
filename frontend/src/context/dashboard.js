@@ -54,8 +54,8 @@ const DashboardContextProvider = ({ children }) => {
   };
 
   // Lock a gift and refresh page
-  const lockGift = async (id) => {
-    await dispatch(lockWish(id));
+  const lockGift = async (id, sessionUserId) => {
+    await dispatch(lockWish(id, sessionUserId));
     const res = await dispatch(getFriendPublicWishes(friend.id));
     setWishes(res.data.wishes);
     setShowConfirm(false);

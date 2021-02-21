@@ -86,9 +86,13 @@ export const privateWish = (id) => async dispatch => {
 };
 
 // 8. Lock a wish
-export const lockWish = (id) => async dispatch => {
+export const lockWish = (id, claimedUserId) => async dispatch => {
+  console.log(id, claimedUserId);
   const res = await csrfFetch(`/api/wishes/${id}/update/lock`, {
-    method: 'PATCH'
+    method: 'PATCH',
+    body: JSON.stringify({
+      claimedUserId
+    })
   });
   return res;
 };

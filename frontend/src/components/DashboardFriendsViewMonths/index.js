@@ -9,8 +9,6 @@ const DashboardFriendsViewMonths = () => {
   const [showImage, setShowImage] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(-1);
 
-  console.log(month);
-
   useEffect(() => {
     const months = [];
     for (let i = 1; i < 13; i++) {

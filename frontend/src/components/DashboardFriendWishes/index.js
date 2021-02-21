@@ -8,8 +8,6 @@ const DashboardFriendWishes = ({ friend }) => {
   const dispatch = useDispatch();
   const { displayGift, wishes, setWishes } = useContext(DashboardContext);
 
-  console.log(wishes);
-
   // Get wishes
   useEffect(() => {
     dispatch(getFriendPublicWishes(friend.id))
@@ -46,7 +44,7 @@ const DashboardFriendWishes = ({ friend }) => {
               ))
             : <div className='dashboard-friend__wish-message'>
               {friend.displayName} has not posted wishes.
-            </div>
+              </div>
         }
       </div>
     </div>

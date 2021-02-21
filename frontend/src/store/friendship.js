@@ -108,7 +108,6 @@ export const deleteFriendship = (relationshipId) => async dispatch => {
   const res = await csrfFetch(`/api/friendships/${relationshipId}/delete`, {
     method: 'DELETE'
   });
-  console.log(res.data);
   return res;
 };
 
