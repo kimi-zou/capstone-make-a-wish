@@ -1,0 +1,96 @@
+/* ---- week ---- */
+.dashboard-recent-birthdays__week-wrapper {
+  position: relative;
+  width: 43%;
+  background-color: #fce7e7;
+  border-radius: 10px;
+  padding: 15px 15px 15px 15px;
+  white-space: nowrap;
+}
+
+.week__heading {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.week__list-wrapper{
+  width: 100%;
+  min-height: 128px;
+  display: flex;
+  overflow-x: auto; 
+  overflow-y: hidden; 
+}
+
+/* scrollbar */
+.week__list-wrapper::-webkit-scrollbar {
+  position: absolute;
+  bottom: 10px;
+  background-color: white;
+  height: 10px; 
+  border-radius: 5px;
+}
+
+.week__list-wrapper::-webkit-scrollbar-thumb {
+  background-color: #fea0a0;
+  border-radius: 5px;
+}
+
+/* individual */
+.week__friend {
+  min-width: 50%;
+  margin-right: -60px;
+}
+
+.week__friend-onhover {
+  z-index: 10;
+}
+
+.week__friend-avatar {
+  width: 100px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.week__friend-avatar:hover {
+  border: 6px solid #fea0a0;
+}
+
+.week__friend-details {
+  content: ' ';
+  position: absolute;
+  z-index: 2;
+  max-width: 160px;
+  max-height: 50px;
+  border-radius: 20px;
+  background-color: #fea0a0;
+  color:white;
+  font-size: 16px;
+  padding: 12px;
+  top: -60px;
+  right: 0px;
+}
+
+.week__friend-details:before,
+.week__friend-details:after {
+  content: ' ';
+  position: absolute;
+  z-index: 2;
+	left: 0px;
+	bottom: -20px;
+	width: 20px;
+	height: 20px;
+  border-radius: 50%;
+  background-color: #fea0a0;
+}
+
+.week__friend-details:after {
+  width: 10px;
+	height: 10px;
+  bottom: -25px;
+  left: -10px;
+  background-color: #fea0a0;
+}
+
+.week__friend-birthday {
+  font-size: 20px;
+}

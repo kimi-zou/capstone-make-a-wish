@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import moment from 'moment';
 import { DashboardContext } from '../../context/dashboard';
+import './index.css';
 
 const DashboardRecentBirthdaysList = ({ week, heading }) => {
   const { linkToFriend } = useContext(DashboardContext);

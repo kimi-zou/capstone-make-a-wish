@@ -36,6 +36,11 @@ module.exports = (sequelize, DataTypes) => {
     Wish.belongsTo(models.User, {
       foreignKey: 'userId'
     });
+    Wish.hasOne(models.TodoWish, {
+      foreignKey: 'wishId',
+      onDelete: 'cascade',
+      hooks: true
+    });
   };
 
   // --------------  Static Methods (not work for instances) ---------------

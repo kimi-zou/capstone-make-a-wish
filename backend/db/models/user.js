@@ -81,6 +81,11 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Wish, {
       foreignKey: 'userId'
     });
+    User.hasMany(models.TodoWish, {
+      foreignKey: 'claimedUserId',
+      onDelete: 'cascade',
+      hooks: true
+    });
   };
 
   // --------------   Methods ---------------
