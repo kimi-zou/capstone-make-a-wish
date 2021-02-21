@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { DashboardContext } from '../../context/dashboard';
+import wishReducer from '../../store/wish';
 import './index.css';
 
 const DashboardInfoBoxGift = () => {
@@ -72,14 +73,26 @@ const DashboardInfoBoxGift = () => {
         </div>
 
         {/* button */}
-        <div className='dashboard-info-box-gift__checkout-wrapper'>
-          <button
-            className='dashboard-info-box-gift__checkout-button'
-            onClick={() => setShowConfirm(true)}
-          >
-            Send Gift
-          </button>
-        </div>
+        {
+          gift.status === 1
+            ? (
+              <div className='dashboard-info-box-gift__button-wrapper'>
+                <button
+                  className='dashboard-info-box-gift__checkout-button'
+                  onClick={() => setShowConfirm(true)}
+                >
+                  Send Gift
+                </button>
+              </div>
+              )
+            : (
+              <div className='dashboard-info-box-gift__button-wrapper'>
+                <button className='dashboard-info-box-gift__checkout-button dibg__lock-button'>
+                  Locked
+                </button>
+              </div>
+              )
+        }
 
         {/* confirm message */}
         {

@@ -103,7 +103,7 @@
 }
 
 /* ---- checkout ---- */
-.dashboard-info-box-gift__checkout-wrapper {
+.dashboard-info-box-gift__button-wrapper {
   margin: 0 40px;
   margin-top: 40px;
 }
@@ -115,6 +115,14 @@
   border-radius: 5px;
   font-size: 16px;
   color: white;
+}
+
+.dibg__lock-button {
+  background-color: #999;
+  cursor: not-allowed;
+}
+.dibg__lock-button:hover {
+  cursor: not-allowed;
 }
 
 /* confirm message */

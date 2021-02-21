@@ -13,7 +13,11 @@ const DashboardFriendWishes = ({ friend }) => {
   // Get wishes
   useEffect(() => {
     dispatch(getFriendPublicWishes(friend.id))
-      .then(res => setWishes(res.data.wishes));
+      .then(res => {
+        const wishes = res.data.wishes;
+        wishes.sort((a, b) => a.status - b.status > 0 ? 1 : -1);
+        setWishes(wishes);
+      });
   }, [dispatch, friend.id]);
 
   return (
@@ -31,7 +35,10 @@ const DashboardFriendWishes = ({ friend }) => {
                 />
                 {
                   wish.status === 2 &&
-                    <div className='dashboard-friend___wish-lock'>
+                    <div
+                      className='dashboard-friend___wish-lock'
+                      onClick={() => displayGift(wish)}
+                    >
                       <i className='dashboard-friend___wish-lock-icon fas fa-lock' />
                     </div>
                 }
@@ -39,7 +46,7 @@ const DashboardFriendWishes = ({ friend }) => {
               ))
             : <div className='dashboard-friend__wish-message'>
               {friend.displayName} has not posted wishes.
-              </div>
+            </div>
         }
       </div>
     </div>
