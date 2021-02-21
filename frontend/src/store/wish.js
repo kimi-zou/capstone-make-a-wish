@@ -85,6 +85,14 @@ export const privateWish = (id) => async dispatch => {
   return res;
 };
 
+// 8. Lock a wish
+export const lockWish = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/wishes/${id}/update/lock`, {
+    method: 'PATCH'
+  });
+  return res;
+};
+
 // -------------------- States ----------------------
 const initialState = {
   publicWishes: null,

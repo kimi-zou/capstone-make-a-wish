@@ -9,14 +9,15 @@ import DashboardRecentBirthdays from '../DashboardRecentBirthdays';
 import DashboardPendingNotifications from '../DashboardPendingNotifications';
 import DashboardSessionUser from '../DashboardSessionUser';
 import DashboardFriends from '../DashboardFriends';
-import DashboardInfoBox from '../DashboardInfoBox';
 import DashboardFriend from '../DashboardFriend';
+import DashboardInfoBoxGift from '../DashboardInfoBoxGift';
+import DashboardInfoBoxMonth from '../DashboardInfoBoxMonth';
 import './index.css';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const { setFriends, getFriendsByMonth, showFriend } = useContext(DashboardContext);
+  const { setFriends, getFriendsByMonth, showFriend, show } = useContext(DashboardContext);
 
   // Get friends, notifications
   useEffect(() => {
@@ -38,7 +39,7 @@ const Dashboard = () => {
               <DashboardSessionUser />
               <DashboardRecentBirthdays />
               <DashboardFriends />
-              </>
+            </>
         }
       </div>
       <div className='dashboard__right-wrapper'>
@@ -47,11 +48,18 @@ const Dashboard = () => {
           src='https://makeawish.s3.amazonaws.com/seed-data/dashboard-info-box-cut-out.png'
           alt='info background'
         />
-        <div className='dashboard__pending-notifications'>
-          <DashboardPendingNotifications type='outgoing' />
-          <DashboardPendingNotifications type='pending' />
-        </div>
-        <DashboardInfoBox />
+        {
+          show === 'month'
+            ? (<>
+              <div className='dashboard__pending-notifications'>
+                <DashboardPendingNotifications type='outgoing' />
+                <DashboardPendingNotifications type='pending' />
+              </div>
+              <DashboardInfoBoxMonth />
+               </>)
+            : <DashboardInfoBoxGift />
+        }
+
       </div>
     </div>
   );

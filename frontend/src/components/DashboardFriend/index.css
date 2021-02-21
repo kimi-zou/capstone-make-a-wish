@@ -37,7 +37,7 @@
 
 /* info */
 .dashboard-friend__user-info {
-  width: 250px;
+  width: 45%;
   margin-right: 10px;
 }
 
@@ -55,7 +55,7 @@
 .dashboard-friend__user-birthday {
   position: relative;
   bottom: 3px;
-  font-size: 60px;
+  font-size: 54px;
   font-weight: 700;
   color: #f8bbbb;
 }

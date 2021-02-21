@@ -8,7 +8,7 @@ const DashboardInfoBoxMonth = () => {
   const [hover, setHover] = useState(-1);
 
   return (
-    <>
+    <div className='dashboard-info-box__wrapper'>
       {
         friendsByMonth.map((user, index) => {
           return (
@@ -34,7 +34,7 @@ const DashboardInfoBoxMonth = () => {
           );
         })
 }
-    </>
+    </div>
   );
 };
 

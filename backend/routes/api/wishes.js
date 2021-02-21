@@ -75,13 +75,19 @@ router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 
 // 4. Make a wish public
 router.patch('/:id(\\d+)/update/public', asyncHandler(async (req, res, next) => {
-  const wish = await Wish.makePublic(req.params.id);
+  const wish = await Wish.updateWish(req.params.id, 1);
   return res.json({ wish });
 }));
 
 // 5. Make a wish private
 router.patch('/:id(\\d+)/update/private', asyncHandler(async (req, res, next) => {
-  const wish = await Wish.makePrivate(req.params.id);
+  const wish = await Wish.updateWish(req.params.id, 0);
+  return res.json({ wish });
+}));
+
+// 6. Lock a wish
+router.patch('/:id(\\d+)/update/lock', asyncHandler(async (req, res, next) => {
+  const wish = await Wish.updateWish(req.params.id, 2);
   return res.json({ wish });
 }));
 

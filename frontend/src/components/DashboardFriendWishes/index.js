@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getFriendPublicWishes } from '../../store/wish';
+import { DashboardContext } from '../../context/dashboard';
 import './index.css';
 
 const DashboardFriendWishes = ({ friend }) => {
   const dispatch = useDispatch();
-  const [wishes, setWishes] = useState([]);
+  const { displayGift, wishes, setWishes } = useContext(DashboardContext);
+
   console.log(wishes);
 
   // Get wishes
@@ -25,7 +27,14 @@ const DashboardFriendWishes = ({ friend }) => {
                 <img
                   className='dashboard-friend___wish-image'
                   src={wish.WishImages[0].image} alt='wish'
+                  onClick={() => displayGift(wish)}
                 />
+                {
+                  wish.status === 2 &&
+                    <div className='dashboard-friend___wish-lock'>
+                      <i className='dashboard-friend___wish-lock-icon fas fa-lock' />
+                    </div>
+                }
               </div>
               ))
             : <div className='dashboard-friend__wish-message'>
