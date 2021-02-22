@@ -69,27 +69,50 @@ textarea::placeholder {
     background: transparent;  
 }
 
+/* table */
+table,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td {
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-collapse: inherit;
+    border-spacing: 0px;
+    border-color: inherit;
+    text-align: left;
+    font-weight: inherit;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+}
+th, td {
+    display: inline;
+}
+
 /* ---------------------------- */
 .body {
   display: flex;
-  height: calc(100vh - 40px);
-  padding: 20px 20px 20px 35px;
-  background-color: #FCE5DD;;
+  height: calc(100vh - 30px);
+  padding: 15px 63px 15px 85px; 
+  /* padding: 13px 13px 13px 35px;  */
+  background-color: #ebb8b8;
+  /* background-color: #FCE5DD; */
   color: #222;
-  overflow: hidden;
   overflow-x: hidden;
 }
 
 .main {
   position: relative;
   width: 90%;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 30px);
   background-color: white;
   border-radius: 10px;
   color: #222;
   overflow-y: scroll;
-}
-
-.main__main {
-  height: 50px;
 }

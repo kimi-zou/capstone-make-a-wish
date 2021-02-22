@@ -1,11 +1,13 @@
 .topnav {
+  z-index: 2;
   position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
+  right: 105px;
+  width: 28%;
   height: 30px;
-  padding: 20px 0 20px 30px;
+  padding: 42px 0 20px 0px;
   background-color: white;
   background: linear-gradient(to bottom,#fff 90%,rgba(255,255,255,0));
 }
@@ -59,7 +61,7 @@
 .topnav__username {
   display: flex;
   align-items: center;
-  margin-left: 20px;
+  margin-left: 5px;
   color: #222;
   font-weight: 600;
 }

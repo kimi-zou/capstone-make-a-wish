@@ -30,6 +30,11 @@ export const getPublicWishes = (id) => async dispatch => {
   return res;
 };
 
+export const getFriendPublicWishes = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/users/${id}/wishes/public`);
+  return res;
+};
+
 // 2. Get all private wishes of a user
 export const getPrivateWishes = (id) => async dispatch => {
   const res = await csrfFetch(`/api/users/${id}/wishes/private`);
@@ -76,6 +81,18 @@ export const publicWish = (id) => async dispatch => {
 export const privateWish = (id) => async dispatch => {
   const res = await csrfFetch(`/api/wishes/${id}/update/private`, {
     method: 'PATCH'
+  });
+  return res;
+};
+
+// 8. Lock a wish
+export const lockWish = (id, claimedUserId) => async dispatch => {
+  console.log(id, claimedUserId);
+  const res = await csrfFetch(`/api/wishes/${id}/update/lock`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      claimedUserId
+    })
   });
   return res;
 };

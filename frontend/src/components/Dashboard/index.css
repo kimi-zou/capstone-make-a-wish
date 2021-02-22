@@ -1,7 +1,41 @@
-.dashboard {
+.dashboard__wrapper {
+  z-index: 1;
   display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+  padding-left: 42px;
+  width: calc(100% - 84px);
 }
 
-.dashboard--main {
-  width: 80%;
+/* ---- left ---- */
+.dashboard__left-wrapper {
+  width: 56%;
 }
+
+
+/* ---- right ---- */
+.dashboard__right-wrapper {
+  position: fixed;
+  right: 0px;
+  width: 28vw;
+  height: 100%;
+  margin-top: 68px;
+  margin-right: 105px;
+}
+
+.dashboard-into-box__background {
+  z-index: -1;
+  position: fixed;
+  bottom: 30px;
+  right: 85px;
+  opacity: 0.8;
+  height: 400px;
+  object-fit: cover;
+}
+
+/* notification */
+.dashboard__pending-notifications {
+  display: flex;
+  justify-content: space-between;
+}
+

@@ -27,10 +27,9 @@ const TopNav = () => {
         </NavLink>
         {user &&
           <NavLink
-            to='/settings'
             className='topnav__username'
+            to='/settings'
           >
-            {user.displayName}
             <img
               className='topnav__user-avatar'
               src={user.avatar}

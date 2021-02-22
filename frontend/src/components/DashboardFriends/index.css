@@ -1,0 +1,26 @@
+.dashboard__friends-wrapper {
+  margin-top: 50px; 
+  margin-bottom: 50px;
+}
+
+/* heading */
+.dashboard__friends-heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dashboard__friends-heading-text {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* buttons */
+.dashboard__view-buttons {
+  color: #999;
+  background-color: transparent;
+}
+
+.dashboard__view-butons--active {
+  color: #222;
+}

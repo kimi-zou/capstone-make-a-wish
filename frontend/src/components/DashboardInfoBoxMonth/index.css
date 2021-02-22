@@ -1,0 +1,56 @@
+/* ---- wrapper ---- */
+.dashboard-info-box__wrapper {
+  z-index: 0;
+  position: relative;
+  margin-top: 30px;
+  max-height: calc(100% - 300px);
+  background-color: white;
+  overflow-y: scroll;
+}
+
+/* scrollbar */
+.dashboard-info-box__wrapper::-webkit-scrollbar {
+  background-color: white;
+  width: 10px;
+}
+
+.dashboard-info-box__wrapper::-webkit-scrollbar-thumb {
+  background-color: #fea0a0;
+  border-radius: 0px 5px 5px 0px;
+}
+
+/* ---- user ---- */
+.view-month__user-wrapper {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 15px 5px 10px;
+  background-color: #fff7f7;
+  border-radius: 10px;
+  margin-bottom: 6px;
+}
+
+.view-month__user-wrapper--hover {
+  cursor: pointer;
+  background-color: #fea0a0;
+  color: white;
+}
+
+/* left */
+.view-month__user-left {
+  display: flex;
+  align-items: center;
+}
+
+.view-month__user-avatar {
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* right */
+.view-month__user-birthday {
+  font-size: 14px;
+  font-weight: 600;
+}

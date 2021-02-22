@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Relationship = sequelize.define('Relationship', {
@@ -22,5 +24,20 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userTwoId'
     });
   };
+
+  // Friendship lookup
+  Relationship.friendshipLookup = async function (userId) {
+    const friends = await Relationship.findAll({
+      where: {
+        status: 1,
+        [Op.or]: [
+          { userOneId: userId },
+          { userTwoId: userId }
+        ]
+      }
+    });
+    return friends;
+  };
+
   return Relationship;
 };

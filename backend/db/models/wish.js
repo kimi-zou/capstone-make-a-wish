@@ -1,5 +1,5 @@
 'use strict';
-// const WishImage = require('./wishimage');
+const { Op } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   const Wish = sequelize.define('Wish', {
@@ -36,6 +36,11 @@ module.exports = (sequelize, DataTypes) => {
     Wish.belongsTo(models.User, {
       foreignKey: 'userId'
     });
+    Wish.hasOne(models.TodoWish, {
+      foreignKey: 'wishId',
+      onDelete: 'cascade',
+      hooks: true
+    });
   };
 
   // --------------  Static Methods (not work for instances) ---------------
@@ -44,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
     return await Wish.findAll({
       where: {
         userId: userId,
-        status: 1
+        status: { [Op.or]: [1, 2] }
       },
       include: WishImage,
       order: [['updatedAt']]
@@ -89,17 +94,10 @@ module.exports = (sequelize, DataTypes) => {
     return await wish.destroy();
   };
 
-  // 6. make a wish public
-  Wish.makePublic = async function (id) {
+  // 6. update a wish
+  Wish.updateWish = async function (id, status) {
     const wish = await Wish.findByPk(id);
-    wish.status = 1;
-    return await wish.save();
-  };
-
-  // 7. make a wish private
-  Wish.makePrivate = async function (id) {
-    const wish = await Wish.findByPk(id);
-    wish.status = 0;
+    wish.status = status;
     return await wish.save();
   };
 

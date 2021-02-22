@@ -3,15 +3,18 @@
   display: flex;
   flex-direction: column;
   width: 160px;
-  margin-top: 20px;
+  margin-top: 42px;
 }
 
 /* logo */
 .sidenav__logo {
   font-family: 'Pacifico', 'Raleway', 'Courier New', Courier, monospace;
   font-size: 22px;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   color: #222;
+}
+.sidenav__logo:hover {
+  color: white;
 }
 
 /* links */
@@ -22,17 +25,21 @@
 
 .sidenav__links {
   font-family:'Righteous', Courier, monospace;
-  color: #222;
+  /* color: #ff6759;
+  color: #222; */
+  color: #fcf7f5;
   padding-left: 2px;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .sidenav__links:hover {
-  color: #ff6759;
+  /* color: #ff6759; */
+  color: #222;
 }
 
 .sidenav__links--active {
-  color: #ff6759;
+  /* color: #ff6759; */
+  color: #222;
 }
 
 
@@ -52,10 +59,6 @@
 } 
 
 .sidenav__logout:hover {
-  color: #4a43e1;
-  cursor: pointer;
+   /* color: #4a43e1; */
+   color: white;
 }
-/* 
-.sidenav__logout-text {
-  cursor: pointer;
-} */

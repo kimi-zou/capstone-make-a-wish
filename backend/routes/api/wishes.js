@@ -5,7 +5,7 @@ const { check } = require('express-validator');
 const { requireAuth, restoreUser } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 const { wishImageUpload, s3Upload } = require('../../awsS3');
-const { Wish, WishImage, sequelize } = require('../../db/models');
+const { Wish, WishImage, TodoWish, sequelize } = require('../../db/models');
 
 const router = express.Router();
 
@@ -75,13 +75,22 @@ router.delete('/:id(\\d+)', asyncHandler(async (req, res, next) => {
 
 // 4. Make a wish public
 router.patch('/:id(\\d+)/update/public', asyncHandler(async (req, res, next) => {
-  const wish = await Wish.makePublic(req.params.id);
+  const wish = await Wish.updateWish(req.params.id, 1);
   return res.json({ wish });
 }));
 
 // 5. Make a wish private
 router.patch('/:id(\\d+)/update/private', asyncHandler(async (req, res, next) => {
-  const wish = await Wish.makePrivate(req.params.id);
+  const wish = await Wish.updateWish(req.params.id, 0);
+  return res.json({ wish });
+}));
+
+// 6. Lock a wish
+router.patch('/:id(\\d+)/update/lock', asyncHandler(async (req, res, next) => {
+  const wishId = req.params.id;
+  const { claimedUserId } = req.body;
+  const wish = await Wish.updateWish(wishId, 2);
+  await TodoWish.createNew(wishId, claimedUserId);
   return res.json({ wish });
 }));
 

@@ -1,0 +1,61 @@
+/* ---- go back button ---- */
+.dashboard-friend__back-button-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dashboard-friend__back-button-wrapper:hover {
+  color: #fea0a0;
+}
+
+.dashboard-friend__back-button-icon {
+  margin-right: 5px;
+}
+
+.dashboard-friend__back-button-text {
+  font-weight: 600;
+}
+
+/* ---- user ---- */
+.dashboard-friend__user-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  background-color: #fce7e7;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+/* avatar */
+.dashboard-friend__user-avatar {
+  width: 100px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+/* info */
+.dashboard-friend__user-info {
+  width: 45%;
+  margin-right: 10px;
+}
+
+.dashboard-friend__user-name {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.dashboard-friend__user-username {
+  font-size: 14px;
+  color: rgb(102, 102, 102);
+}
+
+/* birthday */
+.dashboard-friend__user-birthday {
+  position: relative;
+  bottom: 3px;
+  font-size: 54px;
+  font-weight: 700;
+  color: #f8bbbb;
+}

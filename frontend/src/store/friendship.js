@@ -4,6 +4,7 @@ import { csrfFetch } from './csrf.js';
 const SET_SENT_PENDING_FRIENDS = 'friendship/setSentPendingFriends';
 const SET_RECEIVED_PENDING_FRIENDS = 'friendship/setReceivedPendingFriends';
 const SET_FRIENDS = 'friendship/setFriends';
+const SET_GROUPED_FRIENDS = 'friendship/setGroupedFriends';
 
 // POJO Actions
 const setSentPendingFriends = (friends) => ({
@@ -18,6 +19,11 @@ const setReceivedPendingFriends = (friends) => ({
 
 const setFriends = (friends) => ({
   type: SET_FRIENDS,
+  payload: friends
+});
+
+const setGroupedFriends = (friends) => ({
+  type: SET_GROUPED_FRIENDS,
   payload: friends
 });
 
@@ -102,7 +108,6 @@ export const deleteFriendship = (relationshipId) => async dispatch => {
   const res = await csrfFetch(`/api/friendships/${relationshipId}/delete`, {
     method: 'DELETE'
   });
-  console.log(res.data);
   return res;
 };
 
@@ -120,9 +125,17 @@ export const getFriendshipById = (id) => async dispatch => {
   return res;
 };
 
+// 8. Get grouped friends
+export const getGroupedFriends = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/users/${id}/friends/group`);
+  await dispatch(setGroupedFriends(res.data.users));
+  return res;
+};
+
 // -------------------- States ----------------------
 const initialState = {
   friends: [],
+  groupedFriends: {},
   sentPendingFriends: [],
   receivedPendingFriends: []
 };
@@ -134,6 +147,11 @@ function friendshipReducer (state = initialState, action) {
       return {
         ...state,
         friends: action.payload
+      };
+    case SET_GROUPED_FRIENDS:
+      return {
+        ...state,
+        groupedFriends: action.payload
       };
     case SET_SENT_PENDING_FRIENDS:
       return {

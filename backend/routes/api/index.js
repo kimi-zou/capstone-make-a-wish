@@ -5,6 +5,7 @@ const wishesRouter = require('./wishes');
 const searchRouter = require('./search');
 const friendshipRouter = require('./friendships');
 const notificationRouter = require('./notifications');
+const todoRouter = require('./todos');
 
 // GET /api/set-token-cookie
 const asyncHandler = require('express-async-handler');
@@ -45,5 +46,6 @@ router.use('/wishes', wishesRouter);
 router.use('/search', searchRouter);
 router.use('/friendships', friendshipRouter);
 router.use('/notifications', notificationRouter);
+router.use('/todos', todoRouter);
 
 module.exports = router;

@@ -1,0 +1,82 @@
+/* ---- wrapper ---- */
+.dashboard-friend__wishes-wrapper {
+  margin-top: 30px;
+  overflow-y: scroll;
+}
+
+/* scrollbar */
+.view-list__wrapper::-webkit-scrollbar {
+  border-radius: 0px 10px 10px 0px;
+  background-color: transparent;
+  width: 10px;
+}
+
+.view-list__wrapper::-webkit-scrollbar-thumb {
+  background-color: #fea0a0;
+  border-radius: 0px 8px 8px 0px;
+}
+
+/* ---- wish ---- */
+/* heading */
+.dashboard-friend__wishes-heading {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* wish */
+.dashboard-friend__wish-list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  width: 100%;
+}
+
+.dashboard-friend___wish-image-wrapper {
+  position: relative;
+  box-sizing: border-box;
+  width: 25%;
+  height: 140px;
+  border-radius: 10px;
+  padding: 5px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.dashboard-friend___wish-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.dashboard-friend__wish-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 140px;
+  border-radius: 10px;
+  background-color: rgb(245, 245, 245);
+}
+
+/* locked wish */
+.dashboard-friend___wish-lock {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 10px);
+  height: 130px;
+  border-radius: 10px;
+  background-color: rgba(245, 245, 245, 0.6);
+  margin-top: 5px;
+}
+
+.dashboard-friend___wish-lock-icon {
+  font-size: 36px;
+  color:white;
+}

@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { restoreUser } from './store/session';
 import { socketContext, onFriendRequest, onFriendAccept } from './context/socket';
+import DashboardContextProvider from './context/dashboard';
 
 import About from './components/HomeAbout';
 import Dashboard from './components/Dashboard';
@@ -43,32 +44,28 @@ const App = () => {
         <>
           <NotificationToast />
           <Switch>
-            <Route exact path='/'>
-              <Home />
-            </Route>
-            <Route exact path='/about'>
-              <About />
-            </Route>
+            <Route exact path='/'><Home /></Route>
+            <Route exact path='/about'><About /></Route>
           </Switch>
           {sessionUser &&
             <div className='body'>
               <SideNav />
               <div className='main'>
                 <TopNav />
-                <div className='main__main' />
                 <Switch>
                   <Route exact path='/dashboard'>
-                    <Dashboard />
+                    <DashboardContextProvider>
+                      <Dashboard />
+                    </DashboardContextProvider>
                   </Route>
-                  <Route exact path='/my-wishes'>
-                    <Wish />
+                  <Route path='/dashboard/friends/:username'>
+                    <DashboardContextProvider>
+                      <Dashboard />
+                    </DashboardContextProvider>
                   </Route>
-                  <Route exact path='/notifications'>
-                    <Notification />
-                  </Route>
-                  <Route exact path='/settings'>
-                    <Settings />
-                  </Route>
+                  <Route exact path='/my-wishes'><Wish /></Route>
+                  <Route exact path='/notifications'><Notification /></Route>
+                  <Route exact path='/settings'><Settings /></Route>
                 </Switch>
               </div>
             </div>}

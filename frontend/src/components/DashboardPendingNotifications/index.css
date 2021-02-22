@@ -1,0 +1,41 @@
+.dashboard-pending-notifications__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32.4%;
+  height: 100px;
+  background-color: #fce7e7;
+  border-radius: 10px;
+  padding: 0px 30px;
+}
+
+.dashboard-pending-notifications__number {
+  font-size: 52px;
+  font-weight: 600;
+  margin-right: 15px;
+}
+
+.dashboard-pending-notifications__number:hover {
+  color: #ff7474;
+  cursor: pointer;
+}
+
+.dashboard-pending-notifications__text {
+  font-size: 14px;
+}
+
+.dashboard-pending-notifications__sent-result {
+  z-index: 10;
+  background-color: white;
+  border: 1px solid #ebeef0;
+  box-shadow: -1px -1px 10px 1px #e1e1e1;
+  border-radius: 10px;
+}
+
+.dashboard-pending-notifications__sent-result {
+  position: absolute;
+  top: 105px;
+  left: 0px;
+  width: 400px;
+}

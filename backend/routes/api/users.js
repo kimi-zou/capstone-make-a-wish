@@ -5,14 +5,15 @@ const { Op } = require('sequelize');
 
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
-const { getRandomAvatar } = require('../../utils/avatar');
+const { getRandomImages, avatars } = require('../../utils/random-seed-image');
 const {
   User,
   Wish,
   WishImage,
   Relationship,
   NotificationReceiver,
-  NotificationObject
+  NotificationObject,
+  TodoWish
 } = require('../../db/models');
 
 const router = express.Router();
@@ -40,7 +41,7 @@ router.post(
   validateSignup,
   asyncHandler(async (req, res) => {
     const { email, password, username, birthday } = req.body;
-    const avatar = getRandomAvatar();
+    const avatar = getRandomImages(avatars);
     let user;
     if (birthday) {
       user = await User.signup({ email, username, password, birthday, avatar });
@@ -69,23 +70,22 @@ router.get(
   restoreUser,
   asyncHandler(async (req, res) => {
     const userId = req.params.id;
-    const friends = await Relationship.findAll({
-      where: {
-        status: 1,
-        [Op.or]: [
-          { userOneId: userId },
-          { userTwoId: userId }
-        ]
-      }
-    });
-    const users = await Promise.all(friends.map(async friend => {
-      if (friend.userOneId === parseInt(userId)) {
-        return await User.findByPk(friend.userTwoId);
-      }
-      return await User.findByPk(friend.userOneId);
-    }));
+    const friends = await Relationship.friendshipLookup(userId);
+    const users = await User.friendsLookup(friends, userId);
     return res.json({ users });
   }));
+
+// Friends lookup by group
+router.get(
+  '/:id(\\d+)/friends/group',
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const userId = req.params.id;
+    const friends = await Relationship.friendshipLookup(userId);
+    const users = await User.friendsLookupGroup(friends, userId);
+    return res.json({ users });
+  })
+);
 
 // Pending Friends lookup
 router.get(
@@ -132,6 +132,23 @@ router.get(
       ]
     });
     return res.json({ notifications });
+  })
+);
+
+// Todo Lookup
+router.get(
+  '/:id(\\d+)/todos',
+  asyncHandler(async (req, res, next) => {
+    const todos = await TodoWish.findAll({
+      where: {
+        claimedUserId: req.params.id
+      },
+      include: [{
+        model: Wish,
+        include: [WishImage, User]
+      }]
+    });
+    return res.json({ todos });
   })
 );
 

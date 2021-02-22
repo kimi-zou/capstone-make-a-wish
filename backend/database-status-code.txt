@@ -7,6 +7,13 @@ Wishes:
   0 - Private
   1 - Public
   2 - Locked 
+  3 - Received
+
+TodoWishes:
+  0 - Claimed
+  1 - Prepared
+  2 - Sent 
+  3 - Delivered
 
 EntityTypes:
   1 - Friend, Receive a friend request.
