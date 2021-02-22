@@ -42,10 +42,11 @@ const DashboardContextProvider = ({ children }) => {
   };
 
   // Link back to dashboard main page
-  const backToDashboard = () => {
+  const backToDashboard = (userId) => {
     setShowFriend(false);
     setFriend();
     setShow('month');
+    getAllTodos(userId);
   };
 
   // Display gift info
@@ -69,6 +70,17 @@ const DashboardContextProvider = ({ children }) => {
     setTodos(res.data.todos);
   };
 
+  // Update todo
+  const updateTodo = async (id, status, userId) => {
+    await csrfFetch(`/api/todos/${id}/update`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        status
+      })
+    });
+    await getAllTodos(userId);
+  };
+
   return (
     <DashboardContext.Provider value={{
       getFriendsByMonth,
@@ -77,6 +89,7 @@ const DashboardContextProvider = ({ children }) => {
       displayGift,
       lockGift,
       getAllTodos,
+      updateTodo,
       show,
       showFriend,
       showMonths,

@@ -3,8 +3,10 @@ import moment from 'moment';
 import { DashboardContext } from '../../context/dashboard';
 import DashboardFriendWishes from '../DashboardFriendWishes';
 import './index.css';
+import { useSelector } from 'react-redux';
 
 const DashboardFriend = () => {
+  const sessionUser = useSelector(state => state.session.user);
   const { backToDashboard, friend } = useContext(DashboardContext);
 
   return (
@@ -12,7 +14,7 @@ const DashboardFriend = () => {
 
       <div
         className='dashboard-friend__back-button-wrapper'
-        onClick={() => backToDashboard()}
+        onClick={() => backToDashboard(sessionUser.id)}
       >
         <i className='dashboard-friend__back-button-icon fas fa-angle-left fa-lg' />
         <span className='dashboard-friend__back-button-text'>back</span>

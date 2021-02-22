@@ -3,7 +3,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 10px 15px;
+  padding: 15px 15px;
   background-color: #fff7f7;
 }
 
@@ -58,4 +58,5 @@
   height: 13px;
   border: 1px solid #222;
   border-radius: 3px;
+  cursor: pointer;
 }

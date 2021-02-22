@@ -101,19 +101,5 @@ module.exports = (sequelize, DataTypes) => {
     return await wish.save();
   };
 
-  // // 7. make a wish private
-  // Wish.makePrivate = async function (id) {
-  //   const wish = await Wish.findByPk(id);
-  //   wish.status = 0;
-  //   return await wish.save();
-  // };
-
-  // // 8. lock a wish
-  // Wish.makePrivate = async function (id) {
-  //   const wish = await Wish.findByPk(id);
-  //   wish.status = 2;
-  //   return await wish.save();
-  // };
-
   return Wish;
 };
