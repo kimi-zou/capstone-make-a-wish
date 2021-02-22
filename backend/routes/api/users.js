@@ -12,7 +12,8 @@ const {
   WishImage,
   Relationship,
   NotificationReceiver,
-  NotificationObject
+  NotificationObject,
+  TodoWish
 } = require('../../db/models');
 
 const router = express.Router();
@@ -131,6 +132,23 @@ router.get(
       ]
     });
     return res.json({ notifications });
+  })
+);
+
+// Todo Lookup
+router.get(
+  '/:id(\\d+)/todos',
+  asyncHandler(async (req, res, next) => {
+    const todos = await TodoWish.findAll({
+      where: {
+        claimedUserId: req.params.id
+      },
+      include: [{
+        model: Wish,
+        include: [WishImage, User]
+      }]
+    });
+    return res.json({ todos });
   })
 );
 

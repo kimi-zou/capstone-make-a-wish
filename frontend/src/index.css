@@ -69,6 +69,32 @@ textarea::placeholder {
     background: transparent;  
 }
 
+/* table */
+table,
+thead,
+tbody,
+tfoot,
+tr,
+th,
+td {
+    display: block;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-collapse: inherit;
+    border-spacing: 0px;
+    border-color: inherit;
+    text-align: left;
+    font-weight: inherit;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+}
+th, td {
+    display: inline;
+}
+
 /* ---------------------------- */
 .body {
   display: flex;

@@ -1,0 +1,61 @@
+.dashboard-todo-entry__wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fff7f7;
+}
+
+/* gift */
+.dashboard-todo-entry__gift {
+  width: 38%;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.dashboard-todo-entry__gift-image {
+  width: 50px;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.dashboard-todo-entry__gift-title {
+  cursor: pointer;
+}
+
+/* friend */
+.dashboard-todo-entry__friend {
+  width: 32%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 14px;
+}
+
+.dashboard-todo-entry__friend-name {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.dashboard-todo-entry__friend-birthday {
+  font-weight: 500;
+  color: #f57676;
+  cursor: pointer;
+}
+
+/* task box */
+.dashboard-todo-entry__task-box {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.dashboard-todo-entry__incomplete {
+  width: 13px;
+  height: 13px;
+  border: 1px solid #222;
+  border-radius: 3px;
+}

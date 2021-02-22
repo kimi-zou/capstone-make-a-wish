@@ -1,7 +1,6 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { DashboardContext } from '../../context/dashboard';
-import wishReducer from '../../store/wish';
 import './index.css';
 
 const DashboardInfoBoxGift = () => {

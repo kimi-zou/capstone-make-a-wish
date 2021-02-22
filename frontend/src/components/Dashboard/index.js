@@ -12,14 +12,21 @@ import DashboardFriends from '../DashboardFriends';
 import DashboardFriend from '../DashboardFriend';
 import DashboardInfoBoxGift from '../DashboardInfoBoxGift';
 import DashboardInfoBoxMonth from '../DashboardInfoBoxMonth';
+import DashboardTodo from '../DashboardTodo';
 import './index.css';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const { setFriends, getFriendsByMonth, showFriend, show } = useContext(DashboardContext);
+  const {
+    setFriends,
+    getFriendsByMonth,
+    showFriend,
+    show,
+    getAllTodos
+  } = useContext(DashboardContext);
 
-  // Get friends, notifications
+  // Get friends, notifications, todos
   useEffect(() => {
     dispatch(getFriends(sessionUser.id))
       .then(res => {
@@ -27,6 +34,7 @@ const Dashboard = () => {
         getFriendsByMonth(moment(new Date()).get('month'), res.data.users);
       });
     dispatch(getAllNotifications(sessionUser.id));
+    getAllTodos(sessionUser.id);
   }, [dispatch]);
 
   return (
@@ -39,6 +47,7 @@ const Dashboard = () => {
               <DashboardSessionUser />
               <DashboardRecentBirthdays />
               <DashboardFriends />
+              <DashboardTodo />
             </>
         }
       </div>

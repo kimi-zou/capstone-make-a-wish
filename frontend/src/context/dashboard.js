@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
+import { csrfFetch } from '../store/csrf';
 import { getFriendPublicWishes, lockWish } from '../store/wish';
 
 export const DashboardContext = React.createContext();
@@ -19,6 +20,7 @@ const DashboardContextProvider = ({ children }) => {
   const [friend, setFriend] = useState();
   const [friends, setFriends] = useState([]);
   const [friendsByMonth, setFriendsByMonth] = useState([]);
+  const [todos, setTodos] = useState([]);
 
   // Get friends by month
   const getFriendsByMonth = (month, allFriends) => {
@@ -34,7 +36,7 @@ const DashboardContextProvider = ({ children }) => {
   };
 
   // Link to dashboard friend page
-  const linkToFriend = (friend, id) => {
+  const linkToFriend = (friend) => {
     setShowFriend(true);
     setFriend(friend);
   };
@@ -61,6 +63,12 @@ const DashboardContextProvider = ({ children }) => {
     setShowConfirm(false);
   };
 
+  // Get todos
+  const getAllTodos = async (id) => {
+    const res = await csrfFetch(`/api/users/${id}/todos`);
+    setTodos(res.data.todos);
+  };
+
   return (
     <DashboardContext.Provider value={{
       getFriendsByMonth,
@@ -68,6 +76,7 @@ const DashboardContextProvider = ({ children }) => {
       backToDashboard,
       displayGift,
       lockGift,
+      getAllTodos,
       show,
       showFriend,
       showMonths,
@@ -79,6 +88,7 @@ const DashboardContextProvider = ({ children }) => {
       imgIndex,
       wishes,
       showConfirm,
+      todos,
       setShow,
       setShowMonths,
       setShowFriend,
