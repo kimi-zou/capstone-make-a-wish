@@ -6,7 +6,12 @@ import './index.css';
 
 const WishGift = ({ wish }) => {
   const dispatch = useDispatch();
-  const { setData, setShowWishDetail } = useContext(WishContext);
+  const { setShowWishDetail } = useContext(WishContext);
+
+  const setData = (e) => {
+    e.dataTransfer.setData('wishId', wish.id);
+    e.dataTransfer.setData('status', wish.status);
+  };
 
   // Show wish details
   const showWishDetials = (wish) => {
@@ -18,7 +23,7 @@ const WishGift = ({ wish }) => {
     <div
       className='gift__image-wrapper'
       draggable='true'
-      onDragStart={(e) => setData(e, wish)}
+      onDragStart={setData}
       onClick={() => showWishDetials(wish)}
     >
       <img

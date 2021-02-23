@@ -1,14 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { WishContext } from '../../context/wish';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getPublicWishes,
+  getPrivateWishes,
+  publicWish,
+  privateWish,
+  getWish
+} from '../../store/wish';
 import WishGift from '../WishGift';
 import AddWishButton from '../WishAddButton';
 import './index.css';
 
 const WishSession = ({ type, heading }) => {
+  const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
   const publicWishes = useSelector(state => state.wish.publicWishes);
   const privateWishes = useSelector(state => state.wish.privateWishes);
-  const { dropHandler, dragoverHandler } = useContext(WishContext);
   const [wishes, setWishes] = useState([]);
 
   // Get public or private wishes
@@ -19,6 +26,27 @@ const WishSession = ({ type, heading }) => {
       setWishes(privateWishes);
     }
   }, [type, publicWishes, privateWishes]);
+
+  // Handle drop
+  const dropHandler = async (e) => {
+    e.preventDefault();
+    const wishId = e.dataTransfer.getData('wishId');
+    const status = e.dataTransfer.getData('status');
+    if (parseInt(status) === 0) {
+      await dispatch(publicWish(wishId));
+    } else {
+      await dispatch(privateWish(wishId));
+    }
+    await dispatch(getPublicWishes(sessionUser.id));
+    await dispatch(getPrivateWishes(sessionUser.id));
+    await dispatch(getWish(wishId));
+  };
+
+  // Handle drag over
+  const dragoverHandler = (e) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
 
   return (
     <div className='wish__session'>

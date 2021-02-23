@@ -32,32 +32,6 @@ const WishContextProvider = ({ children }) => {
     await dispatch(getPrivateWishes(sessionUser.id));
   };
 
-  // Handle drag and drop
-  // ---Set data for drag event
-  const setData = (e, wish) => {
-    e.dataTransfer.setData('wishId', wish.id);
-    e.dataTransfer.setData('status', wish.status);
-  };
-  // ---Handle drop
-  const dropHandler = async (e) => {
-    e.preventDefault();
-    const wishId = e.dataTransfer.getData('wishId');
-    const status = e.dataTransfer.getData('status');
-    if (parseInt(status) === 0) {
-      await dispatch(publicWish(wishId));
-    } else {
-      await dispatch(privateWish(wishId));
-    }
-    await dispatch(getPublicWishes(sessionUser.id));
-    await dispatch(getPrivateWishes(sessionUser.id));
-    await dispatch(getWish(wishId));
-  };
-  // ---Handle drag over
-  const dragoverHandler = (e) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-  };
-
   // Handle status update
   // ---make wish public
   const makeWishPublic = async (e, dispatch, wish, sessionUser) => {
@@ -85,9 +59,6 @@ const WishContextProvider = ({ children }) => {
 
   return (
     <WishContext.Provider value={{
-      dropHandler,
-      dragoverHandler,
-      setData,
       updateStatus,
       makeWishPublic,
       makeWishPrivate,
