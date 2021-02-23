@@ -2,7 +2,7 @@
   z-index: 1;
   display: flex;
   justify-content: space-between;
-  padding-top: 30px;
+  padding-top: 42px;
   padding-left: 42px;
   width: calc(100% - 84px);
 }
@@ -14,12 +14,12 @@
 
 /* heading */
 .wish__heading {
-  font-size: 38px;
-  font-weight: 500;
+  font-size: 28px;
+  font-weight: 700;
   margin-bottom: 34px;
   background-color: #fce7e7;
   border-radius: 10px;
-  padding: 10px 15px;
+  padding: 18px;
 }
 
 /* ---- right ---- */

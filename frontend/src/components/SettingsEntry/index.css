@@ -1,0 +1,10 @@
+.settings__display-entry {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.settings__display-label {
+  width: 40%;
+  color: #666;
+  font-size: 14px;
+}

@@ -1,7 +1,7 @@
 .wish__session {
   border: 1px solid #fce7e7;
   border-radius: 10px;
-  padding: 15px;
+  padding: 18px;
   margin-bottom: 30px;
 }
 
@@ -16,7 +16,7 @@
   flex-wrap: wrap;
   align-content: flex-start;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   width: 100%;
 }
 
@@ -25,7 +25,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px dotted #fea0a0;
+  border: 1px dashed #999;
   box-sizing: border-box;
   width: calc(25% - 10px);
   height: 130px;
@@ -36,12 +36,12 @@
 }
 
 .wish-session__drop-icon {
-  color: #fea0a0;
+  color: rgb(190, 190, 190);
   margin-bottom: 10px;
 }
 
 .wish-session__drop-text{
   text-align: center;
-  color: #fea0a0;
+  color: rgb(190, 190, 190);
   font-size: 14px;
 }
