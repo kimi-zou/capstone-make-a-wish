@@ -1,0 +1,13 @@
+.settings__wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+  padding-left: 42px;
+  width: calc(100% - 84px);
+}
+
+.settings__heading {
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 34px;
+}

@@ -1,3 +1,10 @@
+.wish__session {
+  border: 1px solid #fce7e7;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
 .wish-session__heading {
   font-size: 18px;
   font-weight: 700;
@@ -9,7 +16,7 @@
   flex-wrap: wrap;
   align-content: flex-start;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   width: 100%;
 }
 
@@ -18,23 +25,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px dotted rgba(34, 34, 34, 0.6);
+  border: 2px dotted #fea0a0;
   box-sizing: border-box;
   width: calc(25% - 10px);
   height: 130px;
   border-radius: 10px;
   padding: 5px;
   margin-left: 5px;
-  background-color: rgba(248, 248, 248, 0.4);
+  background-color: rgba(252, 231, 231, 0.1);
 }
 
 .wish-session__drop-icon {
-  color: rgba(34, 34, 34, 0.6);
+  color: #fea0a0;
   margin-bottom: 10px;
 }
 
 .wish-session__drop-text{
   text-align: center;
-  color: rgba(34, 34, 34, 0.6);
+  color: #fea0a0;
   font-size: 14px;
 }

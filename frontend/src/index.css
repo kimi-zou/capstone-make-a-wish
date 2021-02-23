@@ -34,7 +34,7 @@ ul {
 button {
   border-style: none;
   font-weight: 500;
-  font-family:'Righteous', Courier, monospace;
+  font-family:'Raleway', 'Courier New', Courier, monospace;
 }
 
 button:focus {
