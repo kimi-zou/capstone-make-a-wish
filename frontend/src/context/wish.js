@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import moment from 'moment';
-// import { csrfFetch } from '../store/csrf';
 import {
   getPublicWishes,
   getPrivateWishes,
@@ -22,6 +20,11 @@ const WishContextProvider = ({ children }) => {
   const [showCreateWishForm, setShowCreateWishForm] = useState(false);
   const [showWishDetail, setShowWishDetail] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [confirmHeading, setConfirmHeading] = useState('');
+  const [confirmMessage, setConfirmMessage] = useState('');
+  const [confirmHandler, setConfirmHandler] = useState();
+  const [cancelHandler, setCancelHandler] = useState();
+  const [confirmButtonText, setConfirmButtonText] = useState('');
 
   // Get all wishes
   const getAllWishesFunc = async () => {
@@ -29,40 +32,30 @@ const WishContextProvider = ({ children }) => {
     await dispatch(getPrivateWishes(sessionUser.id));
   };
 
-  // Show wish details
-  const showWishDetials = async (wish) => {
-    await dispatch(getWish(wish.id));
-    setShowWishDetail(true);
-    setShowCreateWishForm(false);
+  // Handle drag and drop
+  // ---Set data for drag event
+  const setData = (e, wish) => {
+    e.dataTransfer.setData('wishId', wish.id);
+    e.dataTransfer.setData('status', wish.status);
   };
-
-  // Handle drop
+  // ---Handle drop
   const dropHandler = async (e) => {
     e.preventDefault();
     const wishId = e.dataTransfer.getData('wishId');
     const status = e.dataTransfer.getData('status');
-
     if (parseInt(status) === 0) {
       await dispatch(publicWish(wishId));
     } else {
       await dispatch(privateWish(wishId));
     }
-
     await dispatch(getPublicWishes(sessionUser.id));
     await dispatch(getPrivateWishes(sessionUser.id));
     await dispatch(getWish(wishId));
   };
-
-  // Handle drag over
+  // ---Handle drag over
   const dragoverHandler = (e) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
-  };
-
-  // Set data for drag event
-  const setData = (e, wish) => {
-    e.dataTransfer.setData('wishId', wish.id);
-    e.dataTransfer.setData('status', wish.status);
   };
 
   // Handle status update
@@ -94,7 +87,6 @@ const WishContextProvider = ({ children }) => {
     <WishContext.Provider value={{
       dropHandler,
       dragoverHandler,
-      showWishDetials,
       setData,
       updateStatus,
       makeWishPublic,
@@ -103,9 +95,19 @@ const WishContextProvider = ({ children }) => {
       showCreateWishForm,
       showWishDetail,
       showConfirmation,
+      confirmHeading,
+      confirmMessage,
+      confirmHandler,
+      cancelHandler,
+      confirmButtonText,
       setShowCreateWishForm,
       setShowWishDetail,
-      setShowConfirmation
+      setShowConfirmation,
+      setConfirmHeading,
+      setConfirmMessage,
+      setConfirmHandler,
+      setCancelHandler,
+      setConfirmButtonText
     }}
     >
       {children}

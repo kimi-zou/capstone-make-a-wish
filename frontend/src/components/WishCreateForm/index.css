@@ -2,7 +2,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  border: 10px solid #fea0a0;
+  border: 5px solid #fea0a0;
   background-color: #fcf1f1;
   border-radius: 10px;
   width: 100%;
@@ -72,6 +72,6 @@
 }
 
 .create-wish__form-cancel {
-  background-color: #555;
+  background-color: rgb(194, 194, 194);
   color: white;
 }

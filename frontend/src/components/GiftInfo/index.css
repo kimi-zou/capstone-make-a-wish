@@ -1,0 +1,25 @@
+/* ---- info ---- */
+.gift-info__wrapper {
+  margin: 0 40px;
+  margin-top: 40px;
+}
+
+.gift-info__title {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.gift-info__description {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.gift-info__link {
+  text-decoration: underline;
+}
+
+.gift-info__link a {
+  text-decoration: none;
+  color: #fe993d;
+}

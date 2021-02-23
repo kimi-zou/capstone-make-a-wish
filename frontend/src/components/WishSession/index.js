@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { WishContext } from '../../context/wish';
-import Gift from '../WishGift';
+import WishGift from '../WishGift';
 import AddWishButton from '../WishAddButton';
 import './index.css';
 
@@ -21,15 +21,13 @@ const WishSession = ({ type, heading }) => {
   }, [type, publicWishes, privateWishes]);
 
   return (
-    <div
-      className='wish__session'
-    >
+    <div className='wish__session'>
       <div className='wish-session__heading'>{heading}</div>
       <div className='wish-session__gifts-wrapper'>
         {type === 'public' && <AddWishButton />}
         {
           wishes.length > 0 &&
-          wishes.map((wish) => <Gift wish={wish} key={wish.id} />)
+          wishes.map((wish) => <WishGift wish={wish} key={wish.id} />)
         }
         {
           type === 'public'

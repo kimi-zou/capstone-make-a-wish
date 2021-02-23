@@ -1,0 +1,36 @@
+/* --- image ---- */
+.gift-images__wrapper {
+  position: relative;
+  margin: 0 auto;
+  height: 56%;
+  width: 76%;
+}
+
+.gift-images__image {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* button */
+.gift-images__buttons {
+  z-index: 1;
+  position: absolute;
+  top: 45%;
+  font-size: 30px;
+  color: rgb(71, 71, 71);
+  cursor: pointer;
+}
+
+.gift-images__buttons:hover {
+  color: rgb(175, 175, 175);
+}
+
+.gift-images__left-button {
+  left: -30px;
+}
+
+.gift-images__right-button {
+  right: -30px;
+}

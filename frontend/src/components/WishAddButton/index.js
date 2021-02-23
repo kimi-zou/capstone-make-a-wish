@@ -3,7 +3,7 @@ import { WishContext } from '../../context/wish';
 import './index.css';
 
 const AddWishButton = () => {
-  const { setShowCreateWishForm, setShowWishDetail, showCreateWishForm } = useContext(WishContext);
+  const { setShowCreateWishForm, showCreateWishForm } = useContext(WishContext);
 
   if (showCreateWishForm) return null;
 
@@ -12,7 +12,6 @@ const AddWishButton = () => {
       className='wish__add-button'
       onClick={() => {
         setShowCreateWishForm(true);
-        setShowWishDetail(false);
       }}
     > +
     </button>

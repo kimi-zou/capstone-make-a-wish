@@ -1,41 +1,77 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { WishContext } from '../../context/wish';
 import DeleteConfirmation from '../WishDeleteConfirmation';
+import GiftImages from '../GiftImages';
+import GiftThumbnails from '../GiftThumbnails';
 import './index.css';
+import GiftInfo from '../GiftInfo';
 
 const WishDetail = () => {
   const wish = useSelector(state => state.wish.wish);
   const { updateStatus, showConfirmation, setShowConfirmation } = useContext(WishContext);
+  const [loaded, setLoaded] = useState(false);
+  const [imgIndex, setImgIndex] = useState(0);
 
-  // Render
-  return (
-    <div className='wish__detail'>
-      {showConfirmation &&
-        <DeleteConfirmation
-          id={wish.id}
-          title={wish.title}
-        />}
-      <div>
-        <img
-          className='detail__image'
-          src={wish.WishImages[0].image}
-          alt='gift'
-        />
-      </div>
-      <div>{wish.title}</div>
-      <div>{wish.description}</div>
-      <div>
-        {wish.link && <a href={wish.link}>more information</a>}
-      </div>
-      <div>{wish.quantity}</div>
-      <button>edit</button>
-      <button onClick={() => setShowConfirmation(true)}>delete</button>
-      {
-        wish.status === 0
-          ? <button onClick={(e) => updateStatus(e, wish)}>make public</button>
-          : <button onClick={(e) => updateStatus(e, wish)}>keep private</button>
+  useEffect(() => {
+    if (wish) {
+      setLoaded(true);
+    }
+  }, [wish]);
+
+  // Set img index
+  const setIndex = (up) => {
+    if (!wish) return;
+    if (up === 1) {
+      if (imgIndex === wish.WishImages.length - 1) {
+        setImgIndex(0);
+      } else {
+        setImgIndex(imgIndex + 1);
       }
+    } else {
+      if (imgIndex === 0) {
+        setImgIndex(wish.WishImages.length - 1);
+      } else {
+        setImgIndex(imgIndex - 1);
+      }
+    }
+  };
+
+  if (!loaded) return null;
+
+  return (
+    <div className='wish__detail-wrapper'>
+      <div className='wish__detail'>
+        <GiftImages gift={wish} imgIndex={imgIndex} setIndex={setIndex} />
+        <GiftThumbnails gift={wish} setImgIndex={setImgIndex} />
+        <GiftInfo gift={wish} />
+        {showConfirmation && <DeleteConfirmation />}
+        <div className='wish__detail-buttons-wrapper'>
+          <button className='wish__detail-buttons wish__detail-edit'>edit</button>
+          {
+            wish.status === 0
+              ? (
+                <button
+                  className='wish__detail-buttons wish__detail-make-public'
+                  onClick={(e) => updateStatus(e, wish)}
+                >make public
+                </button>
+                )
+              : (
+                <button
+                  className='wish__detail-buttons wish__detail-make-private'
+                  onClick={(e) => updateStatus(e, wish)}
+                >keep private
+                </button>
+                )
+          }
+          <button
+            className='wish__detail-buttons wish__detail-delete'
+            onClick={() => setShowConfirmation(true)}
+          >delete
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

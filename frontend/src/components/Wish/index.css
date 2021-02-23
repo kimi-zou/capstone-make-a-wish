@@ -28,3 +28,38 @@
   margin-top: 68px;
   margin-right: 105px;
 }
+
+/* ----buttons---- */
+.wish__detail-buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 40px;
+  margin-top: 40px;
+}
+
+.wish__detail-buttons {
+  height: 30px;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 0 28px;
+}
+
+.wish__detail-edit {
+  background-color: rgb(223, 223, 223);
+  color: #444;
+}
+
+.wish__detail-make-public {
+  background-color: #fd891d;
+  color: white;
+}
+
+.wish__detail-make-private {
+  background-color: #5851da;
+  color: white;
+}
+
+.wish__detail-delete {
+  background-color: rgb(189, 14, 14);
+  color: white;
+}

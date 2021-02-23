@@ -1,6 +1,9 @@
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { DashboardContext } from '../../context/dashboard';
+import GiftImages from '../GiftImages';
+import GiftThumbnails from '../GiftThumbnails';
+import GiftInfo from '../GiftInfo';
 import './index.css';
 
 const DashboardInfoBoxGift = () => {
@@ -27,48 +30,9 @@ const DashboardInfoBoxGift = () => {
   return (
     <div className='dibg__wrapper'>
       <div className='dashboard-info-box-gift__wrapper'>
-        {/* image */}
-        <div className='dashboard-info-box-gift__image-wrapper'>
-          <img
-            className='dashboard-info-box-gift__image'
-            src={gift.WishImages[imgIndex].image}
-            alt='gift'
-          />
-          <div className='dashboard-info-box-gift__image-left-button dibg__image-buttons'>
-            <i
-              className='fas fa-chevron-left'
-              onClick={() => setIndex(0)}
-            />
-          </div>
-          <div className='dashboard-info-box-gift__image-right-button dibg__image-buttons'>
-            <i
-              className='fas fa-chevron-right'
-              onClick={() => setIndex(1)}
-            />
-          </div>
-        </div>
-
-        {/* thumbnails */}
-        <div className='dashboard-info-box-gift__image-thumbnail-wrapper'>
-          {
-          gift.WishImages.map((img, idx) => (
-            <img
-              key={img.id} src={img.image} alt='gift thumbnail'
-              className='dashboard-info-box-gift__image-thumbnail'
-              onClick={() => setImgIndex(idx)}
-            />
-          ))
-        }
-        </div>
-
-        {/* gift info */}
-        <div className='dashboard-info-box-gift__info-wrapper'>
-          <div className='dashboard-info-box-gift__title'>{gift.title}</div>
-          <div className='dashboard-info-box-gift__description'>{gift.description}</div>
-          <div className='dashboard-info-box-gift__link'>
-            <a href={gift.link}>get more info</a>
-          </div>
-        </div>
+        <GiftImages gift={gift} imgIndex={imgIndex} setIndex={setIndex} />
+        <GiftThumbnails gift={gift} setImgIndex={setImgIndex} />
+        <GiftInfo gift={gift} />
 
         {/* button */}
         {

@@ -57,7 +57,9 @@ export const createWish = (data) => async dispatch => {
 // 4. Get a wish
 export const getWish = (id) => async dispatch => {
   const res = await csrfFetch(`/api/wishes/${id}`);
-  await dispatch(setViewWish(res.data.wish));
+  if (res.ok) {
+    await dispatch(setViewWish(res.data.wish));
+  }
   return res;
 };
 

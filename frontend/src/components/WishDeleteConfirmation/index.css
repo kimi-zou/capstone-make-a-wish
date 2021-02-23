@@ -1,0 +1,60 @@
+.wish-delete-confirm__background {
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  background-color: rgba(100, 100, 100, 0.8);
+}
+
+.wish-delete-confirm__wrapper {
+  position: relative;
+  background-color: white;
+  color: #555;
+  border-radius: 10px;
+  padding: 20px;
+  width: 70%;
+}
+
+/* heading */
+.wish-delete-confirm__heading {
+  color: #222;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* message */
+.wish-delete-confirm__message {
+  margin-bottom: 20px;
+}
+
+.wish-delete-confirm__wish-title {
+  font-weight: 600;
+}
+
+/* buttons */
+.wish-delete-confirm__buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.wish-delete-confirm__buttons {
+  width: 48%;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.wish-delete-confirm__yes {
+  background-color: rgb(189, 14, 14);
+  color: white;
+}
+
+.wish-delete-confirm__no {
+  background-color: rgb(145, 145, 145);
+  color: white;
+}

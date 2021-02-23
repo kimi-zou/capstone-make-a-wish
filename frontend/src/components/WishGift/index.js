@@ -1,15 +1,19 @@
 import React, { useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import { WishContext } from '../../context/wish';
+import { getWish } from '../../store/wish';
 import './index.css';
 
-const Gift = ({ wish }) => {
-  const {
-    setData,
-    showWishDetials
-    // updateStatus
-  } = useContext(WishContext);
+const WishGift = ({ wish }) => {
+  const dispatch = useDispatch();
+  const { setData, setShowWishDetail } = useContext(WishContext);
 
-  // Render
+  // Show wish details
+  const showWishDetials = (wish) => {
+    dispatch(getWish(wish.id))
+      .then(() => setShowWishDetail(true));
+  };
+
   return (
     <div
       className='gift__image-wrapper'
@@ -17,17 +21,6 @@ const Gift = ({ wish }) => {
       onDragStart={(e) => setData(e, wish)}
       onClick={() => showWishDetials(wish)}
     >
-      {/* {
-        wish.status === 1
-          ? <i
-              className='gift__status-buttons fas fa-arrow-alt-circle-down'
-              onClick={(e) => updateStatus(e, wish)}
-            />
-          : <i
-              className='gift__status-buttons fas fa-arrow-alt-circle-up'
-              onClick={(e) => updateStatus(e, wish)}
-            />
-      } */}
       <img
         className='gift__image'
         src={wish.WishImages[0].image}
@@ -37,4 +30,4 @@ const Gift = ({ wish }) => {
   );
 };
 
-export default Gift;
+export default WishGift;
