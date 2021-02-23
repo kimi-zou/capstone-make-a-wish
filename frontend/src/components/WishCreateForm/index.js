@@ -46,47 +46,63 @@ const CreateWishForm = () => {
 
   return (
     <form
-      className='create-wish'
+      className='create-wish__form-wrapper'
       encType='multipart/form-data'
       onSubmit={handleSubmit}
     >
+      <div className='create-wish__form-heading'>Create a Wish</div>
+
       <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
+        {errors.map((error, idx) => (<li key={idx}>{error}</li>))}
       </ul>
-      <div className='create-wish--left'>
-        <CreateWishFormField
-          label='Title'
-          type='text'
-          value={title}
-          setValue={setTitle}
-        />
-        <div className='create-wish__field'>
-          <label className='create-wish__label'>Description</label>
-          <textarea
-            className='create-wish__textarea'
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+
+      <div className='create-wish__form-main'>
+
+        <div className='create-wish__form-left-wrapper'>
+          <CreateWishFormField
+            label='Title'
+            type='text'
+            value={title}
+            setValue={setTitle}
+          />
+          <div className='create-wish__field'>
+            <label className='create-wish__label'>Description</label>
+            <textarea
+              className='create-wish__textarea'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+          <CreateWishFormField
+            label='Link'
+            type='text'
+            value={link}
+            setValue={setLink}
+          />
+          <CreateWishFormField
+            label='Quantity'
+            type='number'
+            value={quantity}
+            setValue={setQuantity}
           />
         </div>
-        <CreateWishFormField
-          label='Link'
-          type='text'
-          value={link}
-          setValue={setLink}
-        />
-        <CreateWishFormField
-          label='Quantity'
-          type='number'
-          value={quantity}
-          setValue={setQuantity}
-        />
-      </div>
-      <div className='create-wish--right'>
-        <ImageUpload files={files} setFiles={setFiles} />
-        <button type='submit'>Submit</button>
-        <button type='button' onClick={() => setShowCreateWishForm(false)}>Cancel</button>
+
+        <div className='create-wish__form-right-wrapper'>
+          <ImageUpload files={files} setFiles={setFiles} />
+          <div className='create-wish__form-buttons-wrapper'>
+            <button
+              className='create-wish__form-buttons create-wish__form-submit'
+              type='submit'
+            >Submit
+            </button>
+            <button
+              className='create-wish__form-buttons create-wish__form-cancel'
+              type='button'
+              onClick={() => setShowCreateWishForm(false)}
+            >Cancel
+            </button>
+          </div>
+        </div>
       </div>
     </form>
   );

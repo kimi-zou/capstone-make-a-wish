@@ -1,19 +1,77 @@
-.create-wish {
+.create-wish__form-wrapper {
+  box-sizing: border-box;
   display: flex;
-  background-color: white;
+  flex-direction: column;
+  border: 10px solid #fea0a0;
+  background-color: #fcf1f1;
+  border-radius: 10px;
   width: 100%;
-  height: 400px;
+  min-height: 50vh;
+  max-height: 75vh;
+  padding: 20px 20px 20px 20px;
+  margin-bottom: 30px;
 }
 
-.create-wish--left {
-  width: 35%;
+.create-wish__form-main {
+  display: flex;
 }
 
-.create-wish--right {
+.create-wish__form-heading {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;  
+  color: #fea0a0;
+}
+
+/* ---left---- */
+.create-wish__form-left-wrapper {
+  width: 30%;
+  margin-right: 5%;
+}
+
+/* textarea */
+.create-wish__textarea {
+  height: 65px;
+  border: 1px solid #fea0a0;
+}
+
+.create-wish__textarea:focus {
+  outline: none !important;
+  border: 1px solid #fea0a0;
+}
+
+/* ---right---- */
+.create-wish__form-right-wrapper {
+  position: relative;
   width: 65%;
 }
 
 /* images */
 .wish-images__image {
   width: 23%;
+}
+
+/* buttons */
+.create-wish__form-buttons-wrapper {
+  position: absolute;
+  bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.create-wish__form-buttons {
+  width: 49%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.create-wish__form-submit {
+  background-color: #fa7474;
+  color: white;
+}
+
+.create-wish__form-cancel {
+  background-color: #555;
+  color: white;
 }

@@ -1,0 +1,22 @@
+.create-wish__field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.create-wish__label {
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.create-wish__input {
+  font-family:'Raleway', 'Courier New', Courier, monospace;
+  border: 1px solid #fea0a0;
+  border-radius: 3px;
+  padding: 4px 7px;
+}
+
+.create-wish__input:focus {
+  outline: none !important;
+  border: 1px solid #fea0a0;
+}

@@ -5,8 +5,8 @@ import './index.css';
 const Gift = ({ wish }) => {
   const {
     setData,
-    showWishDetials,
-    updateStatus
+    showWishDetials
+    // updateStatus
   } = useContext(WishContext);
 
   // Render
@@ -15,19 +15,19 @@ const Gift = ({ wish }) => {
       className='gift__image-wrapper'
       draggable='true'
       onDragStart={(e) => setData(e, wish)}
-      onClick={showWishDetials}
+      onClick={() => showWishDetials(wish)}
     >
-      {
+      {/* {
         wish.status === 1
           ? <i
-              className='gift__status fas fa-arrow-alt-circle-down'
+              className='gift__status-buttons fas fa-arrow-alt-circle-down'
               onClick={(e) => updateStatus(e, wish)}
             />
           : <i
-              className='gift__status fas fa-arrow-alt-circle-up'
+              className='gift__status-buttons fas fa-arrow-alt-circle-up'
               onClick={(e) => updateStatus(e, wish)}
             />
-      }
+      } */}
       <img
         className='gift__image'
         src={wish.WishImages[0].image}

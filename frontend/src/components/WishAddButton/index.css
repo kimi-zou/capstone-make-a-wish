@@ -1,0 +1,15 @@
+.wish__add-button {
+  position: relative;
+  box-sizing: border-box;
+  width: calc(25% - 10px);
+  height: 130px;
+  border-radius: 10px;
+  padding: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  font-family: 'Raleway', 'Courier New', Courier, monospace;
+  font-size: 60px;
+  font-weight: 300;
+  color: white;
+  background-color: #fea0a0;
+}

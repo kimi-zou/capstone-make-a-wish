@@ -4,9 +4,36 @@
   margin-bottom: 10px;
 }
 
-.wish-session__gifts {
+.wish-session__gifts-wrapper {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  align-items: center;
+  margin-bottom: 30px;
   width: 100%;
+}
+
+.wish-session__drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dotted rgba(34, 34, 34, 0.6);
+  box-sizing: border-box;
+  width: calc(25% - 10px);
+  height: 130px;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: rgba(248, 248, 248, 0.4);
+}
+
+.wish-session__drop-icon {
+  color: rgba(34, 34, 34, 0.6);
+  margin-bottom: 10px;
+}
+
+.wish-session__drop-text{
+  text-align: center;
+  color: rgba(34, 34, 34, 0.6);
+  font-size: 14px;
 }

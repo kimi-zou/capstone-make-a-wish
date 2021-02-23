@@ -1,4 +1,5 @@
 import React from 'react';
+import './CreateWishFormField.css';
 
 const CreateWishFormField = (props) => {
   const { label, type, value, setValue } = props;

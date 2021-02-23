@@ -63,8 +63,8 @@ const ImageEdit = (props) => {
         <input {...getInputProps()} />
         {
           isDragActive
-            ? <p>Drop the files here ...</p>
-            : <p>Drag 'n' drop some files here, or click to select files</p>
+            ? <p>Drop the images here ...</p>
+            : <p>Drag and drop <br />or click to upload images</p>
         }
       </div>
       <aside className='thumbsContainer'>{thumbs}</aside>
