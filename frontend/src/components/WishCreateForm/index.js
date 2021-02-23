@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { createWish, getPublicWishes, getPrivateWishes } from '../../store/wish';
-import './index.css';
+import { WishContext } from '../../context/wish';
 import CreateWishFormField from './CreateWishFormField';
 import ImageUpload from './ImageUpload';
+import './index.css';
 
-const CreateWishForm = ({ setShowCreateWishForm }) => {
+const CreateWishForm = () => {
   const dispatch = useDispatch();
 
   // Store state
   const sessionUser = useSelector(state => state.session.user);
+  const { setShowCreateWishForm } = useContext(WishContext);
 
   // Local state
   const [errors, setErrors] = useState([]);

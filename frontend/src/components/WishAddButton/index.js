@@ -1,15 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { WishContext } from '../../context/wish';
 
-const AddWishButton = ({
-  showCreateWishForm,
-  setShowCreateWishForm,
-  setShowWishDetail
-}) => {
-  // Show create wish form
-  const openForm = () => {
-    setShowCreateWishForm(true);
-    setShowWishDetail(false);
-  };
+const AddWishButton = () => {
+  const { setShowCreateWishForm, setShowWishDetail, showCreateWishForm } = useContext(WishContext);
 
   return (
     <>
@@ -17,7 +10,10 @@ const AddWishButton = ({
         !showCreateWishForm &&
           <button
             className='wish__add wish__items'
-            onClick={openForm}
+            onClick={() => {
+              setShowCreateWishForm(true);
+              setShowWishDetail(false);
+            }}
           > +
           </button>
       }

@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { restoreUser } from './store/session';
 import { socketContext, onFriendRequest, onFriendAccept } from './context/socket';
 import DashboardContextProvider from './context/dashboard';
+import WishContextProvider from './context/wish';
 
 import About from './components/HomeAbout';
 import Dashboard from './components/Dashboard';
@@ -63,7 +64,11 @@ const App = () => {
                       <Dashboard />
                     </DashboardContextProvider>
                   </Route>
-                  <Route exact path='/my-wishes'><Wish /></Route>
+                  <Route exact path='/my-wishes'>
+                    <WishContextProvider>
+                      <Wish />
+                    </WishContextProvider>
+                  </Route>
                   <Route exact path='/notifications'><Notification /></Route>
                   <Route exact path='/settings'><Settings /></Route>
                 </Switch>

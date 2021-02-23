@@ -1,28 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { makeWishPublic, makeWishPrivate } from '../../services/updateWishStatus';
-import { getWish } from '../../store/wish';
+import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import { WishContext } from '../../context/wish';
 import DeleteConfirmation from '../WishDeleteConfirmation';
 import './index.css';
 
-const WishDetail = ({ setShowWishDetail }) => {
-  const dispatch = useDispatch();
+const WishDetail = () => {
   const wish = useSelector(state => state.wish.wish);
-  const sessionUser = useSelector(state => state.session.user);
-  const [showConfirmation, setShowConfirmation] = useState(false);
-
-  // Show delete confirmation message
-  const openDelteConfirmation = () => setShowConfirmation(true);
-
-  // Handle status update
-  const updateStatus = async (e) => {
-    if (parseInt(wish.status) === 0) {
-      await makeWishPublic(e, dispatch, wish, sessionUser);
-    } else {
-      await makeWishPrivate(e, dispatch, wish, sessionUser);
-    }
-    await dispatch(getWish(wish.id));
-  };
+  const { updateStatus, showConfirmation, setShowConfirmation } = useContext(WishContext);
 
   // Render
   return (
@@ -31,8 +15,6 @@ const WishDetail = ({ setShowWishDetail }) => {
         <DeleteConfirmation
           id={wish.id}
           title={wish.title}
-          setShowConfirmation={setShowConfirmation}
-          setShowWishDetail={setShowWishDetail}
         />}
       <div>
         <img
@@ -48,11 +30,11 @@ const WishDetail = ({ setShowWishDetail }) => {
       </div>
       <div>{wish.quantity}</div>
       <button>edit</button>
-      <button onClick={openDelteConfirmation}>delete</button>
+      <button onClick={() => setShowConfirmation(true)}>delete</button>
       {
         wish.status === 0
-          ? <button onClick={updateStatus}>make public</button>
-          : <button onClick={updateStatus}>keep private</button>
+          ? <button onClick={(e) => updateStatus(e, wish)}>make public</button>
+          : <button onClick={(e) => updateStatus(e, wish)}>keep private</button>
       }
     </div>
   );

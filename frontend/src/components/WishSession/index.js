@@ -1,51 +1,39 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getPublicWishes, getPrivateWishes, publicWish, privateWish, getWish } from '../../store/wish';
+import React, { useContext, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { WishContext } from '../../context/wish';
 import Gift from '../WishGift';
+import AddWishButton from '../WishAddButton';
 import './index.css';
 
-const WishSession = (props) => {
-  const { button, heading, wishes, setShowWishDetail, setShowCreateWishForm } = props;
-  const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
+const WishSession = ({ type, heading }) => {
+  const publicWishes = useSelector(state => state.wish.publicWishes);
+  const privateWishes = useSelector(state => state.wish.privateWishes);
+  const [wishes, setWishes] = useState([]);
+  const {
+    dropHandler,
+    dragoverHandler
+  } = useContext(WishContext);
 
-  // Handle drop
-  const dropHandler = async (e) => {
-    e.preventDefault();
-    const wishId = e.dataTransfer.getData('wishId');
-    const status = e.dataTransfer.getData('status');
-
-    if (parseInt(status) === 0) {
-      await dispatch(publicWish(wishId));
+  useEffect(() => {
+    if (type === 'public') {
+      setWishes(publicWishes);
     } else {
-      await dispatch(privateWish(wishId));
+      setWishes(privateWishes);
     }
-
-    await dispatch(getPublicWishes(sessionUser.id));
-    await dispatch(getPrivateWishes(sessionUser.id));
-    await dispatch(getWish(wishId));
-  };
-
-  // Handle drag over
-  const dragoverHandler = (e) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-  };
+  }, [type, publicWishes, privateWishes]);
 
   // Render
   return (
-    <div className='wish__session' onDrop={dropHandler} onDragOver={dragoverHandler}>
+    <div
+      className='wish__session'
+      onDrop={dropHandler}
+      onDragOver={dragoverHandler}
+    >
       <div className='wish-session__heading'>{heading}</div>
       <div className='wish-session__gifts'>
-        {button}
+        {type === 'public' && <AddWishButton />}
         {
-          wishes.map((wish) =>
-            <Gift
-              wish={wish}
-              key={wish.id}
-              setShowWishDetail={setShowWishDetail}
-              setShowCreateWishForm={setShowCreateWishForm}
-            />)
+          wishes.length > 0 && wishes.map((wish) => <Gift wish={wish} key={wish.id} />)
         }
       </div>
     </div>

@@ -1,7 +1,12 @@
 .wish-session__heading {
-  font-size: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .wish-session__gifts {
   display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  width: 100%;
 }

@@ -1,25 +1,21 @@
-.wish {
+.wish__wrapper {
+  z-index: 1;
   display: flex;
-  flex-direction: column;
-  width: 100%;
+  justify-content: space-between;
+  padding-top: 30px;
+  padding-left: 42px;
+  width: calc(100% - 84px);
+}
+
+/* ---- left ---- */
+.wish__left-wrapper {
+  width: 56%;
 }
 
 .wish__heading {
   font-size: 48px;
-}
-
-
-/* --------- Main --------- */
-.wish__main {
-  display: flex;
-  width: 100%;
-}
-
-/* --------- Main left --------- */
-.wish__main--left {
-  display: flex;
-  flex-direction: column;
-  width: 70%;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
 .wish__main-heading {
@@ -39,6 +35,11 @@
 }
 
 /* --------- Main right --------- */
-.wish__main--right {
-  width: 30%;
+.wish__right-wrapper {
+  position: fixed;
+  right: 0px;
+  width: 28vw;
+  height: 100%;
+  margin-top: 68px;
+  margin-right: 105px;
 }
