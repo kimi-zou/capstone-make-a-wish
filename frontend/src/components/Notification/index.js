@@ -17,16 +17,27 @@ const Notification = () => {
 
   return (
     <div className='notification__wrapper'>
-      {notifications.length > 0 && notifications.map((notification) => {
-        if (notification.NotificationObject.entityTypeId === 1) {
-          return (
-            <NotificationFriendRequest
-              key={notification.id}
-              notification={notification}
-            />
-          );
+      <div className='notification__inner-wrapper'>
+        <div className='notification__heading'>Notifications</div>
+        {
+          notifications.length > 0
+            ? notifications.map((notification) => {
+                if (notification.NotificationObject.entityTypeId === 1) {
+                  return (
+                    <NotificationFriendRequest
+                      key={notification.id}
+                      notification={notification}
+                    />
+                  );
+                }
+              })
+            : (
+              <div className='notification__no-notification-message'>
+                You don't have any notifications.
+              </div>
+              )
         }
-      })}
+      </div>
     </div>
   );
 };
