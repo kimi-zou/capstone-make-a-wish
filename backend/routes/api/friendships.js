@@ -40,7 +40,7 @@ router.post('/create', asyncHandler(async (req, res, next) => {
         actionUserId,
         0
       );
-      const notificationReceiver = NotificationReceiver.createNew(
+      const notificationReceiver = await NotificationReceiver.createNew(
         notification.id,
         receiverId,
         actionUserId,
@@ -89,7 +89,7 @@ router.patch('/:id(\\d+)/update', asyncHandler(async (req, res, next) => {
       ? relationship.userTwoId
       : relationship.userOneId
   );
-  const notificationReceiver = NotificationReceiver.createNew(
+  const notificationReceiver = await NotificationReceiver.createNew(
     notification.id,
     userSentRequestId,
     actionUserId,
