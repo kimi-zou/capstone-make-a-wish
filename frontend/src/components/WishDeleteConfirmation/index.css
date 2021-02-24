@@ -55,6 +55,7 @@
 }
 
 .wish-delete-confirm__no {
-  background-color: rgb(145, 145, 145);
-  color: white;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #999;
+  color: #666;
 }

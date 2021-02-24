@@ -5,7 +5,7 @@
 }
 
 .settings-edit-form__field-lable {
-  width: 46%;
+  width: 135px;
   color: #666;
   font-size: 14px;
 }
@@ -24,7 +24,7 @@
 }
 
 .settings-edit-form__date-input {
-  width: 172px;
+  width: 160px;
   height: 18px;
 } 
 

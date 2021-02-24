@@ -60,7 +60,7 @@ const NotificationFriendRequest = ({ notification }) => {
       <div className='notification-friend__user-info'>
         <div className='notification-friend__date'>
           {diffDay()
-            ? moment(notification.createdAt).format('h:m A')
+            ? moment(notification.createdAt).format('hh:mm A')
             : (diffYear()
                 ? moment(notification.createdAt).format('MMM Do')
                 : moment(notification.createdAt).format('MMM Do, YYYY'))}

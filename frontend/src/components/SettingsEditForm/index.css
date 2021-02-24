@@ -9,8 +9,8 @@
 /* ----left---- */
 .settings-edit-form__left-wrapper {
   position: relative;
-  width: 36%;
-  margin-right: 4%;
+  width: 200px;
+  margin-right: 20px;
 }
 
 /* buttons */
@@ -45,13 +45,12 @@
 .settings-edit-form__right-wrapper {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 350px;
 }
 
 /* username */
 .settings-edit-form__field-username {
-  position: relative;
-  left: -7px;
+  width: 180px;
 }
 
 /* errors */

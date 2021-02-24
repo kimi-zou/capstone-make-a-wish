@@ -6,8 +6,8 @@
   border: 1px solid #fce7e7;
   border-radius: 10px;
   width: 100%;
-  min-height: 50vh;
-  max-height: 75vh;
+  min-height: 300px;
+  max-height: 400px;
   padding: 20px 20px 20px 20px;
   margin-bottom: 30px;
 }
@@ -31,9 +31,11 @@
 
 /* textarea */
 .create-wish__textarea {
-  height: 65px;
+  height: 62px;
   border: 1px solid #fea0a0;
   border-radius: 3px;
+  font-family: 'Raleway', 'Courier New', Courier, monospace;
+  padding: 4px 7px;
 }
 
 .create-wish__textarea:focus {
@@ -63,7 +65,7 @@
 
 .create-wish__form-buttons {
   width: 49%;
-  padding: 3.5px;
+  padding: 5px;
   border-radius: 3px;
 }
 
