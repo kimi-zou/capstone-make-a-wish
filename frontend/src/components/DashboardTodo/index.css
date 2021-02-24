@@ -65,3 +65,9 @@ tbody {
 .dashboard-todo__table-head_placeholder {
   height: 26px;
 }
+
+/* no todo message */
+.dashboard-todo__no-todo-message {
+  background-color: #fff7f7;
+  padding: 30px;
+}

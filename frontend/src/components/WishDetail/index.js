@@ -47,7 +47,7 @@ const WishDetail = () => {
         <GiftInfo gift={wish} />
         {showConfirmation && <DeleteConfirmation />}
         <div className='wish__detail-buttons-wrapper'>
-          <button className='wish__detail-buttons wish__detail-edit'>edit</button>
+          {/* <button className='wish__detail-buttons wish__detail-edit'>edit</button> */}
           {
             wish.status === 0
               ? (

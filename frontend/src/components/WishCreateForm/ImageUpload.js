@@ -4,6 +4,7 @@ import './ImageUpload.css';
 
 const ImageEdit = (props) => {
   const { files, setFiles } = props;
+  const [errors, setErrors] = useState([]);
   const [preview, setPreview] = useState([]);
 
   // Create drop zone
@@ -30,7 +31,7 @@ const ImageEdit = (props) => {
         }));
       }))
         .then(urls => setPreview([...urls]))
-        .catch(err => console.log(err));
+        .catch(err => setErrors(err));
     }
   });
 

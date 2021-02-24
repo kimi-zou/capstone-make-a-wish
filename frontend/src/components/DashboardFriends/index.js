@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { DashboardContext } from '../../context/dashboard';
 import DashboardFriendsViewMonths from '../DashboardFriendsViewMonths';

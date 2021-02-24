@@ -22,9 +22,11 @@ const DashboardTodo = () => {
         <tbody>
           <tr className='dashboard-todo__table-head_placeholder' />
           {
-          todos.map(todo => (
-            <DashboardTodoEntry key={todo.id} todo={todo} />
-          ))
+            todos.length > 0
+              ? todos.map(todo => (
+                <DashboardTodoEntry key={todo.id} todo={todo} />
+                ))
+              : <div className='dashboard-todo__no-todo-message'>Ready to send your friends some gifts?</div>
         }
         </tbody>
       </table>

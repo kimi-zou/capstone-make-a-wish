@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { searchUsers, loadUserResults } from '../../store/search';
-import { getFriends, getPendingFriends } from '../../store/friendship';
+import { getPendingFriends } from '../../store/friendship';
 import useOutsideClick from '../../services/useOutsideClick';
 import SearchResult from '../SearchResult';
 import './index.css';

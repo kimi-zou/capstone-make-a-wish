@@ -53,16 +53,19 @@
 }
 
 .wish__detail-make-public {
+  width: 56%;
   background-color: #fd891d;
   color: white;
 }
 
 .wish__detail-make-private {
+  width: 56%;
   background-color: #5851da;
   color: white;
 }
 
 .wish__detail-delete {
+  width: 42%;
   background-color: rgb(189, 14, 14);
   color: white;
 }

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getFriendPublicWishes } from '../../store/wish';
 import { DashboardContext } from '../../context/dashboard';
@@ -44,7 +44,7 @@ const DashboardFriendWishes = ({ friend }) => {
               ))
             : <div className='dashboard-friend__wish-message'>
               {friend.displayName} has not posted wishes.
-              </div>
+            </div>
         }
       </div>
     </div>

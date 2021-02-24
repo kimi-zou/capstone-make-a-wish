@@ -158,7 +158,6 @@ module.exports = (sequelize, DataTypes) => {
       user.hashedPassword = hashedPassword;
     }
     if (avatarUrl) {
-      console.log(avatarUrl);
       user.avatar = avatarUrl;
     }
     user.displayName = displayName;

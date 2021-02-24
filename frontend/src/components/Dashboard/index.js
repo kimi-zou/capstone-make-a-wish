@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
@@ -48,7 +48,7 @@ const Dashboard = () => {
               <DashboardRecentBirthdays />
               <DashboardFriends />
               <DashboardTodo />
-            </>
+              </>
         }
       </div>
       <div className='dashboard__right-wrapper'>
@@ -65,7 +65,7 @@ const Dashboard = () => {
                 <DashboardPendingNotifications type='pending' />
               </div>
               <DashboardInfoBoxMonth />
-               </>)
+            </>)
             : <DashboardInfoBoxGift />
         }
 
