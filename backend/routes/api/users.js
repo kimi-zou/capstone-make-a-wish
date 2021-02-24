@@ -6,6 +6,7 @@ const { Op } = require('sequelize');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
 const { getRandomImages, avatars } = require('../../utils/random-seed-image');
+const { avatarUpload, s3Upload } = require('../../awsS3');
 const {
   User,
   Wish,
@@ -35,6 +36,29 @@ const validateSignup = [
   handleValidationErrors
 ];
 
+const validateUpdate = [
+  check('email')
+    .exists({ checkFalsy: true })
+    .isEmail()
+    .withMessage('Please provide a valid email.'),
+  check('displayName')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 4 })
+    .withMessage('Please provide a display name with at least 4 characters.'),
+  check('displayName').not().isEmail().withMessage('Display name cannot be an email.'),
+  check('password')
+    .custom(value => {
+      if (value) {
+        if (value.length < 7) {
+          throw new Error('Password must be 6 characters or more.');
+        }
+      } else {
+        return true;
+      }
+    }),
+  handleValidationErrors
+];
+
 // Sign up
 router.post(
   '/',
@@ -50,6 +74,29 @@ router.post(
     }
     await setTokenCookie(res, user);
     return res.json({ user });
+  })
+);
+
+// Update user info
+router.patch(
+  '/:id(\\d+)',
+  avatarUpload,
+  validateUpdate,
+  asyncHandler(async (req, res, next) => {
+    const { email, password, displayName, birthday } = req.body;
+    const avatar = req.file;
+    const userId = req.params.id;
+    if (avatar) {
+      const avatarUrl = await s3Upload(avatar, 'avatar');
+      const user = await User.updateInfo({ userId, displayName, email, password, birthday, avatarUrl });
+      if (!user) next();
+      return res.json({ user });
+    } else {
+      const avatarUrl = '';
+      const user = await User.updateInfo({ userId, displayName, email, password, birthday, avatarUrl });
+      if (!user) next();
+      return res.json({ user });
+    }
   })
 );
 

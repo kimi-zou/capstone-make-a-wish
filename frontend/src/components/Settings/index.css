@@ -21,30 +21,43 @@
 
 /* --------main-------- */
 .settings__main-wrapper {
+  position: relative;
   display: flex;
   border: 1px solid #fce7e7;
   border-radius: 10px;
   padding: 20px;
 }
 
+/* edit button */
+.settings__edit-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #444;
+  cursor: pointer;
+}
+
 /* ----left---- */
 .settings__main-left-wrapper {
-  width: 40%;
+  width: 36%;
   margin-right: 2%;
 }
 
 /* avatar */
 .settings__avatar-wrapper {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .settings__avatar {
-  width: 100%;
-  height: 100%;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 /* ----right---- */
@@ -52,5 +65,5 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 58%;
+  width: 62%;
 }

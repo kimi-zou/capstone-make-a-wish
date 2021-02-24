@@ -13,8 +13,13 @@ const wishImageUpload = multer({
   limits: { fileSize: '5mb' }
 }).fields([{ name: 'files', maxCount: 4 }]);
 
-const s3Upload = async (wishImageFile, folder) => {
-  const { originalname, buffer } = await wishImageFile;
+const avatarUpload = multer({
+  storage,
+  limits: { fileSize: '5mb' }
+}).single('avatar');
+
+const s3Upload = async (file, folder) => {
+  const { originalname, buffer } = await file;
   const Key = `${folder}/${uuid()}${path.extname(originalname)}`;
   const uploadParams = {
     Bucket: NAME_OF_BUCKET,
@@ -27,6 +32,7 @@ const s3Upload = async (wishImageFile, folder) => {
 };
 
 module.exports = {
+  avatarUpload,
   wishImageUpload,
   s3Upload
 };

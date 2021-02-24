@@ -1,0 +1,31 @@
+.settings-edit-form__field-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 8px;
+}
+
+.settings-edit-form__field-lable {
+  width: 40%;
+  color: #666;
+  font-size: 14px;
+}
+
+.settings-edit-form__field-input {
+  width: 187px;
+  height: 20px;
+  border: none;
+  background-color: rgb(247, 247, 247);
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Raleway', 'Courier New', Courier, monospace;
+}
+
+.settings-edit-form__field-input:focus {
+  outline: none;
+}
+
+.settings-edit-form__field-username {
+  background-color: white;
+}

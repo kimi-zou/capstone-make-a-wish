@@ -150,6 +150,24 @@ module.exports = (sequelize, DataTypes) => {
     return await User.scope('currentUser').findByPk(user.id);
   };
 
+  // 5. update user info
+  User.updateInfo = async function ({ userId, displayName, email, password, birthday, avatarUrl }) {
+    const user = await User.findByPk(userId);
+    if (password) {
+      const hashedPassword = bcrypt.hashSync(password);
+      user.hashedPassword = hashedPassword;
+    }
+    if (avatarUrl) {
+      console.log(avatarUrl);
+      user.avatar = avatarUrl;
+    }
+    user.displayName = displayName;
+    user.email = email;
+    user.birthday = birthday;
+    await user.save();
+    return user;
+  };
+
   // 5. Friends lookup
   User.friendsLookup = async function (friends, userId) {
     const users = await Promise.all(friends.map(async friend => {

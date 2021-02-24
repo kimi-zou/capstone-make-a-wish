@@ -1,0 +1,55 @@
+.settings-edit-form__image-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* ----label---- */
+.settings-edit-form__image-label-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* label */
+.settings-edit-form__image-upload-label {
+  position: absolute;
+  cursor: pointer;
+}
+
+.settings-edit-form__image-upload-icon {
+  margin-right: 5px;
+}
+
+/* preview */
+.settings-edit-form__image-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.settings-edit-form__image-preview--hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+#avatar-preview {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* input */
+input[type="file"] {
+  display: none;
+}
+
+
+
