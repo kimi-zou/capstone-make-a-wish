@@ -26,8 +26,8 @@ const App = () => {
 
   useEffect(() => {
     if (!sessionUser) return;
-    onFriendRequest(sessionUser);
-    onFriendAccept(sessionUser);
+    onFriendRequest(sessionUser, dispatch);
+    onFriendAccept(sessionUser, dispatch);
     return () => {
       socket.off('receive friend request');
       socket.off('accept friend request');
