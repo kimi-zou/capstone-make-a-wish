@@ -13,9 +13,6 @@
   margin-bottom: 60px;
   color: #222;
 }
-.sidenav__logo:hover {
-  color: white;
-}
 
 /* links */
 .sidenav__icons {
@@ -25,20 +22,17 @@
 
 .sidenav__links {
   font-family:'Righteous', Courier, monospace;
-  /* color: #ff6759;
-  color: #222; */
+  
   color: #fcf7f5;
   padding-left: 2px;
   margin-bottom: 18px;
 }
 
 .sidenav__links:hover {
-  /* color: #ff6759; */
   color: #222;
 }
 
 .sidenav__links--active {
-  /* color: #ff6759; */
   color: #222;
 }
 
@@ -50,15 +44,19 @@
 
 .sidenav__logout {
   position: absolute;
+  left: -4px;
   bottom: 10px;
-  left: 5px;
   width: 100px;
-  background-color: #FCE5DD;
   text-align: left;
   cursor: pointer;
+  background-color: transparent;
 } 
 
+.sidenav__logout-text {
+  font-family: 'Righteous', Courier, monospace;
+  font-size: 16px;
+}
+
 .sidenav__logout:hover {
-   /* color: #4a43e1; */
-   color: white;
+  color: #fce7e7;
 }
