@@ -32,11 +32,19 @@ const LoginForm = () => {
   return (
     <>
       <form className='auth-form' onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
+        {errors.length > 0 &&
+          <ul className='auth-form__errors-wrapper'>
+            {errors.map((error, idx) => {
+              if (error !== 'Invalid value') {
+                return (
+                  <li key={idx} className='auth-form__errors'>
+                    <i className='auth-form__error-icon fas fa-exclamation-circle' />
+                    {error}
+                  </li>
+                );
+              }
+            })}
+          </ul>}
         <AuthField
           icon={<i className='field__icon fa-lg fas fa-user' />}
           label='EMAIL / USERNAME'

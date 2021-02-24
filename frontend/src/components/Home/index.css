@@ -37,6 +37,7 @@
   padding: 30px 20px 10px 20px;
   border: 1px solid white;
   border-radius: 5%;
+  max-width: 280px;
 }
 
 /* buttons */

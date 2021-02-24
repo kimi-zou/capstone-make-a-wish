@@ -1,0 +1,71 @@
+.birthday-form__heading {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 14px;
+  font-family:'Raleway', 'Courier New', Courier, monospace;
+}
+
+/* ----input wrapper---- */
+.birthday-form__input-wrapper {
+  display: flex;
+  align-items: flex-end;
+  align-items: center;
+  height: 20px;
+  padding: 5px;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+/* icon */
+.birthday-form__icon {
+  margin-right: 10px;
+  font-size: 22px;
+}
+
+/* label */
+.birthday-form__label {
+  font-size: 12px;
+}
+
+/* input */
+.birthday-form__input {
+  box-sizing: border-box;
+  border: 1px solid #222;
+  border-radius: 5px;
+  width: 86%;
+  padding: 3px 5px;
+  font-size: 16px;
+  font-family: 'Raleway', 'Courier New', Courier, monospace;
+  font-weight: 400;
+}
+
+.birthday-form__input:focus {
+  outline: none;
+}
+
+/* buttons */
+.birthday-form__buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.birthday-form__button-submit,
+.birthday-form__buttons {
+  width: 48%;
+  margin-bottom: 10px;
+  height: 28px;
+  border-radius: 5px;
+  font-weight: 600;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #999;
+  color: #666;
+}
+
+.birthday-form__button-submit {
+  width: 100%;
+  background-color: #fe9086;
+   border: 1px solid transparent;
+    color: white;
+}

@@ -72,7 +72,6 @@
   height: 35px;
   border: 1px solid transparent;
   border-radius: 5px;
-  background-color: #fe993d;
   background-color: #fe9086;
   color: white;
   font-weight: 600;
@@ -80,4 +79,19 @@
 .field__login-button,
 .field__demo-login {
   width: 48%;
+}
+
+/* errors */
+.auth-form__errors-wrapper {
+  margin-top: 20px;
+}
+
+.auth-form__error-icon {
+  margin-right: 5px;
+}
+
+.auth-form__errors {
+  margin: 8px;
+  font-size: 14px;
+  color: rgb(189, 14, 14);
 }

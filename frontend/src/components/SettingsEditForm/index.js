@@ -102,6 +102,7 @@ const SettingsEditForm = ({ setShowEditForm }) => {
           type='date'
           value={birthday}
           setValue={setBirthday}
+          inputclass='settings-edit-form__date-input'
         />
         <SettingsEditFormField
           label='Email'

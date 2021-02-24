@@ -23,11 +23,10 @@
   font-family: 'Raleway', 'Courier New', Courier, monospace;
 }
 
-input[type="date" i] {
-  size: 20;
+.settings-edit-form__date-input {
   width: 172px;
   height: 18px;
-}
+} 
 
 .settings-edit-form__field-input:focus {
   outline: none;
