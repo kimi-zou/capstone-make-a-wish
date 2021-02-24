@@ -51,6 +51,8 @@ const validateUpdate = [
       if (value) {
         if (value.length < 7) {
           throw new Error('Password must be 6 characters or more.');
+        } else {
+          return true;
         }
       } else {
         return true;

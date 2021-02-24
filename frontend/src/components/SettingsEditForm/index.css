@@ -6,15 +6,52 @@
   padding: 20px;
 }
 
+/* ----left---- */
 .settings-edit-form__left-wrapper {
+  position: relative;
   width: 36%;
-  margin-right: 2%;
+  margin-right: 4%;
 }
 
+/* buttons */
+.settings-edit-form__buttons-wrapper {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.settings-edit-form__buttons {
+  width: 86%;
+  margin: 0 auto;
+  margin-top: 7px;
+  border-radius: 3px;
+  height: 25px;
+}
+
+.settings-edit-form__button-save {
+  background-color: #fa7474;
+  color: white;
+}
+
+.settings-edit-form__button-cancel {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #999;
+  color: #666;
+}
+
+/* ----right---- */
 .settings-edit-form__right-wrapper {
   display: flex;
   flex-direction: column;
-  width: 62%;
+  width: 60%;
+}
+
+/* username */
+.settings-edit-form__field-username {
+  position: relative;
+  left: -7px;
 }
 
 /* errors */
@@ -27,3 +64,4 @@
   font-size: 14px;
   color: rgb(189, 14, 14);
 }
+

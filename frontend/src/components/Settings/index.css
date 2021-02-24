@@ -25,7 +25,7 @@
   display: flex;
   border: 1px solid #fce7e7;
   border-radius: 10px;
-  padding: 20px;
+  padding: 30px 20px;
 }
 
 /* edit button */
@@ -39,8 +39,8 @@
 
 /* ----left---- */
 .settings__main-left-wrapper {
-  width: 36%;
-  margin-right: 2%;
+  width: 38%;
+  margin-right: 8%;
 }
 
 /* avatar */
@@ -65,5 +65,5 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 62%;
+  width: 54%;
 }

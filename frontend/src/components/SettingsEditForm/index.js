@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { csrfFetch } from '../../store/csrf';
 import Cookies from 'js-cookie';
 import { setUser } from '../../store/session';
 import SettingsEditFormField from '../SettingsEditFormField';
@@ -41,10 +40,6 @@ const SettingsEditForm = ({ setShowEditForm }) => {
       data.append('birthday', birthday);
       data.append('email', email);
       data.append('password', password);
-      // Display the key/value pairs
-      for (const pair of data.entries()) {
-        console.log(pair[0] + ', ' + pair[1]);
-      }
       const res = await fetch(`/api/users/${sessionUser.id}`, {
         method: 'PATCH',
         headers: {
@@ -90,18 +85,18 @@ const SettingsEditForm = ({ setShowEditForm }) => {
         </div>
       </div>
       <div className='settings-edit-form__right-wrapper'>
-        <SettingsEditFormField
-          label='Display Name'
-          type='text'
-          value={displayName}
-          setValue={setDisplayName}
-        />
         <div className='settings-edit-form__field-wrapper'>
           <label className='settings-edit-form__field-lable'>Username</label>
           <div className='settings-edit-form__field-input settings-edit-form__field-username'>
             @{sessionUser.username}
           </div>
         </div>
+        <SettingsEditFormField
+          label='Display Name'
+          type='text'
+          value={displayName}
+          setValue={setDisplayName}
+        />
         <SettingsEditFormField
           label='Birthday'
           type='date'
@@ -145,7 +140,6 @@ const SettingsEditForm = ({ setShowEditForm }) => {
           })
         }
       </div>
-
     </form>
   );
 };
