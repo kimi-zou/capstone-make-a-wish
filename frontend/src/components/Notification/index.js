@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getAllNotifications } from '../../store/notification';
@@ -7,13 +7,18 @@ import './index.css';
 
 const Notification = () => {
   const dispatch = useDispatch();
+  const [notifications, setNotifications] = useState([]);
   const sessionUser = useSelector(state => state.session.user);
-  const notifications = useSelector(state => state.notification.notifications);
+  const storeNotifications = useSelector(state => state.notification.notifications);
 
   useEffect(() => {
     if (!sessionUser) return;
     dispatch(getAllNotifications(sessionUser.id));
   }, [dispatch, sessionUser]);
+
+  useEffect(() => {
+    if (storeNotifications.length > 0) setNotifications(storeNotifications);
+  }, [storeNotifications]);
 
   return (
     <div className='notification__wrapper'>
