@@ -15,6 +15,7 @@ const CreateWishForm = () => {
   const { setShowCreateWishForm } = useContext(WishContext);
 
   // Local state
+  const [disableSubmit, setDisableSubmit] = useState(false);
   const [errors, setErrors] = useState([]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -25,6 +26,7 @@ const CreateWishForm = () => {
   // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setDisableSubmit(true);
     setErrors([]);
     const formData = new FormData();
     files.forEach(file => formData.append('files', file));
@@ -41,6 +43,7 @@ const CreateWishForm = () => {
     } else {
       const err = await res.json();
       setErrors(err.errors);
+      setDisableSubmit(false);
     }
   };
 
@@ -93,6 +96,7 @@ const CreateWishForm = () => {
             <button
               className='create-wish__form-buttons create-wish__form-submit'
               type='submit'
+              disabled={disableSubmit}
             >Submit
             </button>
             <button
