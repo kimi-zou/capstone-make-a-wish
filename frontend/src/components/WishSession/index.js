@@ -15,19 +15,31 @@ const WishSession = ({ type, heading, wishes }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
 
-  // Handle drop
-  const dropHandler = async (e) => {
-    e.preventDefault();
-    const wishId = e.dataTransfer.getData('wishId');
-    const status = e.dataTransfer.getData('status');
-    if (parseInt(status) === 0) {
-      await dispatch(publicWish(wishId));
-    } else {
-      await dispatch(privateWish(wishId));
-    }
+  // Get all wishes
+  const reGetAllWishes = async (wishId) => {
     await dispatch(getPublicWishes(sessionUser.id));
     await dispatch(getPrivateWishes(sessionUser.id));
     await dispatch(getWish(wishId));
+  };
+
+  // Handle drop to public
+  const dropPublicHandler = async (e) => {
+    e.preventDefault();
+    const status = e.dataTransfer.getData('status');
+    if (parseInt(status) !== 0) return;
+    const wishId = e.dataTransfer.getData('wishId');
+    await dispatch(publicWish(wishId));
+    reGetAllWishes(wishId);
+  };
+
+  // Handle drop to private
+  const dropPrivateHandler = async (e) => {
+    e.preventDefault();
+    const status = e.dataTransfer.getData('status');
+    if (parseInt(status) !== 1) return;
+    const wishId = e.dataTransfer.getData('wishId');
+    await dispatch(privateWish(wishId));
+    reGetAllWishes(wishId);
   };
 
   // Handle drag over
@@ -50,7 +62,7 @@ const WishSession = ({ type, heading, wishes }) => {
             ? (
               <div
                 className='wish-session__drop'
-                onDrop={dropHandler}
+                onDrop={dropPublicHandler}
                 onDragOver={dragoverHandler}
               >
                 <i className='wish-session__drop-icon fa-lg fas fa-bullhorn' />
@@ -62,7 +74,7 @@ const WishSession = ({ type, heading, wishes }) => {
             : (
               <div
                 className='wish-session__drop'
-                onDrop={dropHandler}
+                onDrop={dropPrivateHandler}
                 onDragOver={dragoverHandler}
               >
                 <i className='wish-session__drop-icon fa-lg far fa-edit' />

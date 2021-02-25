@@ -16,6 +16,7 @@ const DeleteConfirmation = () => {
     await dispatch(getPublicWishes(sessionUser.id));
     await dispatch(getPrivateWishes(sessionUser.id));
     setShowWishDetail(false);
+    setShowConfirmation(false);
   };
 
   return (
