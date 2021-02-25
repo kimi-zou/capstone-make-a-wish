@@ -9,19 +9,51 @@
   padding: 0 100px;
 }
 
-/* ---- intro ---- */
-.about__logo {
-  font-family: 'Pacifico', Courier, monospace;
-  color: #ff6658;
-}
-
-.about__intro {
-  font-family:'Righteous', Courier, monospace;
-  width: 450px;
+.about__main-left {
+  position: relative;
+  z-index: 1;
   margin-top: 60px;
   margin-left: 80px;
+  width: 450px;
+  height: 480px;
+}
+
+/* ---- intro ---- */
+/* heading */
+.about__intro-heading {
+  font-family:'Righteous', Courier, monospace;
   font-size: 34px;
-  z-index: 1;
+  margin-bottom: 40px;
+}
+
+.about__intro-heading-logo {
+  font-family: 'Pacifico', Courier, monospace;
+  color: #ff6658;
+  cursor: pointer;
+}
+
+/* intro */
+.about__intro {
+  width: 320px;
+  line-height: 1.6;
+}
+
+/* about me links */
+.about__links {
+  position: absolute;
+  bottom: 0;
+}
+
+.about__icons {
+  font-size: 36px;
+  color: #222;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.about__icons:hover {
+  position: relative;
+  top: -3px;
 }
 
 /* ---- background ---- */
