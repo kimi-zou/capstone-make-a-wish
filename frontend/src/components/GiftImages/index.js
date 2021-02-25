@@ -17,6 +17,7 @@ const GiftImages = ({ gift, imgIndex, setIndex }) => {
       {
         imgIndex >= 0 &&
         gift.WishImages &&
+        gift.WishImages.length > 0 &&
           <img
             className='gift-images__image'
             src={gift.WishImages[imgIndex].image}

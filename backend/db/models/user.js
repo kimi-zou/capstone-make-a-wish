@@ -187,7 +187,7 @@ module.exports = (sequelize, DataTypes) => {
         });
       }
       return await User.findOne({
-        where: { id: friend.userTwoId }
+        where: { id: friend.userOneId }
       });
     }));
     // ---sort name from a to z

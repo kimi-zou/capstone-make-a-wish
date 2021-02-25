@@ -41,43 +41,35 @@ const DashboardPendingNotifications = ({ type }) => {
 
   // Render outgoing message
   const OutgoingMessage = (number) => {
-    switch (number) {
-      case 0:
-      case 2:
-        return (
-          <div className='dashboard-pending-notifications__text'>
-            sent friend requests
-          </div>
-        );
-      case 1:
-        return (
-          <div className='dashboard-pending-notifications__text'>
-            sent friend request
-          </div>
-        );
-      default:
-        return <></>;
+    if (number === 1) {
+      return (
+        <div className='dashboard-pending-notifications__text'>
+          sent friend request
+        </div>
+      );
+    } else {
+      return (
+        <div className='dashboard-pending-notifications__text'>
+          sent friend requests
+        </div>
+      );
     }
   };
 
   // Render pending notification message
   const NotificationMessage = (number) => {
-    switch (number) {
-      case 0:
-      case 2:
-        return (
-          <div className='dashboard-pending-notifications__text'>
-            unread notifications
-          </div>
-        );
-      case 1:
-        return (
-          <div className='dashboard-pending-notifications__text'>
-            unread notification
-          </div>
-        );
-      default:
-        return <></>;
+    if (number === 1) {
+      return (
+        <div className='dashboard-pending-notifications__text'>
+          unread notification
+        </div>
+      );
+    } else {
+      return (
+        <div className='dashboard-pending-notifications__text'>
+          unread notifications
+        </div>
+      );
     }
   };
 

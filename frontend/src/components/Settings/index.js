@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import moment from 'moment';
+
 import SettingsEntry from '../SettingsEntry';
 import SettingsEditForm from '../SettingsEditForm';
 import './index.css';
@@ -34,7 +34,7 @@ const Settings = () => {
                 <div className='settings__main-right-wrapper'>
                   <SettingsEntry label='Display Name' content={sessionUser.displayName} />
                   <SettingsEntry label='Username' content={sessionUser.username} />
-                  <SettingsEntry label='Birthday' content={moment(sessionUser.birthday).format('MM-DD-YYYY')} />
+                  <SettingsEntry label='Birthday' content={sessionUser.birthday} />
                   <SettingsEntry label='Email' content={sessionUser.email} />
                 </div>
               </div>

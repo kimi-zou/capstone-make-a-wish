@@ -30,9 +30,12 @@ const DashboardFriend = () => {
           <div className='dashboard-friend__user-name'>{friend.displayName}</div>
           <div className='dashboard-friend__user-username'>@{friend.username}</div>
         </div>
-        <div className='dashboard-friend__user-birthday'>
-          {moment(friend.birthday).format('MM-DD')}
-        </div>
+        {
+          friend.birthday &&
+            <div className='dashboard-friend__user-birthday'>
+              {moment(friend.birthday).format('MM-DD')}
+            </div>
+        }
       </div>
 
       <DashboardFriendWishes friend={friend} />
