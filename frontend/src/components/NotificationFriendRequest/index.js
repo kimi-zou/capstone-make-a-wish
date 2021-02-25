@@ -5,23 +5,13 @@ import { getFriendshipById, updateFriendship } from '../../store/friendship';
 import { getAllNotifications, updateNotification } from '../../store/notification';
 import './index.css';
 
-const NotificationFriendRequest = ({ notification }) => {
+const NotificationFriendRequest = ({ notification, diffDay, diffYear }) => {
   const dispatch = useDispatch();
   const { avatar, displayName, username } = notification.User;
   const { entityId } = notification.NotificationObject;
   const sessionUser = useSelector(state => state.session.user);
   const notifications = useSelector(state => state.notification.notifications);
   const [friendship, setFriendship] = useState();
-
-  // Calculate time
-  const createdTime = moment(notification.createdAt);
-  const currentTime = moment(new Date());
-  const diffDay = () => {
-    return createdTime.diff(currentTime) < 86400000;
-  };
-  const diffYear = () => {
-    return createdTime.diff(currentTime, 'days') < 365;
-  };
 
   // Get friendship
   useEffect(() => {
@@ -59,9 +49,9 @@ const NotificationFriendRequest = ({ notification }) => {
       </div>
       <div className='notification-friend__user-info'>
         <div className='notification-friend__date'>
-          {diffDay()
+          {diffDay(notification)
             ? moment(notification.createdAt).format('hh:mm A')
-            : (diffYear()
+            : (diffYear(notification)
                 ? moment(notification.createdAt).format('MMM Do')
                 : moment(notification.createdAt).format('MMM Do, YYYY'))}
         </div>
