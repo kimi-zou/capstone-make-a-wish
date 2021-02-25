@@ -30,8 +30,15 @@ const DashboardInfoBoxGift = () => {
   return (
     <div className='dibg__wrapper'>
       <div className='dashboard-info-box-gift__wrapper'>
-        <GiftImages gift={gift} imgIndex={imgIndex} setIndex={setIndex} />
-        <GiftThumbnails gift={gift} setImgIndex={setImgIndex} />
+        <GiftImages
+          gift={gift}
+          imgIndex={imgIndex}
+          setIndex={setIndex}
+        />
+        <GiftThumbnails
+          gift={gift}
+          setImgIndex={setImgIndex}
+        />
         <GiftInfo gift={gift} />
 
         {/* button */}

@@ -28,7 +28,6 @@ const DashboardFriendWishes = ({ friend }) => {
               <div className='dashboard-friend___wish-image-wrapper' key={wish.id}>
                 {
                   wish.WishImages &&
-                  wish.WishImages.length > 0 &&
                     <img
                       className='dashboard-friend___wish-image'
                       src={wish.WishImages[0].image} alt='wish'
@@ -48,7 +47,7 @@ const DashboardFriendWishes = ({ friend }) => {
               ))
             : <div className='dashboard-friend__wish-message'>
               {friend.displayName} has not posted wishes.
-            </div>
+              </div>
         }
       </div>
     </div>

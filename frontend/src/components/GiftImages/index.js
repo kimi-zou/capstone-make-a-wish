@@ -4,36 +4,31 @@ import './index.css';
 const GiftImages = ({ gift, imgIndex, setIndex }) => {
   const [loaded, setLoaded] = useState(false);
 
+  console.log(imgIndex);
+
   useEffect(() => {
-    if (gift) {
-      setLoaded(true);
-    }
+    if (gift) setLoaded(true);
   }, [gift]);
 
   if (!loaded) return null;
 
   return (
     <div className='gift-images__wrapper'>
-      {
-        imgIndex >= 0 &&
-        gift.WishImages &&
-        gift.WishImages[imgIndex] &&
-          <img
-            className='gift-images__image'
-            src={gift.WishImages[imgIndex].image}
-            alt='gift'
-          />
-      }
+      <img
+        className='gift-images__image'
+        src={gift.WishImages[imgIndex].image}
+        alt='gift'
+      />
       <div className='gift-images__left-button gift-images__buttons'>
         <i
           className='fas fa-chevron-left'
-          onClick={() => setIndex(0)}
+          onClick={() => setIndex(0, gift)}
         />
       </div>
       <div className='gift-images__right-button gift-images__buttons'>
         <i
           className='fas fa-chevron-right'
-          onClick={() => setIndex(1)}
+          onClick={() => setIndex(1, gift)}
         />
       </div>
     </div>

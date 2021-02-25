@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getPublicWishes,
@@ -11,21 +11,9 @@ import WishGift from '../WishGift';
 import AddWishButton from '../WishAddButton';
 import './index.css';
 
-const WishSession = ({ type, heading }) => {
+const WishSession = ({ type, heading, wishes }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
-  const publicWishes = useSelector(state => state.wish.publicWishes);
-  const privateWishes = useSelector(state => state.wish.privateWishes);
-  const [wishes, setWishes] = useState([]);
-
-  // Get public or private wishes
-  useEffect(() => {
-    if (type === 'public') {
-      setWishes(publicWishes);
-    } else {
-      setWishes(privateWishes);
-    }
-  }, [type, publicWishes, privateWishes]);
 
   // Handle drop
   const dropHandler = async (e) => {

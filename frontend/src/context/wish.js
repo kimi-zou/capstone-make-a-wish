@@ -25,6 +25,7 @@ const WishContextProvider = ({ children }) => {
   const [confirmHandler, setConfirmHandler] = useState();
   const [cancelHandler, setCancelHandler] = useState();
   const [confirmButtonText, setConfirmButtonText] = useState('');
+  const [imgIndex, setImgIndex] = useState(0);
 
   // Get all wishes
   const getAllWishesFunc = async () => {
@@ -57,12 +58,31 @@ const WishContextProvider = ({ children }) => {
     await dispatch(getWish(wish.id));
   };
 
+  // Set img index
+  const setIndex = (up, wish) => {
+    if (!wish) return;
+    if (up === 1) {
+      if (imgIndex === wish.WishImages.length - 1) {
+        setImgIndex(0);
+      } else {
+        setImgIndex(imgIndex + 1);
+      }
+    } else {
+      if (imgIndex === 0) {
+        setImgIndex(wish.WishImages.length - 1);
+      } else {
+        setImgIndex(imgIndex - 1);
+      }
+    }
+  };
+
   return (
     <WishContext.Provider value={{
       updateStatus,
       makeWishPublic,
       makeWishPrivate,
       getAllWishesFunc,
+      setIndex,
       showCreateWishForm,
       showWishDetail,
       showConfirmation,
@@ -71,6 +91,7 @@ const WishContextProvider = ({ children }) => {
       confirmHandler,
       cancelHandler,
       confirmButtonText,
+      imgIndex,
       setShowCreateWishForm,
       setShowWishDetail,
       setShowConfirmation,
@@ -78,7 +99,8 @@ const WishContextProvider = ({ children }) => {
       setConfirmMessage,
       setConfirmHandler,
       setCancelHandler,
-      setConfirmButtonText
+      setConfirmButtonText,
+      setImgIndex
     }}
     >
       {children}

@@ -9,41 +9,34 @@ import GiftInfo from '../GiftInfo';
 
 const WishDetail = () => {
   const wish = useSelector(state => state.wish.wish);
-  const { updateStatus, showConfirmation, setShowConfirmation } = useContext(WishContext);
+  const {
+    updateStatus,
+    showConfirmation,
+    setShowConfirmation,
+    imgIndex,
+    setImgIndex,
+    setIndex
+  } = useContext(WishContext);
   const [loaded, setLoaded] = useState(false);
-  const [imgIndex, setImgIndex] = useState(0);
 
   useEffect(() => {
-    if (wish) {
-      setLoaded(true);
-    }
+    if (wish) setLoaded(true);
   }, [wish]);
-
-  // Set img index
-  const setIndex = (up) => {
-    if (!wish) return;
-    if (up === 1) {
-      if (imgIndex === wish.WishImages.length - 1) {
-        setImgIndex(0);
-      } else {
-        setImgIndex(imgIndex + 1);
-      }
-    } else {
-      if (imgIndex === 0) {
-        setImgIndex(wish.WishImages.length - 1);
-      } else {
-        setImgIndex(imgIndex - 1);
-      }
-    }
-  };
 
   if (!loaded) return null;
 
   return (
     <div className='wish__detail-wrapper'>
       <div className='wish__detail'>
-        <GiftImages gift={wish} imgIndex={imgIndex} setIndex={setIndex} />
-        <GiftThumbnails gift={wish} setImgIndex={setImgIndex} />
+        <GiftImages
+          gift={wish}
+          imgIndex={imgIndex}
+          setIndex={setIndex}
+        />
+        <GiftThumbnails
+          gift={wish}
+          setImgIndex={setImgIndex}
+        />
         <GiftInfo gift={wish} />
         {showConfirmation && <DeleteConfirmation />}
         <div className='wish__detail-buttons-wrapper'>

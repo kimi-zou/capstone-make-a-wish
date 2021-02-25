@@ -6,7 +6,7 @@ import './index.css';
 
 const WishGift = ({ wish }) => {
   const dispatch = useDispatch();
-  const { setShowWishDetail } = useContext(WishContext);
+  const { setShowWishDetail, setImgIndex } = useContext(WishContext);
 
   const setData = (e) => {
     e.dataTransfer.setData('wishId', wish.id);
@@ -15,6 +15,7 @@ const WishGift = ({ wish }) => {
 
   // Show wish details
   const showWishDetials = (wish) => {
+    setImgIndex(0);
     dispatch(getWish(wish.id))
       .then(() => setShowWishDetail(true));
   };

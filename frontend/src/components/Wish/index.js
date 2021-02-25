@@ -9,28 +9,34 @@ import './index.css';
 
 const Wish = () => {
   const dispatch = useDispatch();
-  const sessionUser = useSelector(state => state.session.user);
   const { showCreateWishForm, showWishDetail } = useContext(WishContext);
-  const [loaded, setLoaded] = useState();
+  const sessionUser = useSelector(state => state.session.user);
+  const publicWishes = useSelector(state => state.wish.publicWishes);
+  const privateWishes = useSelector(state => state.wish.privateWishes);
+  const [localPublicWishes, setLocalPublicWishes] = useState([]);
+  const [localPrivateWishes, setLocalPrivateWishes] = useState([]);
 
   // Get all wishes of session user
   useEffect(() => {
     if (sessionUser) {
-      dispatch(getPublicWishes(sessionUser.id))
-        .then(() => dispatch(getPrivateWishes(sessionUser.id)))
-        .then(() => setLoaded(true));
+      dispatch(getPublicWishes(sessionUser.id));
+      dispatch(getPrivateWishes(sessionUser.id));
     }
   }, [dispatch, sessionUser]);
 
-  if (!loaded) return null;
+  // Set local wishes
+  useEffect(() => {
+    if (publicWishes) setLocalPublicWishes(publicWishes);
+    if (privateWishes) setLocalPrivateWishes(privateWishes);
+  }, [publicWishes, privateWishes]);
 
   return (
     <div className='wish__wrapper'>
       <div className='wish__left-wrapper'>
         <div className='wish__heading'>My Wishes</div>
         {showCreateWishForm && <CreateWishForm />}
-        <WishSession type='public' heading='Public wishes' />
-        <WishSession type='private' heading='Private wishes' />
+        <WishSession type='public' wishes={localPublicWishes} heading='Public wishes' />
+        <WishSession type='private' wishes={localPrivateWishes} heading='Private wishes' />
       </div>
       <div className='wish__right-wrapper'>
         {showWishDetail && <WishDetail />}
