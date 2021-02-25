@@ -26,11 +26,15 @@ const WishGift = ({ wish }) => {
       onDragStart={setData}
       onClick={() => showWishDetials(wish)}
     >
-      <img
-        className='gift__image'
-        src={wish.WishImages[0].image}
-        alt='gift'
-      />
+      {
+        wish.WishImages &&
+        wish.WishImages.length > 0 &&
+          <img
+            className='gift__image'
+            src={wish.WishImages[0].image}
+            alt='gift'
+          />
+      }
     </div>
   );
 };

@@ -26,11 +26,15 @@ const DashboardFriendWishes = ({ friend }) => {
           wishes.length > 0
             ? wishes.map(wish => (
               <div className='dashboard-friend___wish-image-wrapper' key={wish.id}>
-                <img
-                  className='dashboard-friend___wish-image'
-                  src={wish.WishImages[0].image} alt='wish'
-                  onClick={() => displayGift(wish)}
-                />
+                {
+                  wish.WishImages &&
+                  wish.WishImages.length > 0 &&
+                    <img
+                      className='dashboard-friend___wish-image'
+                      src={wish.WishImages[0].image} alt='wish'
+                      onClick={() => displayGift(wish)}
+                    />
+                }
                 {
                   wish.status === 2 &&
                     <div
