@@ -30,7 +30,7 @@ const DashboardRecentBirthdays = () => {
 
   return (
     <div className='dashboard-recent-birthdays__wrapper'>
-      <div className='dashboard-recent-birthdays__title'>Uncoming Birthdays</div>
+      <div className='dashboard-recent-birthdays__title'>Upcoming Birthdays</div>
       <div className='dashboard-recent-birthdays__main'>
         <DashboardRecentBirthdaysList week={thisWeek} heading='This Week' />
         <DashboardRecentBirthdaysList week={nextWeek} heading='Next Week' />

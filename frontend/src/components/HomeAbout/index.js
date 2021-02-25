@@ -19,8 +19,8 @@ const About = () => {
           </div>
           <div className='about__intro'>
             MakeAwish is a birthday reminder app.
-            When friends or families' birthdays are coming up,
-            check out their wishes and send them their favourite gifts!
+            When friends or family’s birthdays are coming up,
+            check out their wishes and send them their favorite gifts!
           </div>
           <div className='about__links'>
             <a href='https://github.com/Kimi-Zou'>
