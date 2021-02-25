@@ -28,7 +28,7 @@ const WishGift = ({ wish }) => {
     >
       {
         wish.WishImages &&
-        wish.WishImages.length > 0 &&
+        wish.WishImages[0] &&
           <img
             className='gift__image'
             src={wish.WishImages[0].image}
