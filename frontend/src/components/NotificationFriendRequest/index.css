@@ -63,6 +63,7 @@
   justify-content: center;
   width: 58%;
   margin-left: 15px;
+  margin-right: 15px;
 }
 
 .notification-friend__message {
@@ -109,7 +110,7 @@
 /* message */
 .notification-friend__accepted,
 .notification-friend__ignored {
-  margin-right: 40px;
+  margin-right: 25px;
   font-family:'Righteous', Courier, monospace;
   font-size: 14px;
 }
